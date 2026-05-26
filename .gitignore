@@ -1,0 +1,27 @@
+# Installer output
+Output/
+
+# Videos e PDFs (conteudo pesado)
+*.mp4
+*.avi
+*.mkv
+*.mov
+*.pdf
+
+# Dados brutos (sobe apenas .js)
+dados/*
+
+# Exceto JS data files
+!dados/*.js
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Backup files
+*.bak
+*.bak2
+*.bak3
+
+# Node
+node_modules/
