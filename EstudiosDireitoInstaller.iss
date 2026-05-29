@@ -7,6 +7,9 @@ OutputBaseFilename=JurisPath_PRO_Setup
 AppPublisher=JurisPath
 AppPublisherURL=https://github.com/SEU_USUARIO/jurispath-vade-mecum
 SetupIconFile=icon.ico
+Compression=lzma2/fast
+DiskSpanning=yes
+DiskSliceSize=max
 
 [Files]
 Source: "JurisPath.html"; DestDir: "{app}"; Flags: ignoreversion
