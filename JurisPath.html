@@ -12663,15 +12663,24 @@ async function askAI(msg) {
       return;
     } catch(e) {
       rmTyping();
-      addMsg('⚠️ Qwen falhou. Tentando Gemini...','ai');
-      if(PERFIL.apiKey) {
-        try {
-          const resp = await callGemini(msg,ctx);
-          rmTyping(); addMsg(resp,'ai');
-          PERFIL.salvarMemoria(ctx,msg,resp);
-          atualizarBadgeIA();
-          return;
-        } catch(e2) { rmTyping(); }
+      try {
+        const resp = await callQwen(msg,ctx,'microsoft/Phi-3-mini-4k-instruct');
+        rmTyping(); addMsg(resp,'ai');
+        PERFIL.salvarMemoria(ctx,msg,resp);
+        atualizarBadgeIA();
+        return;
+      } catch(e2) {
+        rmTyping();
+        addMsg('⚠️ Qwen falhou. Tentando Gemini...','ai');
+        if(PERFIL.apiKey) {
+          try {
+            const resp = await callGemini(msg,ctx);
+            rmTyping(); addMsg(resp,'ai');
+            PERFIL.salvarMemoria(ctx,msg,resp);
+            atualizarBadgeIA();
+            return;
+          } catch(e3) { rmTyping(); }
+        }
       }
     }
   }
@@ -12712,29 +12721,26 @@ async function callGemini(msg,ctx,model) {
   return t;
 }
 
-async function callQwen(msg,ctx) {
+async function callQwen(msg,ctx,model) {
+  const m = model || 'Qwen/Qwen2.5-7B-Instruct';
   const sys = `Você é um tutor de Direito brasileiro. Responda a ${PERFIL.nome||'estudante'} de forma didática, citando leis, artigos e jurisprudência quando relevante. Contexto: ${ctx}.`;
   const ctrl = new AbortController();
-  const tid = setTimeout(()=>ctrl.abort(),20000);
+  const tid = setTimeout(()=>ctrl.abort(),30000);
   const hdrs={'Content-Type':'application/json'};
   if(PERFIL.qwenKey) hdrs['Authorization']='Bearer '+PERFIL.qwenKey;
-  const resp = await fetch('https://api-inference.huggingface.co/models/Qwen/Qwen2.5-7B-Instruct/v1/chat/completions',{
-    method:'POST',
-    headers:hdrs,
-    body:JSON.stringify({
-      model:'Qwen/Qwen2.5-7B-Instruct',
-      messages:[{role:'system',content:sys},{role:'user',content:msg}],
-      max_tokens:512,temperature:0.7
-    }),
-    signal:ctrl.signal
+  const prompt = `${sys}\n\n${msg}`;
+  const body = {inputs:prompt,parameters:{max_new_tokens:512,temperature:0.7}};
+  const resp = await fetch(`https://api-inference.huggingface.co/models/${m}`,{
+    method:'POST',headers:hdrs,body:JSON.stringify(body),signal:ctrl.signal
   });
   clearTimeout(tid);
   if(resp.status===429) throw new Error('429');
+  if(resp.status===503){await new Promise(r=>setTimeout(r,5000));return callQwen(msg,ctx,m);}
   if(!resp.ok){const t=await resp.text();throw new Error('Qwen: '+resp.status);}
   const d=await resp.json();
-  const t=d?.choices?.[0]?.message?.content;
+  const t=Array.isArray(d)?d[0]?.generated_text:typeof d==='object'?d?.generated_text:null;
   if(!t) throw new Error('Qwen vazio');
-  return t;
+  return t.replace(prompt,'').trim();
 }
 
 function respostaLocal(msg,ctx) {
