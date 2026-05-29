@@ -12663,7 +12663,7 @@ async function askAI(msg) {
       return;
     } catch(e) {
       rmTyping();
-      addMsg('🔄 Qwen não disponível. Tentando Zephyr...','ai');
+      addMsg('🔄 Qwen: '+e.message.slice(0,80)+'. Tentando Zephyr...','ai');
       try {
         const resp = await callQwen(msg,ctx,'HuggingFaceH4/zephyr-7b-beta');
         rmTyping(); addMsg(resp,'ai');
@@ -12672,7 +12672,7 @@ async function askAI(msg) {
         return;
       } catch(e2) {
         rmTyping();
-        addMsg('⚠️ Zephyr falhou. Tentando Gemini...','ai');
+        addMsg('⚠️ Zephyr: '+e2.message.slice(0,80)+'. Tentando Gemini...','ai');
         if(PERFIL.apiKey) {
           try {
             const resp = await callGemini(msg,ctx);
@@ -12737,7 +12737,7 @@ async function callQwen(msg,ctx,model) {
   clearTimeout(tid);
   if(resp.status===429) throw new Error('429');
   if(resp.status===503){await new Promise(r=>setTimeout(r,5000));return callQwen(msg,ctx,m);}
-  if(!resp.ok){const t=await resp.text();throw new Error('Qwen: '+resp.status);}
+  if(!resp.ok){const t=await resp.text();throw new Error(t.slice(0,200));}
   const d=await resp.json();
   const t=Array.isArray(d)?d[0]?.generated_text:typeof d==='object'?d?.generated_text:null;
   if(!t) throw new Error('Qwen vazio');
