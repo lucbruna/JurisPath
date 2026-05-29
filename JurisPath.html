@@ -288,7 +288,7 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
       <label style="font-size:0.8rem;color:var(--gold-light);display:block;margin-bottom:0.3rem">🤖 Provedor IA</label>
       <select id="profile-provider" onchange="toggleProviderFields()" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,108,0.15);border-radius:7px;padding:0.6rem 0.8rem;color:var(--text);font-size:0.85rem;outline:none;margin-bottom:1rem">
         <option value="gemini" style="background:#1a1410">Gemini (Google) — requer chave</option>
-        <option value="qwen" style="background:#1a1410">Qwen (HuggingFace) — grátis c/ token</option>
+        <option value="qwen" style="background:#1a1410">HuggingFace (Qwen/Zephyr) — grátis c/ token read</option>
       </select>
       <div id="provider-gemini-field">
         <label style="font-size:0.8rem;color:var(--gold-light);display:block;margin-bottom:0.3rem">🔑 Chave da API Gemini</label>
@@ -296,7 +296,7 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
         <p style="font-size:0.7rem;color:var(--muted);margin-bottom:1rem">🔗 Grátis em: <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--gold-light)">aistudio.google.com/apikey</a></p>
       </div>
       <div id="provider-qwen-field" style="display:none">
-        <label style="font-size:0.8rem;color:var(--gold-light);display:block;margin-bottom:0.3rem">🔑 Token HuggingFace (opcional — mais estável)</label>
+        <label style="font-size:0.8rem;color:var(--gold-light);display:block;margin-bottom:0.3rem">🔑 Token HuggingFace (read) — opcional mas recomendado</label>
         <input type="password" id="profile-qwenkey" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,108,0.15);border-radius:7px;padding:0.6rem 0.8rem;color:var(--text);font-size:0.85rem;outline:none;font-family:monospace;margin-bottom:0.3rem" placeholder="Cole seu token HF aqui...">
         <p style="font-size:0.7rem;color:var(--muted);margin-bottom:1rem">🔗 Grátis em: <a href="https://huggingface.co/settings/tokens" target="_blank" style="color:var(--gold-light)">huggingface.co/settings/tokens</a></p>
       </div>
@@ -12663,15 +12663,16 @@ async function askAI(msg) {
       return;
     } catch(e) {
       rmTyping();
+      addMsg('🔄 Qwen não disponível. Tentando Zephyr...','ai');
       try {
-        const resp = await callQwen(msg,ctx,'microsoft/Phi-3-mini-4k-instruct');
+        const resp = await callQwen(msg,ctx,'HuggingFaceH4/zephyr-7b-beta');
         rmTyping(); addMsg(resp,'ai');
         PERFIL.salvarMemoria(ctx,msg,resp);
         atualizarBadgeIA();
         return;
       } catch(e2) {
         rmTyping();
-        addMsg('⚠️ Qwen falhou. Tentando Gemini...','ai');
+        addMsg('⚠️ Zephyr falhou. Tentando Gemini...','ai');
         if(PERFIL.apiKey) {
           try {
             const resp = await callGemini(msg,ctx);
