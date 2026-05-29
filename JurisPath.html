@@ -288,15 +288,21 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
       <label style="font-size:0.8rem;color:var(--gold-light);display:block;margin-bottom:0.3rem">🤖 Provedor IA</label>
       <select id="profile-provider" onchange="toggleProviderFields()" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,108,0.15);border-radius:7px;padding:0.6rem 0.8rem;color:var(--text);font-size:0.85rem;outline:none;margin-bottom:1rem">
         <option value="gemini" style="background:#1a1410">Gemini (Google) — requer chave</option>
-        <option value="qwen" style="background:#1a1410">HuggingFace (Qwen/Zephyr) — grátis c/ token read</option>
+        <option value="groq" style="background:#1a1410">Groq (Llama 3) — 100% grátis, sem CC</option>
+        <option value="qwen" style="background:#1a1410">HuggingFace (Qwen/Zephyr) — experimental</option>
       </select>
       <div id="provider-gemini-field">
         <label style="font-size:0.8rem;color:var(--gold-light);display:block;margin-bottom:0.3rem">🔑 Chave da API Gemini</label>
         <input type="password" id="profile-apikey" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,108,0.15);border-radius:7px;padding:0.6rem 0.8rem;color:var(--text);font-size:0.85rem;outline:none;font-family:monospace;margin-bottom:0.3rem" placeholder="Cole sua chave Gemini aqui...">
         <p style="font-size:0.7rem;color:var(--muted);margin-bottom:1rem">🔗 Grátis em: <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--gold-light)">aistudio.google.com/apikey</a></p>
       </div>
+      <div id="provider-groq-field" style="display:none">
+        <label style="font-size:0.8rem;color:var(--gold-light);display:block;margin-bottom:0.3rem">🔑 Chave da API Groq (grátis)</label>
+        <input type="password" id="profile-groqKey" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,108,0.15);border-radius:7px;padding:0.6rem 0.8rem;color:var(--text);font-size:0.85rem;outline:none;font-family:monospace;margin-bottom:0.3rem" placeholder="Cole sua chave Groq aqui...">
+        <p style="font-size:0.7rem;color:var(--muted);margin-bottom:1rem">🔗 Grátis em: <a href="https://console.groq.com/keys" target="_blank" style="color:var(--gold-light)">console.groq.com/keys</a></p>
+      </div>
       <div id="provider-qwen-field" style="display:none">
-        <label style="font-size:0.8rem;color:var(--gold-light);display:block;margin-bottom:0.3rem">🔑 Token HuggingFace (read) — opcional mas recomendado</label>
+        <label style="font-size:0.8rem;color:var(--gold-light);display:block;margin-bottom:0.3rem">🔑 Token HuggingFace (opcional)</label>
         <input type="password" id="profile-qwenkey" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,108,0.15);border-radius:7px;padding:0.6rem 0.8rem;color:var(--text);font-size:0.85rem;outline:none;font-family:monospace;margin-bottom:0.3rem" placeholder="Cole seu token HF aqui...">
         <p style="font-size:0.7rem;color:var(--muted);margin-bottom:1rem">🔗 Grátis em: <a href="https://huggingface.co/settings/tokens" target="_blank" style="color:var(--gold-light)">huggingface.co/settings/tokens</a></p>
       </div>
@@ -11545,6 +11551,8 @@ const PERFIL = {
   set provider(v) { localStorage.setItem('jp_provider', v); },
   get qwenKey() { return localStorage.getItem('jp_qwenkey') || ''; },
   set qwenKey(v) { localStorage.setItem('jp_qwenkey', v); },
+  get groqKey() { return localStorage.getItem('jp_groqKey') || ''; },
+  set groqKey(v) { localStorage.setItem('jp_groqKey', v); },
   get iconMeta() { const m = this.meta; return {oab:'🎯',concurso:'🏛️',faculdade:'🎓',pratica:'⚖️',outro:'📚'}[m]||'🎯'; },
   get dataCriacao() { return localStorage.getItem('jp_criado') || Date.now(); },
   set dataCriacao(v) { localStorage.setItem('jp_criado', v); },
@@ -12358,9 +12366,9 @@ function gerarRecomendacoes(pct, mats, qtotal, hist) {
   if(qtotal<10) recs.push({icone:'❓',titulo:'Pratique questões',desc:'Resolva questões para fixar', acao:"switchTab('1')"});
   if(mats<3) recs.push({icone:'📖',titulo:'Explore novas matérias',desc:'Varie seus estudos', acao:"switchTab('2')"});
   if(hist.length>10 && qtotal>20) recs.push({icone:'🏆',titulo:'Você está evoluindo!',desc:'Continue o bom trabalho!', acao:"switchTab('dash')"});
-  if(PERFIL.nome && (PERFIL.apiKey || PERFIL.provider==='qwen')) recs.push({icone:'🤖',titulo:'IA ativada',desc:'Tutor com IA respondendo', acao:"switchTab('3')"});
-  if(PERFIL.nome && !PERFIL.apiKey && PERFIL.provider!=='qwen') recs.push({icone:'🔑',titulo:'Ative o tutor IA',desc:'Escolha Gemini ou Qwen', acao:"abrirPerfil()"});
-  if(PERFIL.apiKey && hist.length>5) recs.push({icone:'🎯',titulo:'Simulado Personalizado',desc:'IA gera prova sob medida', acao:"switchTab('oab1')"});
+  if(PERFIL.nome && (PERFIL.apiKey || PERFIL.groqKey || PERFIL.provider==='qwen')) recs.push({icone:'🤖',titulo:'IA ativada',desc:'Tutor com IA respondendo', acao:"switchTab('3')"});
+  if(PERFIL.nome && !PERFIL.apiKey && !PERFIL.groqKey && PERFIL.provider!=='qwen') recs.push({icone:'🔑',titulo:'Ative o tutor IA',desc:'Escolha Gemini, Groq ou Qwen', acao:"abrirPerfil()"});
+  if((PERFIL.apiKey||PERFIL.groqKey) && hist.length>5) recs.push({icone:'🎯',titulo:'Simulado Personalizado',desc:'IA gera prova sob medida', acao:"switchTab('oab1')"});
   recs.push({icone:'⚖️',titulo:'Jurisprudência',desc:'Leia ementas importantes', acao:"switchTab('4')"});
   return recs.slice(0,6);
 }
@@ -12654,6 +12662,27 @@ async function askAI(msg) {
       } catch(e2) { rmTyping(); }
     }
   }
+  if(prov==='groq' && PERFIL.groqKey) {
+    try {
+      const resp = await callGroq(msg,ctx);
+      rmTyping(); addMsg(resp,'ai');
+      PERFIL.salvarMemoria(ctx,msg,resp);
+      atualizarBadgeIA();
+      return;
+    } catch(e) {
+      rmTyping();
+      addMsg('⚠️ Groq: '+e.message.slice(0,80)+'. Tentando Gemini...','ai');
+      if(PERFIL.apiKey) {
+        try {
+          const resp = await callGemini(msg,ctx);
+          rmTyping(); addMsg(resp,'ai');
+          PERFIL.salvarMemoria(ctx,msg,resp);
+          atualizarBadgeIA();
+          return;
+        } catch(e2) { rmTyping(); }
+      }
+    }
+  }
   if(prov==='qwen') {
     try {
       const resp = await callQwen(msg,ctx);
@@ -12685,6 +12714,15 @@ async function askAI(msg) {
       }
     }
   }
+  if(PERFIL.groqKey) {
+    try {
+      const resp = await callGroq(msg,ctx);
+      rmTyping(); addMsg(resp,'ai');
+      PERFIL.salvarMemoria(ctx,msg,resp);
+      atualizarBadgeIA();
+      return;
+    } catch(e) { rmTyping(); }
+  }
   try {
     const resp = await callQwen(msg,ctx);
     rmTyping(); addMsg(resp,'ai');
@@ -12702,7 +12740,7 @@ async function askAI(msg) {
 }
 
 async function callGemini(msg,ctx,model) {
-  const sys = `Você é tutor de Direito em ${ctx}, respondendo a ${PERFIL.nome||'estudante'}. Seja didático, cite leis e jurisprudência. Lembre do contexto da matéria.`;
+  const sys = `Você é um assistente inteligente para ${PERFIL.nome||'estudante'}. Responda QUALQUER pergunta de forma clara e didática. Se for sobre Direito (contexto: ${ctx}), cite leis e jurisprudência. Se for sobre outro assunto, responda normalmente.`;
   const ctrl = new AbortController();
   const tid = setTimeout(()=>ctrl.abort(),15000);
   const m = model || 'gemini-1.5-flash';
@@ -12724,7 +12762,7 @@ async function callGemini(msg,ctx,model) {
 
 async function callQwen(msg,ctx,model) {
   const m = model || 'Qwen/Qwen2.5-7B-Instruct';
-  const sys = `Você é um tutor de Direito brasileiro. Responda a ${PERFIL.nome||'estudante'} de forma didática, citando leis, artigos e jurisprudência quando relevante. Contexto: ${ctx}.`;
+  const sys = `Você é um assistente inteligente para ${PERFIL.nome||'estudante'}. Responda QUALQUER pergunta de forma clara e didática. Se for sobre Direito (contexto: ${ctx}), cite leis e jurisprudência. Se for sobre outro assunto, responda normalmente.`;
   const ctrl = new AbortController();
   const tid = setTimeout(()=>ctrl.abort(),30000);
   const hdrs={'Content-Type':'application/json'};
@@ -12742,6 +12780,28 @@ async function callQwen(msg,ctx,model) {
   const t=Array.isArray(d)?d[0]?.generated_text:typeof d==='object'?d?.generated_text:null;
   if(!t) throw new Error('Qwen vazio');
   return t.replace(prompt,'').trim();
+}
+
+async function callGroq(msg,ctx) {
+  const sys = `Você é um assistente inteligente para ${PERFIL.nome||'estudante'}. Responda QUALQUER pergunta de forma clara e didática. Se for sobre Direito (contexto: ${ctx}), cite leis e jurisprudência. Se for sobre outro assunto, responda normalmente.`;
+  const ctrl = new AbortController();
+  const tid = setTimeout(()=>ctrl.abort(),20000);
+  const resp = await fetch('https://api.groq.com/openai/v1/chat/completions',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+PERFIL.groqKey},
+    body:JSON.stringify({
+      model:'llama-3.1-8b-instant',
+      messages:[{role:'system',content:sys},{role:'user',content:msg}],
+      max_tokens:1024,temperature:0.7,stream:false
+    }),
+    signal:ctrl.signal
+  });
+  clearTimeout(tid);
+  if(!resp.ok){const t=await resp.text();throw new Error(t.slice(0,200));}
+  const d=await resp.json();
+  const t=d?.choices?.[0]?.message?.content;
+  if(!t) throw new Error('Groq vazio');
+  return t;
 }
 
 function respostaLocal(msg,ctx) {
@@ -12783,8 +12843,9 @@ function atualizarBadgeIA(){
   var b=document.getElementById('ai-status-header'),s=document.getElementById('ai-model-badge');
   var p=PERFIL.provider;
   if(p==='gemini' && PERFIL.apiKey){if(b)b.textContent='🔑 Gemini ativo';if(s)s.textContent='Gemini 1.5 Flash';}
+  else if(p==='groq' && PERFIL.groqKey){if(b)b.textContent='🔑 Groq ativo';if(s)s.textContent='Llama 3.1 (Groq)';}
   else if(p==='qwen'){if(b)b.textContent='♾️ Qwen ativo';if(s)s.textContent='Qwen 2.5';}
-  else{if(b)b.textContent='♾️ Qwen grátis';if(s)s.textContent='Qwen 2.5 (grátis)';}
+  else{if(b)b.textContent='💡 offline';if(s)s.textContent='---';}
 }
 
 // ===================================================================
@@ -12796,6 +12857,7 @@ function abrirPerfil(){
   document.getElementById('profile-provider').value=PERFIL.provider;
   document.getElementById('profile-apikey').value=PERFIL.apiKey;
   document.getElementById('profile-qwenkey').value=PERFIL.qwenKey;
+  document.getElementById('profile-groqKey').value=PERFIL.groqKey;
   document.getElementById('perfil-feedback').textContent='';
   toggleProviderFields();
   abrirModal('modal-perfil');
@@ -12803,6 +12865,7 @@ function abrirPerfil(){
 function toggleProviderFields(){
   var p=document.getElementById('profile-provider').value;
   document.getElementById('provider-gemini-field').style.display=p==='gemini'?'':'none';
+  document.getElementById('provider-groq-field').style.display=p==='groq'?'':'none';
   document.getElementById('provider-qwen-field').style.display=p==='qwen'?'':'none';
 }
 function salvarPerfil(){
@@ -12811,6 +12874,7 @@ function salvarPerfil(){
   PERFIL.provider=document.getElementById('profile-provider').value;
   PERFIL.apiKey=document.getElementById('profile-apikey').value.trim();
   PERFIL.qwenKey=document.getElementById('profile-qwenkey').value.trim();
+  PERFIL.groqKey=document.getElementById('profile-groqKey').value.trim();
   if(!PERFIL.dataCriacao) PERFIL.dataCriacao=Date.now();
   document.getElementById('perfil-feedback').textContent='✅ Salvo!';
   document.getElementById('perfil-feedback').style.color='var(--success)';
@@ -12828,6 +12892,7 @@ function atualizarStatusIA(){
   if(!el)return;
   var p=PERFIL.provider;
   if(p==='gemini' && PERFIL.apiKey){el.textContent='✅ Gemini ativo';el.style.color='var(--success)';}
+  else if(p==='groq' && PERFIL.groqKey){el.textContent='✅ Groq ativo';el.style.color='var(--success)';}
   else if(p==='qwen'){el.textContent='♾️ Qwen ativo';el.style.color='var(--success)';}
   else{el.textContent='💡 offline';el.style.color='var(--warning)';}
 }
