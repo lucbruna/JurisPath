@@ -6,6 +6,7 @@ OutputDir=Output
 OutputBaseFilename=JurisPath_PRO_Setup
 AppPublisher=JurisPath
 AppPublisherURL=https://github.com/SEU_USUARIO/jurispath-vade-mecum
+SetupIconFile=icon.ico
 
 [Files]
 Source: "JurisPath.html"; DestDir: "{app}"; Flags: ignoreversion
@@ -17,12 +18,15 @@ Source: "jurispath.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "test_artigos.js"; DestDir: "{app}"; Flags: ignoreversion
 Source: "license.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "README.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "data.js"; DestDir: "{app}"; Flags: ignoreversion
+Source: "src\data\lawSubjects.json"; DestDir: "{app}\src\data"; Flags: ignoreversion
+Source: "icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dados\*"; DestDir: "{app}\dados"; Flags: ignoreversion recursesubdirs
 
 [Icons]
-Name: "{commondesktop}\JurisPath PRO"; Filename: "{app}\JurisPath.html"
+Name: "{commondesktop}\JurisPath PRO"; Filename: "{app}\JurisPath.html"; IconFilename: "{app}\icon.ico"
 Name: "{commondesktop}\JurisPath PRO (Atualizar)"; Filename: "powershell.exe"; Parameters: "-NoProfile -ExecutionPolicy Bypass -File ""{app}\atualizar.ps1"""; WorkingDir: "{app}"
-Name: "{group}\JurisPath PRO"; Filename: "{app}\JurisPath.html"
+Name: "{group}\JurisPath PRO"; Filename: "{app}\JurisPath.html"; IconFilename: "{app}\icon.ico"
 Name: "{group}\Atualizar JurisPath"; Filename: "powershell.exe"; Parameters: "-NoProfile -ExecutionPolicy Bypass -File ""{app}\atualizar.ps1"""; WorkingDir: "{app}"
 
 [Run]

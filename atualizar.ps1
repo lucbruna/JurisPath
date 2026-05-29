@@ -14,6 +14,8 @@ $BACKUP_DIR  = Join-Path $PROJECT_DIR "backups"
 $FILES_TO_UPDATE = @(
     "JurisPath.html",
     "vade.js",
+    "data.js",
+    "src/data/lawSubjects.json",
     "dados/artigos.js",
     "dados/livros.js",
     "dados/videos.js",

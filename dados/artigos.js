@@ -997,8 +997,7 @@ Art. 4º Toda pessoa tem o direito de que se respeite sua vida. Esse direito dev
 Art. 5º Toda pessoa tem o direito de que se respeite sua integridade física, psíquica e moral.
 Art. 7º Toda pessoa tem direito à liberdade e à segurança pessoais.
 Art. 8º Toda pessoa tem direito a ser ouvida, com as devidas garantias e dentro de um prazo razoável, por um juiz ou tribunal competente, independente e imparcial, estabelecido anteriormente por lei, na apuração de qualquer acusação penal formulada contra ela, ou para que se determinem seus direitos ou obrigações de natureza civil, trabalhista, fiscal ou de qualquer outra natureza.`
-  }
-},
+  },
   // ==================== CTN - CÓDIGO TRIBUTÁRIO NACIONAL ====================
   ctn_1: {
     lei: "Código Tributário Nacional (Lei 5.172/66)",

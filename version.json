@@ -5,6 +5,8 @@
   "files": [
     "JurisPath.html",
     "vade.js",
+    "data.js",
+    "src/data/lawSubjects.json",
     "dados/livros.js",
     "dados/videos.js",
     "dados/documentos.js",

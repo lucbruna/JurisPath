@@ -1,0 +1,77 @@
+{
+  "semester1": [
+    "Introdução ao Estudo do Direito",
+    "Direito Constitucional I",
+    "Filosofia do Direito",
+    "Sociologia Jurídica",
+    "Ciência Política",
+    "Português Jurídico",
+    "Direito Civil I (Parte Geral)",
+    "Metodologia Jurídica",
+    "Direito Romano"
+  ],
+  "semester2": [
+    "Direito Constitucional II",
+    "Direito Civil II",
+    "Direito Penal I",
+    "Processo Civil I",
+    "Direito Administrativo I",
+    "História do Direito"
+  ],
+  "semester3": [
+    "Direito Civil III",
+    "Direito Penal II",
+    "Processo Civil II",
+    "Direito do Trabalho I",
+    "Direito Tributário I",
+    "Direito Constitucional III",
+    "Redação Jurídica",
+    "Economia"
+  ],
+  "semester4": [
+    "Direito do Trabalho II",
+    "Processo Penal",
+    "Direito Empresarial",
+    "Direito do Consumidor",
+    "Direito Constitucional IV",
+    "Direito Administrativo II"
+  ],
+  "semester5": [
+    "Direito Civil IV (Família e Sucessões)",
+    "Direitos Humanos",
+    "Direito Constitucional V",
+    "Direito Penal III",
+    "Direito do Trabalho III",
+    "Direito Administrativo III",
+    "Direito Tributário II",
+    "Processo Civil III"
+  ],
+  "semester6": [
+    "Processo do Trabalho",
+    "Direito Internacional Público",
+    "Direito Previdenciário",
+    "Direito Tributário III",
+    "Direito Notarial e Registral"
+  ],
+  "semester7": [
+    "Prática Jurídica Cível",
+    "Mediação e Conciliação",
+    "Direito Falimentar"
+  ],
+  "semester8": [
+    "Prática Jurídica Penal",
+    "Prática Jurídica Trabalhista",
+    "Direito Ambiental",
+    "Direito Eleitoral",
+    "Direito do Comércio Internacional"
+  ],
+  "semester9": [
+    "Prática Avançada",
+    "TCC - Desenvolvimento",
+    "Ética Profissional"
+  ],
+  "semester10": [
+    "Preparação Intensiva OAB",
+    "Estágio Supervisionado"
+  ]
+}

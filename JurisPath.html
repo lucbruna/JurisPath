@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JurisPath PRO | IA Adaptativa</title>
+<title>Sthefany Monique PRO | IA Adaptativa</title>
 <style>
-:root{--gold:#c9a86c;--gold-light:#e8d5a3;--gold-dark:#a8884a;--ruby:#b91c1c;--onyx:#09090b;--card:#111114;--card-hover:#1a1a20;--text:#e8e2d8;--muted:#8a8280;--glass:rgba(17,17,20,0.88);--radius:14px;--shadow:0 8px 32px rgba(0,0,0,0.5)}
+:root{--gold:#FFD700;--gold-light:#FFE44D;--gold-dark:#DAA520;--accent:#FFD700;--ruby:#b91c1c;--onyx:#09090b;--card:#111114;--card-hover:#1a1a20;--text:#ffffff;--muted:#c8c0b8;--glass:rgba(17,17,20,0.88);--radius:14px;--shadow:0 8px 32px rgba(0,0,0,0.5);--primary:#FFD700;--success:#4ade80;--warning:#f59e0b}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter','SF Pro Display',system-ui,-apple-system,sans-serif;background:var(--onyx);background-image:radial-gradient(ellipse at 20% 50%,rgba(201,168,108,0.04) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(201,168,108,0.02) 0%,transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(220,38,38,0.02) 0%,transparent 50%);color:var(--text);min-height:100vh;overflow-x:hidden}
+body{font-family:'Inter','SF Pro Display',system-ui,-apple-system,sans-serif;background:var(--onyx);background-image:radial-gradient(ellipse at 20% 50%,rgba(255,215,0,0.06) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(218,165,32,0.03) 0%,transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(218,165,32,0.03) 0%,transparent 50%);color:var(--text);min-height:100vh;overflow-x:hidden}
 .bg-orb{position:fixed;border-radius:50%;filter:blur(100px);opacity:0.12;z-index:-1;animation:float 20s infinite alternate}
 .orb1{width:600px;height:600px;background:var(--gold);top:-20%;left:-15%}
-.orb2{width:450px;height:450px;background:var(--ruby);bottom:-20%;right:-15%;animation-delay:6s}
+.orb2{width:450px;height:450px;background:var(--accent);bottom:-20%;right:-15%;animation-delay:6s}
 .orb3{width:300px;height:300px;background:var(--gold-light);top:50%;left:40%;animation-delay:12s}
 @keyframes float{0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,-40px) scale(1.05)}}
 @keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
@@ -18,40 +18,40 @@ body{font-family:'Inter','SF Pro Display',system-ui,-apple-system,sans-serif;bac
 @keyframes glowPulse{0%,100%{box-shadow:0 0 20px rgba(201,168,108,0.1)}50%{box-shadow:0 0 40px rgba(201,168,108,0.2)}}
 
 header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:0.7rem 1.8rem;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(201,168,108,0.08);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.6rem}
-.logo{font-size:1.25rem;font-weight:900;background:linear-gradient(135deg,var(--gold-light) 0%,var(--gold) 30%,var(--gold-dark) 60%,var(--gold-light) 100%);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 6s ease infinite;letter-spacing:-0.5px}
+.logo{font-size:1.25rem;font-weight:900;background:linear-gradient(135deg,var(--gold-light) 0%,var(--gold) 30%,var(--gold-dark) 60%,var(--gold-light) 100%);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 6s ease infinite;letter-spacing:-0.5px;filter:brightness(1.2)}
 .logo small{font-size:0.6rem;-webkit-text-fill-color:var(--muted);font-weight:400;display:block;margin-top:-3px;letter-spacing:1.2px;text-transform:uppercase}
 .header-stats{display:flex;gap:0.4rem;flex-wrap:wrap;align-items:center}
 .stat-box{background:rgba(201,168,108,0.05);border:1px solid rgba(201,168,108,0.08);padding:0.25rem 0.6rem;border-radius:8px;text-align:center;min-width:44px;transition:0.3s}
 .stat-box:hover{border-color:rgba(201,168,108,0.2);background:rgba(201,168,108,0.08)}
-.stat-value{font-size:0.95rem;font-weight:800;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-value{font-size:0.95rem;font-weight:800;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:brightness(1.3)}
 .stat-label{font-size:0.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;font-weight:500}
 .btn{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dark) 100%);border:none;color:#0a0a0f;padding:7px 18px;border-radius:9px;cursor:pointer;font-weight:700;font-size:0.78rem;transition:0.3s;white-space:nowrap;letter-spacing:0.2px}
 .btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,168,108,0.3)}
 .btn-sm{padding:5px 12px;font-size:0.7rem}
 .btn-outline{background:transparent;border:1px solid rgba(201,168,108,0.2);color:var(--gold-light)}
-.btn-outline:hover{border-color:var(--gold);background:rgba(201,168,108,0.08);color:var(--gold-light)}
+.btn-outline:hover{border-color:var(--accent);background:rgba(201,168,108,0.08);color:var(--gold-light)}
 .btn-ghost{background:transparent;border:none;color:var(--muted);padding:4px 8px;font-size:0.75rem}
 .btn-ghost:hover{color:var(--gold-light)}
 
-.global-search{position:relative;flex:1;max-width:300px;margin:0 0.5rem}.global-search input{width:100%;padding:0.4rem 0.7rem;border-radius:8px;border:1px solid rgba(201,168,108,0.1);background:rgba(0,0,0,0.3);color:var(--text);font-size:0.78rem;outline:none;transition:0.3s}.global-search input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,108,0.06)}.global-search input::placeholder{color:var(--muted)}.global-search-dropdown{position:absolute;top:100%;left:0;right:0;background:#15151e;border:1px solid rgba(201,168,108,0.1);border-radius:9px;max-height:300px;overflow-y:auto;z-index:100;display:none}.global-search-dropdown.show{display:block}.global-search-dropdown a{display:block;padding:0.4rem 0.7rem;color:#d1d5db;font-size:0.78rem;text-decoration:none;border-bottom:1px solid rgba(201,168,108,0.04);cursor:pointer}.global-search-dropdown a:hover{background:rgba(201,168,108,0.08);color:var(--gold-light)}.global-search-dropdown .gs-ramo{color:var(--gold-light);font-size:0.65rem}.global-search-dropdown .gs-lei{color:var(--muted);font-size:0.65rem}
+.global-search{position:relative;flex:1;max-width:300px;margin:0 0.5rem}.global-search input{width:100%;padding:0.4rem 0.7rem;border-radius:8px;border:1px solid rgba(201,168,108,0.1);background:rgba(0,0,0,0.25);color:var(--text);font-size:0.78rem;outline:none;transition:0.3s}.global-search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(201,168,108,0.06)}.global-search input::placeholder{color:var(--muted)}.global-search-dropdown{position:absolute;top:100%;left:0;right:0;background:#1e1814;border:1px solid rgba(201,168,108,0.1);border-radius:9px;max-height:300px;overflow-y:auto;z-index:100;display:none}.global-search-dropdown.show{display:block}.global-search-dropdown a{display:block;padding:0.4rem 0.7rem;color:#d1d5db;font-size:0.78rem;text-decoration:none;border-bottom:1px solid rgba(201,168,108,0.04);cursor:pointer}.global-search-dropdown a:hover{background:rgba(201,168,108,0.08);color:var(--gold-light)}.global-search-dropdown .gs-ramo{color:var(--gold-light);font-size:0.65rem}.global-search-dropdown .gs-lei{color:var(--muted);font-size:0.65rem}
 .tabs-container{max-width:1400px;margin:0.6rem auto;padding:0 1.2rem;display:flex;gap:0.25rem;overflow-x:auto;scrollbar-width:thin}
 .tab{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);padding:0.4rem 0.85rem;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all 0.25s;font-weight:500;font-size:0.78rem;flex-shrink:0;color:var(--muted)}
 .tab:hover{background:rgba(201,168,108,0.06);border-color:rgba(201,168,108,0.2);color:var(--text)}
-.tab.active{background:linear-gradient(135deg,rgba(201,168,108,0.12),rgba(168,136,74,0.08));border-color:rgba(201,168,108,0.25);color:var(--gold-light);box-shadow:0 3px 12px rgba(201,168,108,0.08)}
+.tab.active{background:linear-gradient(135deg,rgba(201,168,108,0.12),rgba(168,136,74,0.08));border-color:var(--accent);color:var(--gold-light);box-shadow:0 3px 12px rgba(201,168,108,0.08)}
 .tab.dash{background:rgba(201,168,108,0.04);border-color:rgba(201,168,108,0.08)}
 .tab.dash:hover{border-color:rgba(201,168,108,0.2)}
-.tab.dash.active{background:linear-gradient(135deg,rgba(201,168,108,0.15),rgba(168,136,74,0.1));border-color:var(--gold);box-shadow:0 3px 15px rgba(201,168,108,0.1)}
+.tab.dash.active{background:linear-gradient(135deg,rgba(201,168,108,0.15),rgba(168,136,74,0.1));border-color:var(--accent);box-shadow:0 3px 15px rgba(201,168,108,0.1)}
 
 .content-area{max-width:1400px;margin:0 auto 2rem;padding:0 1.2rem;animation:fadeIn 0.4s}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.section-title{font-size:1.1rem;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;font-weight:700;color:var(--text);letter-spacing:-0.2px}
+.section-title{font-size:1.1rem;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;font-weight:700;color:var(--text);letter-spacing:-0.2px;text-shadow:0 0 10px rgba(255,255,255,0.06)}
 .section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,108,0.2),transparent);margin-left:0.5rem}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:0.8rem}
 .card{background:var(--card);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);padding:1rem;transition:all 0.35s cubic-bezier(0.22,1,0.36,1);cursor:pointer;position:relative;overflow:hidden;animation:fadeIn 0.4s}
 .card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-dark),var(--gold));opacity:0;transition:0.4s;background-size:200% 100%}
 .card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.4),0 0 0 1px rgba(201,168,108,0.06);background:var(--card-hover)}
 .card:hover::before{opacity:1;animation:shimmer 3s ease infinite}
-.card h3{color:var(--gold-light);margin-bottom:0.3rem;font-size:0.92rem;font-weight:700}
+.card h3{color:var(--gold-light);margin-bottom:0.3rem;font-size:0.92rem;font-weight:700;text-shadow:0 0 12px rgba(201,168,108,0.15)}
 .card ul{padding-left:0;list-style:none}
 .card li{margin-bottom:0.2rem;line-height:1.35;font-size:0.8rem;color:#c0b8c4;padding-left:14px;position:relative}
 .card li::before{content:'›';position:absolute;left:0;color:var(--gold);font-weight:bold}
@@ -84,7 +84,7 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 .modal-lg{background:var(--card);border-radius:18px;max-width:1100px;width:94%;max-height:90vh;display:grid;grid-template-rows:auto 1fr;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(201,168,108,0.05)}
 .modal-sm{background:var(--card);border-radius:18px;max-width:680px;width:92%;max-height:80vh;display:grid;grid-template-rows:auto 1fr;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(201,168,108,0.05)}
 .modal-header{padding:0.9rem 1.3rem;border-bottom:1px solid rgba(201,168,108,0.06);display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.3)}
-.modal-header h2{font-size:1rem;font-weight:700;color:var(--gold-light)}
+.modal-header h2{font-size:1rem;font-weight:700;color:var(--gold-light);text-shadow:0 0 12px rgba(201,168,108,0.15)}
 .modal-header .close-btn{background:none;border:none;color:var(--muted);font-size:1.5rem;cursor:pointer;padding:0 4px;line-height:1;transition:0.3s}
 .modal-header .close-btn:hover{color:var(--gold-light);transform:rotate(180deg)}
 .modal-split{display:grid;grid-template-columns:1fr 340px;overflow:hidden;height:100%;min-height:0}
@@ -98,6 +98,7 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 .ref-jurisprudencia{background:rgba(220,38,38,0.04);border-left:3px solid var(--ruby);padding:0.6rem 0.9rem;margin:0.35rem 0;border-radius:0 8px 8px 0;font-size:0.82rem;cursor:pointer;transition:0.25s;display:flex;justify-content:space-between;align-items:center}
 .ref-jurisprudencia:hover{background:rgba(220,38,38,0.08);transform:translateX(3px)}
 .ref-jurisprudencia .click-hint{font-size:0.62rem;color:var(--ruby);font-weight:600;opacity:0.6}
+.fab-import{position:fixed;bottom:1.5rem;right:1.5rem;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border:none;color:#0a0a0f;font-size:1.5rem;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,108,0.3);z-index:150;transition:0.3s;display:none}.fab-import:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(201,168,108,0.4)}.fab-import.show{display:flex;align-items:center;justify-content:center}
 .questao-card{background:rgba(201,168,108,0.02);border:1px solid rgba(201,168,108,0.06);border-radius:10px;padding:0.8rem;margin:0.4rem 0}
 .questao-card .q-alt{padding:5px 8px;margin:2px 0;border-radius:5px;cursor:pointer;transition:0.15s;font-size:0.8rem;border:1px solid transparent}
 .questao-card .q-alt:hover{background:rgba(201,168,108,0.04);border-color:rgba(201,168,108,0.1)}
@@ -126,7 +127,7 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 .destaque-item{font-size:0.68rem;background:rgba(201,168,108,0.06);color:var(--gold-light);padding:0.15rem 0.4rem;border-radius:4px}
 .vade-search{margin:0.5rem 0}
 .vade-search input{width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(201,168,108,0.06);background:rgba(0,0,0,0.25);color:var(--text);font-size:0.8rem;outline:none;transition:0.3s;box-sizing:border-box}
-.vade-search input:focus{border-color:var(--gold);background:rgba(0,0,0,0.35);box-shadow:0 0 0 3px rgba(201,168,108,0.04)}
+.vade-search input:focus{border-color:var(--accent);background:rgba(0,0,0,0.35);box-shadow:0 0 0 3px rgba(201,168,108,0.04)}
 .vade-search input::placeholder{color:var(--muted)}
 #vade-count{font-size:0.7rem;color:var(--muted);margin:0.2rem 0 0.4rem}
 .vade-ramo{border:1px solid rgba(201,168,108,0.05);border-radius:9px;margin:0.3rem 0;overflow:hidden}
@@ -155,13 +156,13 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 .ai-msg.ai{background:rgba(0,0,0,0.35);align-self:flex-start;border-bottom-left-radius:2px;border:1px solid rgba(201,168,108,0.04)}
 .ai-msg .hora{font-size:0.53rem;color:var(--muted);margin-top:2px;display:block;opacity:0.5}
 .ai-msg code{background:rgba(0,0,0,0.4);padding:1px 3px;border-radius:3px;font-size:0.7rem}
-.ai-msg strong{color:var(--gold-light)}
+.ai-msg strong{color:var(--gold-light);text-shadow:0 0 8px rgba(201,168,108,0.2)}
 .ai-typing{color:var(--muted);font-size:0.75rem;padding:0.3rem 0.5rem;display:flex;gap:2px}
 .ai-typing span{animation:pulse 1.4s infinite}.ai-typing span:nth-child(2){animation-delay:.2s}.ai-typing span:nth-child(3){animation-delay:.4s}
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 .ai-input-area{padding:0.4rem 0.6rem;border-top:1px solid rgba(201,168,108,0.04);display:flex;gap:0.35rem;flex-shrink:0}
 .ai-input-area input{flex:1;background:rgba(0,0,0,0.3);border:1px solid rgba(201,168,108,0.06);border-radius:8px;padding:0.45rem 0.7rem;color:var(--text);font-size:0.75rem;outline:none;transition:0.3s}
-.ai-input-area input:focus{border-color:var(--gold)}
+.ai-input-area input:focus{border-color:var(--accent)}
 .ai-input-area button{background:linear-gradient(135deg,var(--gold),var(--gold-dark));border:none;border-radius:8px;padding:0.45rem 0.7rem;color:#0a0a0f;cursor:pointer;font-weight:700;font-size:0.78rem;transition:0.3s}
 .ai-input-area button:hover{box-shadow:0 4px 12px rgba(201,168,108,0.3)}
 
@@ -180,7 +181,7 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 .dash-card:hover{transform:translateY(-4px);box-shadow:var(--shadow),0 0 0 1px rgba(201,168,108,0.06);background:var(--card-hover)}
 .dash-card:hover::before{opacity:1}
 .dash-card .dash-icon{font-size:1.3rem;margin-bottom:0.3rem;display:block}
-.dash-card .dash-num{font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-1px}
+.dash-card .dash-num{font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;letter-spacing:-1px;filter:brightness(1.3);text-shadow:0 0 20px rgba(201,168,108,0.2)}
 .dash-card .dash-label{font-size:0.72rem;color:var(--muted);margin-top:0.25rem;font-weight:500;text-transform:uppercase;letter-spacing:0.8px}
 .dash-card .dash-sub{font-size:0.68rem;color:var(--muted);margin-top:0.25rem;opacity:0.7}
 .dash-card.highlight{border-color:rgba(201,168,108,0.1);background:linear-gradient(135deg,rgba(201,168,108,0.03),rgba(168,136,74,0.02))}
@@ -214,7 +215,7 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 
 .goal-input{display:flex;gap:0.5rem;margin-top:0.5rem}
 .goal-input input{flex:1;background:rgba(0,0,0,0.25);border:1px solid rgba(201,168,108,0.06);border-radius:8px;padding:0.5rem 0.7rem;color:var(--text);font-size:0.78rem;outline:none;transition:0.3s}
-.goal-input input:focus{border-color:var(--gold)}
+.goal-input input:focus{border-color:var(--accent)}
 
 .weekdays{display:flex;gap:0.3rem;margin:0.5rem 0}
 .weekdays .day{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.68rem;background:rgba(255,255,255,0.03);color:var(--muted);transition:0.2s}
@@ -229,7 +230,7 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 <div class="bg-orb orb1"></div><div class="bg-orb orb2"></div><div class="bg-orb orb3"></div>
 
 <header>
-  <div class="logo" style="cursor:pointer" onclick="switchTab('dash')">JurisPath <small>IA adaptativa</small></div>
+  <div class="logo" style="cursor:pointer" onclick="switchTab('dash')">Sthefany Monique <small>IA adaptativa</small></div>
   <div class="global-search"><input type="text" id="global-search-input" placeholder="Buscar em todo o Vade Mecum..." oninput="debounce(globalSearch,300)()" onkeydown="if(event.key==='Enter') globalSearch()"><div id="global-search-results" class="global-search-dropdown"></div></div>
   <div class="header-stats">
     <span id="greeting" style="font-size:0.75rem;color:var(--muted)"></span>
@@ -242,6 +243,9 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
   </div>
 </header>
 
+<!-- BOTÃO FLUTUANTE CHAT IA -->
+<button class="fab-import" id="fab-chat" onclick="abrirChatIA()" title="Tutor IA" style="bottom:5rem;background:linear-gradient(135deg,#7c3aed,#4f46e5);box-shadow:0 4px 20px rgba(124,58,237,0.3);font-size:1.2rem;display:flex;align-items:center;justify-content:center">💬</button>
+
 <div class="tabs-container" id="tabs"></div>
 <div class="content-area" id="content"></div>
 
@@ -249,17 +253,7 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 <div class="modal-overlay" id="modal-aula">
   <div class="modal-lg">
     <div class="modal-header"><h2 id="aula-title">Matéria</h2><button class="close-btn" onclick="fecharModal('modal-aula')">&times;</button></div>
-    <div class="modal-split">
-      <div class="modal-body" id="aula-body"></div>
-      <div class="ai-panel" id="ai-panel">
-        <div class="ai-header">Tutor IA <span class="ai-status" id="ai-status">offline</span></div>
-        <div class="ai-chat" id="ai-chat"></div>
-        <div class="ai-input-area">
-          <input type="text" id="ai-input" placeholder="Pergunte..." autocomplete="off" onkeydown="if(event.key==='Enter') sendAI()">
-          <button onclick="sendAI()">→</button>
-        </div>
-      </div>
-    </div>
+    <div class="modal-body" id="aula-body" style="max-height:80vh"></div>
   </div>
 </div>
 
@@ -283,17 +277,29 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 <div class="modal-overlay" id="modal-perfil">
   <div class="modal-sm">
     <div class="modal-header"><h2>👤 Meu Perfil</h2><button class="close-btn" onclick="fecharModal('modal-perfil')">&times;</button></div>
-    <div class="artigo-full">
+    <div class="artigo-full" style="max-height:70vh;overflow-y:auto">
       <p style="color:var(--muted);margin-bottom:1rem;font-size:0.85rem">Suas preferências são salvas automaticamente no navegador.</p>
-      <label style="font-size:0.8rem;color:var(--muted);display:block;margin-bottom:0.3rem">Seu nome</label>
-      <input type="text" id="profile-name" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:0.6rem 0.8rem;color:white;font-size:0.85rem;outline:none;margin-bottom:1rem">
-      <label style="font-size:0.8rem;color:var(--muted);display:block;margin-bottom:0.3rem">Meta de estudo</label>
-      <select id="profile-goal" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:0.6rem 0.8rem;color:white;font-size:0.85rem;outline:none;margin-bottom:1rem">
-        <option value="oab">Passar na OAB</option><option value="concurso">Concurso Público</option><option value="faculdade">Tirar notas máximas</option><option value="pratica">Advocacia prática</option><option value="outro">Outro</option>
+      <label style="font-size:0.8rem;color:var(--gold-light);display:block;margin-bottom:0.3rem">📝 Seu nome</label>
+      <input type="text" id="profile-name" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,108,0.15);border-radius:7px;padding:0.6rem 0.8rem;color:var(--text);font-size:0.85rem;outline:none;margin-bottom:1rem">
+      <label style="font-size:0.8rem;color:var(--gold-light);display:block;margin-bottom:0.3rem">🎯 Meta de estudo</label>
+      <select id="profile-goal" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,108,0.15);border-radius:7px;padding:0.6rem 0.8rem;color:var(--text);font-size:0.85rem;outline:none;margin-bottom:1rem">
+        <option value="oab" style="background:#1a1410">Passar na OAB</option><option value="concurso" style="background:#1a1410">Concurso Público</option><option value="faculdade" style="background:#1a1410">Tirar notas máximas</option><option value="pratica" style="background:#1a1410">Advocacia prática</option><option value="outro" style="background:#1a1410">Outro</option>
       </select>
-      <label style="font-size:0.8rem;color:var(--muted);display:block;margin-bottom:0.3rem">Chave da API Gemini (opcional)</label>
-      <input type="password" id="profile-apikey" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:0.6rem 0.8rem;color:white;font-size:0.85rem;outline:none;font-family:monospace;margin-bottom:1rem" placeholder="Cole sua chave...">
-      <p style="font-size:0.7rem;color:var(--muted);margin-bottom:1rem">Grátis em: <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--primary)">aistudio.google.com/apikey</a></p>
+      <label style="font-size:0.8rem;color:var(--gold-light);display:block;margin-bottom:0.3rem">🤖 Provedor IA</label>
+      <select id="profile-provider" onchange="toggleProviderFields()" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,108,0.15);border-radius:7px;padding:0.6rem 0.8rem;color:var(--text);font-size:0.85rem;outline:none;margin-bottom:1rem">
+        <option value="gemini" style="background:#1a1410">Gemini (Google) — requer chave</option>
+        <option value="qwen" style="background:#1a1410">Qwen (HuggingFace) — grátis c/ token</option>
+      </select>
+      <div id="provider-gemini-field">
+        <label style="font-size:0.8rem;color:var(--gold-light);display:block;margin-bottom:0.3rem">🔑 Chave da API Gemini</label>
+        <input type="password" id="profile-apikey" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,108,0.15);border-radius:7px;padding:0.6rem 0.8rem;color:var(--text);font-size:0.85rem;outline:none;font-family:monospace;margin-bottom:0.3rem" placeholder="Cole sua chave Gemini aqui...">
+        <p style="font-size:0.7rem;color:var(--muted);margin-bottom:1rem">🔗 Grátis em: <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--gold-light)">aistudio.google.com/apikey</a></p>
+      </div>
+      <div id="provider-qwen-field" style="display:none">
+        <label style="font-size:0.8rem;color:var(--gold-light);display:block;margin-bottom:0.3rem">🔑 Token HuggingFace (opcional — mais estável)</label>
+        <input type="password" id="profile-qwenkey" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,108,0.15);border-radius:7px;padding:0.6rem 0.8rem;color:var(--text);font-size:0.85rem;outline:none;font-family:monospace;margin-bottom:0.3rem" placeholder="Cole seu token HF aqui...">
+        <p style="font-size:0.7rem;color:var(--muted);margin-bottom:1rem">🔗 Grátis em: <a href="https://huggingface.co/settings/tokens" target="_blank" style="color:var(--gold-light)">huggingface.co/settings/tokens</a></p>
+      </div>
       <button class="btn" onclick="salvarPerfil()">Salvar</button>
       <button class="btn btn-outline" onclick="fecharModal('modal-perfil')" style="margin-left:0.5rem">Cancelar</button>
       <p id="perfil-feedback" style="margin-top:0.6rem;font-size:0.85rem"></p>
@@ -301,7 +307,49 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
   </div>
 </div>
 
+<!-- MODAL CHAT IA FLUTUANTE -->
+<div class="modal-overlay" id="modal-chat">
+  <div class="modal-sm" style="max-width:500px">
+    <div class="modal-header"><h2>🤖 Tutor IA <span id="ai-status-header" style="font-size:0.65rem;font-weight:400;color:var(--muted);margin-left:0.3rem"></span></h2><div style="display:flex;gap:0.3rem"><button class="close-btn" onclick="limparChat()" title="Limpar chat">🗑</button><button class="close-btn" onclick="fecharModal('modal-chat')">&times;</button></div></div>
+    <div style="padding:0.3rem 0.7rem;display:flex;gap:0.3rem;border-bottom:1px solid rgba(201,168,108,0.04)">
+      <span id="ai-model-badge" class="tag pratica" style="background:rgba(168,85,247,0.12);color:#c084fc;border:1px solid rgba(168,85,247,0.15)"></span>
+      <span style="font-size:0.65rem;color:var(--muted);margin-left:auto">Pergunte qualquer coisa sobre Direito</span>
+    </div>
+    <div class="artigo-full" style="display:flex;flex-direction:column;padding:0;min-height:300px;max-height:60vh">
+      <div class="ai-chat" id="ai-chat" style="flex:1;padding:0.5rem"></div>
+      <div class="ai-input-area" style="flex-shrink:0">
+        <input type="text" id="ai-input" placeholder="Pergunte sobre Direito..." autocomplete="off" onkeydown="if(event.key==='Enter') sendAI()">
+        <button id="ai-voice-btn" onclick="toggleVoiceInput()" title="Falar (voz)" style="font-size:1.1rem;padding:0.45rem 0.5rem;background:transparent;border:1px solid rgba(201,168,108,0.1);border-radius:8px;color:var(--gold-light);cursor:pointer;transition:0.3s">🎤</button>
+        <button onclick="sendAI()">→</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTÃO FLUTUANTE CHAT IA -->
+
+<div class="modal-overlay" id="modal-importar">
+  <div class="modal-sm">
+    <div class="modal-header"><h2 id="import-title">📥 Importar Arquivo</h2><button class="close-btn" onclick="fecharModal('modal-importar')">&times;</button></div>
+    <div class="modal-body" id="import-body">
+      <input type="file" id="import-file" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:0.5rem;color:white;font-size:0.8rem;outline:none;margin-bottom:0.8rem">
+      <label style="font-size:0.8rem;color:var(--muted);display:block;margin-bottom:0.2rem">Nome</label>
+      <input type="text" id="import-nome" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:0.5rem 0.7rem;color:white;font-size:0.85rem;outline:none;margin-bottom:0.6rem">
+      <label style="font-size:0.8rem;color:var(--muted);display:block;margin-bottom:0.2rem">Matéria (opcional)</label>
+      <input type="text" id="import-materia" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:0.5rem 0.7rem;color:white;font-size:0.85rem;outline:none;margin-bottom:0.6rem">
+      <label style="font-size:0.8rem;color:var(--muted);display:block;margin-bottom:0.2rem">Descrição (opcional)</label>
+      <textarea id="import-desc" rows="3" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:0.5rem 0.7rem;color:white;font-size:0.85rem;outline:none;margin-bottom:0.8rem;resize:vertical;font-family:inherit"></textarea>
+      <p id="import-msg" style="font-size:0.75rem;color:var(--muted);margin-bottom:0.8rem"></p>
+      <button class="btn" onclick="salvarImportado()">Salvar</button>
+      <button class="btn btn-outline" onclick="fecharModal('modal-importar')" style="margin-left:0.5rem">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<button class="fab-import" id="fab-import" onclick="abrirImportador()" title="Importar arquivo">+</button>
+
 <script src="vade.js"></script>
+<script src="data.js"></script>
 <script src="dados/livros.js"></script>
 <script src="dados/videos.js"></script>
 <script src="dados/documentos.js"></script>
@@ -11493,6 +11541,10 @@ const PERFIL = {
   set meta(v) { localStorage.setItem('jp_meta', v); },
   get apiKey() { return localStorage.getItem('jp_apikey') || ''; },
   set apiKey(v) { localStorage.setItem('jp_apikey', v); },
+  get provider() { return localStorage.getItem('jp_provider') || 'gemini'; },
+  set provider(v) { localStorage.setItem('jp_provider', v); },
+  get qwenKey() { return localStorage.getItem('jp_qwenkey') || ''; },
+  set qwenKey(v) { localStorage.setItem('jp_qwenkey', v); },
   get iconMeta() { const m = this.meta; return {oab:'🎯',concurso:'🏛️',faculdade:'🎓',pratica:'⚖️',outro:'📚'}[m]||'🎯'; },
   get dataCriacao() { return localStorage.getItem('jp_criado') || Date.now(); },
   set dataCriacao(v) { localStorage.setItem('jp_criado', v); },
@@ -11715,6 +11767,9 @@ function switchTab(key) {
   STATE.currentTab = key;
   renderTabs(); renderContent(); updateStats();
   if(key!=='dash') document.getElementById('sem-count').textContent = key==='oab1'?'🎯':key==='vade'?'📕':key==='flash'?'🃏':key==='livros'?'📚':key==='videos'?'🎬':key==='documentos'?'📄':`${key}º`;
+  // Mostrar FAB apenas nas abas com importacao
+  var fab = document.getElementById('fab-import');
+  if(fab) fab.className = 'fab-import' + (key==='videos'||key==='documentos'||key==='livros'||(!isNaN(key)&&key>=1&&key<=10)?' show':'');
 }
 
 function renderContent() {
@@ -11897,14 +11952,25 @@ document.addEventListener('click', function(e) {
 function renderLivros() {
   const c = document.getElementById('content');
   if(typeof LIVROS==='undefined') { c.innerHTML='<div style="padding:2rem;text-align:center;color:var(--muted)">Carregando livros...</div>'; return; }
-  c.innerHTML = `<h2 class="section-title">\u{1F4DA} Livros e Obras Jurídicas</h2>
-  <div class="vade-search"><input type="text" id="livros-input" placeholder="Buscar livro..." oninput="filtrarLivros()"></div>
-  <div id="livros-count" style="font-size:0.72rem;color:var(--muted);margin:0.2rem 0 0.4rem"></div>
-  <div class="card-grid" id="livros-grid">${LIVROS.map((l,i) => `<div class="card" data-livro-idx="${i}" style="cursor:pointer" onclick="abrirLivro(${i})">
-    <h3>\u{1F4D6} ${l.titulo}</h3>
-    <div style="font-size:0.82rem;color:#cbd5e1;line-height:1.5;margin-top:0.4rem">${l.conteudo.substring(0,150)}...</div>
-    <div style="margin-top:0.6rem"><span class="tag pratica">Resumo</span></div>
-  </div>`).join('')}</div>`;
+  var pdfLivros = typeof DOCUMENTOS!=='undefined' ? DOCUMENTOS.filter(function(d){var e=d.arquivo.split('.').pop().toLowerCase();return e==='pdf'&&d.nome.length>5&&!d.nome.startsWith('-')&&!d.nome.startsWith('_')&&!d.nome.startsWith('0')&&!d.nome.match(/^\w{8}$/);}).slice(0,100).map(function(d){return{_tipo:'pdf',titulo:d.nome,arquivo:d.arquivo};}) : [];
+  var imp = IMPORTADOS.livros.map(function(v,i){v._importado=true;v._idx=i;v._tipo='importado';v.titulo=v.nome;return v;});
+  var todos = LIVROS.map(function(l,i){l._tipo='resumo';return l;}).concat(pdfLivros).concat(imp);
+  window._livrosTodos = todos.filter(function(l){return !itemRemovido('livros',l);});
+  c.innerHTML = '<h2 class="section-title">\u{1F4DA} Livros e Obras Jurídicas</h2>' +
+  '<div class="vade-search"><input type="text" id="livros-input" placeholder="Buscar livro..." oninput="filtrarLivros()"></div>' +
+  '<div id="livros-count" style="font-size:0.72rem;color:var(--muted);margin:0.2rem 0 0.4rem"></div>' +
+  '<div class="card-grid" id="livros-grid">' + window._livrosTodos.map(function(l,i){
+    var impTag = l._importado ? '<span class="tag pratica" style="background:rgba(168,85,247,0.15);color:#c084fc;border:1px solid rgba(168,85,247,0.2);margin-left:0.3rem">IMPORTADO</span>' : '';
+    var tipoTag = l._tipo==='pdf' ? '<span class="tag pratica" style="background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.2)">PDF</span>' : l._tipo==='importado' ? '<span class="tag pratica" style="background:rgba(168,85,247,0.15);color:#c084fc;border:1px solid rgba(168,85,247,0.2)">ARQUIVO</span>' : '<span class="tag pratica">Resumo</span>';
+    var desc = l._tipo==='resumo' ? (l.conteudo||'').replace(/<[^>]*>/g,'').trim().substring(0,120)+'...' : (l._tipo==='pdf' ? '📄 Clique para abrir o PDF' : '📁 Clique para abrir');
+    var chaveL = 'livros:'+(l.titulo||'')+':'+(l.arquivo||'');
+    var delBtn = '<button class="btn btn-sm" onclick="event.stopPropagation();removerItem(\'livros\',\''+encodeURIComponent(chaveL)+'\')" style="background:rgba(220,38,38,0.15);color:#f87171;border:none;margin-left:auto;padding:0.2rem 0.5rem;border-radius:5px;cursor:pointer;font-size:0.7rem;white-space:nowrap">✕ Excluir</button>';
+    return '<div class="card" data-livro-idx="'+i+'" data-tipo="'+l._tipo+'" style="cursor:pointer" onclick="abrirLivro('+i+')">' +
+      '<h3>\u{1F4D6} '+l.titulo+impTag+'</h3>' +
+      '<div style="font-size:0.82rem;color:#cbd5e1;line-height:1.5;margin-top:0.4rem;max-height:3.6em;overflow:hidden">'+desc+'</div>' +
+      '<div style="margin-top:0.6rem;display:flex;align-items:center;gap:0.3rem">'+tipoTag+delBtn+'</div></div>';
+  }).join('') + '</div>' +
+  (ITENS_REMOVIDOS.length ? '<div style="text-align:center;margin-top:0.5rem"><button class="btn btn-outline btn-sm" onclick="ITENS_REMOVIDOS=[];localStorage.removeItem(\'jurispath_removidos\');renderContent()" style="font-size:0.7rem">↩ Restaurar excluídos</button></div>' : '');
 }
 function filtrarLivros() {
   const q = (document.getElementById('livros-input').value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
@@ -11916,36 +11982,56 @@ function filtrarLivros() {
   const total = document.querySelectorAll('#livros-grid .card').length;
   const count = total - vis.length;
   const el = document.getElementById('livros-count');
-  if(el) el.textContent = q ? count+' resultados encontrados' : total+' livros disponíveis';
+  if(el) el.textContent = q ? count+' resultados encontrados' : total+' itens disponíveis ('+LIVROS.length+' resumos + '+(window._livrosTodos?window._livrosTodos.length-LIVROS.length:0)+' arquivos)';
 }
 function abrirLivro(idx) {
-  const l = LIVROS[idx];
+  var l = window._livrosTodos && window._livrosTodos[idx];
   if(!l) return;
-  const body = document.getElementById('artigo-modal-body');
-  const title = document.getElementById('artigo-modal-title');
-  title.innerHTML = '\u{1F4D6} '+l.titulo;
-  body.innerHTML = l.conteudo;
+  var body = document.getElementById('artigo-modal-body');
+  var title = document.getElementById('artigo-modal-title');
+  var chaveL = 'livros:'+(l.titulo||'')+':'+(l.arquivo||'');
+  var delBtn = '<button class="btn btn-sm" onclick="event.stopPropagation();removerItem(\'livros\',\''+encodeURIComponent(chaveL)+'\')" style="background:rgba(220,38,38,0.15);color:#f87171;border:none;margin-left:0.5rem;padding:0.25rem 0.5rem;border-radius:5px;cursor:pointer;font-size:0.7rem">✕ Excluir</button>';
+  if(l._tipo==='pdf'||l._tipo==='importado') {
+    var ext = (l.arquivo||'').split('.').pop().toLowerCase();
+    title.innerHTML = '\u{1F4D6} '+l.titulo+delBtn;
+    if(ext==='pdf') {
+      body.innerHTML = '<div style="display:flex;flex-direction:column;gap:0.5rem;height:100%"><div style="display:flex;justify-content:space-between;align-items:center;flex-shrink:0"><span style="color:var(--muted);font-size:0.8rem">'+(l.arquivo||'')+'</span><a href="dados/'+l.arquivo+'" target="_blank" class="btn btn-sm" style="text-decoration:none">⬇ Abrir PDF</a></div><iframe src="dados/'+l.arquivo+'" style="width:100%;flex:1;min-height:70vh;border:none;border-radius:8px"></iframe></div>';
+    } else {
+      body.innerHTML = '<div style="display:flex;flex-direction:column;gap:1rem;align-items:center;text-align:center;padding:2rem"><p style="color:var(--muted)">'+(l.arquivo||'')+'</p><a href="dados/'+l.arquivo+'" target="_blank" class="btn" style="text-decoration:none">⬇ Abrir arquivo</a></div>';
+    }
+  } else {
+    title.innerHTML = '\u{1F4D6} '+l.titulo+delBtn;
+    body.innerHTML = l.conteudo;
+  }
   abrirModal('modal-artigo');
 }
 
 function renderVideos() {
   const c = document.getElementById('content');
   if(typeof VIDEOS==='undefined') { c.innerHTML='<div style="padding:2rem;text-align:center;color:var(--muted)">Carregando vídeos...</div>'; return; }
+  var normalizados = VIDEOS.map(function(v){return{nome:v.title||v.nome,descricao:v.desc||v.descricao,arquivo:(v.url||v.arquivo||'').replace(/^dados\//,''),materia:v.materia||'Geral',destaque:v.destaque||''};});
+  var todos = normalizados.concat(IMPORTADOS.videos.map(function(v,i){v._i=i;return v;}));
+  window._videosTodos = todos.filter(function(v){return !itemRemovido('videos',v);});
   c.innerHTML = `<h2 class="section-title">🎬 Vídeos e Aulas</h2>
   <div class="vade-search"><input type="text" id="videos-input" placeholder="Buscar vídeo..." oninput="filtrarVideos()"></div>
   <div id="videos-count" style="font-size:0.72rem;color:var(--muted);margin:0.2rem 0 0.4rem"></div>
-  <div class="card-grid" id="videos-grid">${VIDEOS.map((v,i) => `<div class="card" data-video-idx="${i}" style="cursor:pointer" onclick="abrirVideo(${i})">
-    <h3>🎬 ${v.nome}</h3>
-    <div style="margin-top:0.3rem;display:flex;align-items:center;gap:0.5rem">
-      <span class="tag pratica">${v.materia||'Geral'}</span>
-      ${v.destaque?`<span style="font-size:0.68rem;color:var(--gold);font-weight:600">${v.destaque}</span>`:''}
-    </div>
-    <p style="font-size:0.74rem;color:var(--muted);margin-top:0.4rem;line-height:1.4">${(v.descricao||'').substring(0,120)}...</p>
-    <div style="margin-top:0.5rem;display:flex;align-items:center;gap:0.5rem">
-      <span class="tag pratica" style="background:rgba(201,168,108,0.1);color:var(--gold-light);border:1px solid rgba(201,168,108,0.15)">MP4</span>
-      <span style="font-size:0.7rem;color:var(--muted)">${v.arquivo}</span>
-    </div>
-  </div>`).join('')}</div>`;
+  <div class="card-grid" id="videos-grid">${window._videosTodos.map(function(v,i) {
+    var imp = v._importado ? '<span class="tag pratica" style="background:rgba(168,85,247,0.15);color:#c084fc;border:1px solid rgba(168,85,247,0.2);margin-left:0.3rem">IMPORTADO</span>' : '';
+    var chaveV = 'videos:'+(v.nome||'')+':'+(v.arquivo||'');
+    return '<div class="card" data-video-idx="'+i+'" style="cursor:pointer" onclick="abrirVideo('+i+')">' +
+      '<h3>🎬 '+v.nome+imp+'</h3>' +
+      '<div style="margin-top:0.3rem;display:flex;align-items:center;gap:0.5rem">' +
+      '<span class="tag pratica">'+(v.materia||'Geral')+'</span>' +
+      (v.destaque?'<span style="font-size:0.68rem;color:var(--gold);font-weight:600">'+v.destaque+'</span>':'') +
+      '</div>' +
+      '<p style="font-size:0.74rem;color:var(--muted);margin-top:0.4rem;line-height:1.4">'+((v.descricao||'').substring(0,120))+'...</p>' +
+      '<div style="margin-top:0.5rem;display:flex;align-items:center;gap:0.5rem">' +
+      '<span class="tag pratica" style="background:rgba(201,168,108,0.1);color:var(--gold-light);border:1px solid rgba(201,168,108,0.15)">MP4</span>' +
+      '<span style="font-size:0.7rem;color:var(--muted)">'+v.arquivo+'</span>' +
+      '<button class="btn btn-sm" onclick="event.stopPropagation();removerItem(\'videos\',\''+encodeURIComponent(chaveV)+'\')" style="background:rgba(220,38,38,0.15);color:#f87171;border:none;margin-left:auto;padding:0.2rem 0.5rem;border-radius:5px;cursor:pointer;font-size:0.7rem;white-space:nowrap">✕ Excluir</button>' +
+      '</div></div>';
+  }).join('')}</div>` +
+  (ITENS_REMOVIDOS.length ? '<div style="text-align:center;margin-top:0.5rem"><button class="btn btn-outline btn-sm" onclick="ITENS_REMOVIDOS=[];localStorage.removeItem(\'jurispath_removidos\');renderContent()" style="font-size:0.7rem">↩ Restaurar excluídos</button></div>' : '');
 }
 function filtrarVideos() {
   const q = (document.getElementById('videos-input').value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
@@ -11960,19 +12046,20 @@ function filtrarVideos() {
   if(el) el.textContent = q ? count+' resultados encontrados' : total+' vídeos disponíveis';
 }
 function abrirVideo(idx) {
-  const v = VIDEOS[idx];
+  const v = window._videosTodos[idx];
   if(!v) return;
   const body = document.getElementById('artigo-modal-body');
   const title = document.getElementById('artigo-modal-title');
-  title.innerHTML = '🎬 '+v.nome;
+  var chaveV = 'videos:'+(v.nome||'')+':'+(v.arquivo||'');
+  var delBtn = '<button class="btn btn-sm" onclick="event.stopPropagation();removerItem(\'videos\',\''+encodeURIComponent(chaveV)+'\')" style="background:rgba(220,38,38,0.15);color:#f87171;border:none;margin-left:0.5rem;padding:0.25rem 0.5rem;border-radius:5px;cursor:pointer;font-size:0.7rem">✕ Excluir</button>';
+  title.innerHTML = '🎬 '+v.nome+delBtn;
   body.innerHTML = `<div style="display:flex;flex-direction:column;gap:0.8rem">
     <div style="display:flex;gap:0.5rem;align-items:center"><span class="tag pratica">${v.materia||'Geral'}</span>${v.destaque?`<span style="font-size:0.7rem;color:var(--gold);font-weight:600">${v.destaque}</span>`:''}</div>
     <p style="color:var(--muted);font-size:0.82rem;line-height:1.6">${v.descricao||''}</p>
     <p style="color:var(--muted);font-size:0.75rem">Arquivo: ${v.arquivo}</p>
-    <video controls style="max-width:100%;border-radius:10px;background:#000;box-shadow:0 4px 20px rgba(0,0,0,0.4)" preload="metadata">
-      <source src="dados/${v.arquivo}" type="video/mp4">
-      Seu navegador não suporta vídeo.
-    </video>
+    ${v.arquivo.indexOf('://')>0
+      ? '<iframe src="'+v.arquivo+'" style="width:100%;aspect-ratio:16/9;border:none;border-radius:10px" allowfullscreen></iframe>'
+      : '<video controls style="max-width:100%;border-radius:10px;background:#000;box-shadow:0 4px 20px rgba(0,0,0,0.4)" preload="metadata"><source src="dados/'+v.arquivo+'" type="video/mp4">Seu navegador não suporta vídeo.</video>'}
   </div>`;
   abrirModal('modal-artigo');
 }
@@ -11980,20 +12067,25 @@ function abrirVideo(idx) {
 function renderDocumentos() {
   const c = document.getElementById('content');
   if(typeof DOCUMENTOS==='undefined') { c.innerHTML='<div style="padding:2rem;text-align:center;color:var(--muted)">Carregando documentos...</div>'; return; }
+  var todos = DOCUMENTOS.concat(IMPORTADOS.documentos.map(function(d,i){d._i=i;return d;}));
+  window._docsTodos = todos.filter(function(d){return !itemRemovido('documentos',d);});
   c.innerHTML = `<h2 class="section-title">📄 Todos os Documentos</h2>
   <div class="vade-search"><input type="text" id="docs-input" placeholder="Buscar arquivo..." oninput="filtrarDocumentos()"></div>
   <div id="docs-count" style="font-size:0.72rem;color:var(--muted);margin:0.2rem 0 0.4rem"></div>
-  <div class="card-grid" id="docs-grid">${DOCUMENTOS.map((d,i) => {
+  <div class="card-grid" id="docs-grid">${window._docsTodos.map(function(d,i) {
     const ext = d.arquivo.split('.').pop().toUpperCase();
     const icon = ext==='PDF'?'📄':ext==='PPTX'||ext==='PPT'?'📊':'📎';
-    return `<div class="card" data-doc-idx="${i}" style="cursor:pointer" onclick="abrirDocumento(${i})">
-      <h3>${icon} ${d.nome}</h3>
-      <div style="margin-top:0.6rem;display:flex;align-items:center;gap:0.5rem">
-        <span class="tag pratica">${ext}</span>
-        <span style="font-size:0.75rem;color:var(--muted)">${d.arquivo}</span>
-      </div>
-    </div>`;
-  }).join('')}</div>`;
+    const imp = d._importado ? '<span class="tag pratica" style="background:rgba(168,85,247,0.15);color:#c084fc;border:1px solid rgba(168,85,247,0.2);margin-left:0.3rem">IMPORTADO</span>' : '';
+    var chaveD = 'documentos:'+(d.nome||'')+':'+(d.arquivo||'');
+    return '<div class="card" data-doc-idx="'+i+'" style="cursor:pointer" onclick="abrirDocumento('+i+')">' +
+      '<h3>'+icon+' '+d.nome+imp+'</h3>' +
+      '<div style="margin-top:0.6rem;display:flex;align-items:center;gap:0.5rem">' +
+      '<span class="tag pratica">'+ext+'</span>' +
+      '<span style="font-size:0.75rem;color:var(--muted)">'+d.arquivo+'</span>' +
+      '<button class="btn btn-sm" onclick="event.stopPropagation();removerItem(\'documentos\',\''+encodeURIComponent(chaveD)+'\')" style="background:rgba(220,38,38,0.15);color:#f87171;border:none;margin-left:auto;padding:0.2rem 0.5rem;border-radius:5px;cursor:pointer;font-size:0.7rem;white-space:nowrap">✕ Excluir</button>' +
+      '</div></div>';
+  }).join('')}</div>` +
+  (ITENS_REMOVIDOS.length ? '<div style="text-align:center;margin-top:0.5rem"><button class="btn btn-outline btn-sm" onclick="ITENS_REMOVIDOS=[];localStorage.removeItem(\'jurispath_removidos\');renderContent()" style="font-size:0.7rem">↩ Restaurar excluídos</button></div>' : '');
 }
 function filtrarDocumentos() {
   const q = (document.getElementById('docs-input').value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
@@ -12008,12 +12100,14 @@ function filtrarDocumentos() {
   if(el) el.textContent = q ? count+' resultados encontrados' : total+' documentos disponíveis';
 }
 function abrirDocumento(idx) {
-  const d = DOCUMENTOS[idx];
+  const d = window._docsTodos[idx];
   if(!d) return;
   const ext = d.arquivo.split('.').pop().toLowerCase();
   const body = document.getElementById('artigo-modal-body');
   const title = document.getElementById('artigo-modal-title');
-  title.innerHTML = '📄 '+d.nome;
+  var chaveD = 'documentos:'+(d.nome||'')+':'+(d.arquivo||'');
+  var delBtn = '<button class="btn btn-sm" onclick="event.stopPropagation();removerItem(\'documentos\',\''+encodeURIComponent(chaveD)+'\')" style="background:rgba(220,38,38,0.15);color:#f87171;border:none;margin-left:0.5rem;padding:0.25rem 0.5rem;border-radius:5px;cursor:pointer;font-size:0.7rem">✕ Excluir</button>';
+  title.innerHTML = '📄 '+d.nome+delBtn;
   const container = document.getElementById('modal-artigo-container');
   if(ext==='pdf') {
     if(container) { container.style.maxWidth = ''; container.style.width = ''; }
@@ -12264,8 +12358,8 @@ function gerarRecomendacoes(pct, mats, qtotal, hist) {
   if(qtotal<10) recs.push({icone:'❓',titulo:'Pratique questões',desc:'Resolva questões para fixar', acao:"switchTab('1')"});
   if(mats<3) recs.push({icone:'📖',titulo:'Explore novas matérias',desc:'Varie seus estudos', acao:"switchTab('2')"});
   if(hist.length>10 && qtotal>20) recs.push({icone:'🏆',titulo:'Você está evoluindo!',desc:'Continue o bom trabalho!', acao:"switchTab('dash')"});
-  if(PERFIL.nome && PERFIL.apiKey) recs.push({icone:'🤖',titulo:'IA ativada',desc:'Tutor com IA respondendo', acao:"switchTab('3')"});
-  if(!PERFIL.apiKey && PERFIL.nome) recs.push({icone:'🔑',titulo:'Ative o tutor IA',desc:'Respostas mais inteligentes', acao:"abrirPerfil()"});
+  if(PERFIL.nome && (PERFIL.apiKey || PERFIL.provider==='qwen')) recs.push({icone:'🤖',titulo:'IA ativada',desc:'Tutor com IA respondendo', acao:"switchTab('3')"});
+  if(PERFIL.nome && !PERFIL.apiKey && PERFIL.provider!=='qwen') recs.push({icone:'🔑',titulo:'Ative o tutor IA',desc:'Escolha Gemini ou Qwen', acao:"abrirPerfil()"});
   if(PERFIL.apiKey && hist.length>5) recs.push({icone:'🎯',titulo:'Simulado Personalizado',desc:'IA gera prova sob medida', acao:"switchTab('oab1')"});
   recs.push({icone:'⚖️',titulo:'Jurisprudência',desc:'Leia ementas importantes', acao:"switchTab('4')"});
   return recs.slice(0,6);
@@ -12479,6 +12573,45 @@ function responderQuestao(el, escolha, correta, qId) {
 // ===================================================================
 // CHAT IA COM MEMÓRIA
 // ===================================================================
+var recognition = null;
+var isListening = false;
+function toggleVoiceInput() {
+  var btn = document.getElementById('ai-voice-btn');
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    alert('Seu navegador não suporta entrada de voz. Use Chrome ou Edge.');
+    return;
+  }
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (isListening) {
+    if (recognition) { recognition.stop(); recognition = null; }
+    isListening = false;
+    btn.textContent = '🎤'; btn.style.background = 'transparent'; btn.style.borderColor = 'rgba(201,168,108,0.1)';
+    return;
+  }
+  recognition = new SpeechRecognition();
+  recognition.lang = 'pt-BR';
+  recognition.interimResults = true;
+  recognition.continuous = true;
+  recognition.onresult = function(event) {
+    var transcript = '';
+    for (var i = event.resultIndex; i < event.results.length; i++) {
+      transcript += event.results[i][0].transcript;
+    }
+    document.getElementById('ai-input').value = transcript;
+  };
+  recognition.onend = function() {
+    isListening = false;
+    btn.textContent = '🎤'; btn.style.background = 'transparent'; btn.style.borderColor = 'rgba(201,168,108,0.1)';
+  };
+  recognition.onerror = function() {
+    isListening = false;
+    btn.textContent = '🎤'; btn.style.background = 'transparent'; btn.style.borderColor = 'rgba(201,168,108,0.1)';
+  };
+  recognition.start();
+  isListening = true;
+  btn.textContent = '🎙'; btn.style.background = 'rgba(201,168,108,0.2)'; btn.style.borderColor = 'var(--gold)';
+}
+
 function sendAI() {
   const input = document.getElementById('ai-input');
   const msg = input.value.trim(); if(!msg) return;
@@ -12489,40 +12622,118 @@ function sendAI() {
 async function askAI(msg) {
   addMsg('...','ai',true);
   const ctx = STATE.currentDisc?.nome||'Direito';
+  const prov = PERFIL.provider;
 
-  if(PERFIL.apiKey) {
+  if(prov==='gemini' && PERFIL.apiKey) {
     try {
-      const resp = await callGemini(msg,ctx);
+      const resp = await callGemini(msg,ctx,'gemini-1.5-flash');
       rmTyping(); addMsg(resp,'ai');
       PERFIL.salvarMemoria(ctx,msg,resp);
+      atualizarBadgeIA();
       return;
     } catch(e) {
       rmTyping();
-      if(e.message.includes('429')) addMsg('⚠️ Limite da API. Usando resposta local.', 'ai');
-      else if(e.message.includes('403')||e.message.includes('INVALID')) addMsg('⚠️ Chave inválida. Atualize em 👤.', 'ai');
-      else addMsg('⚠️ Erro. Usando resposta local.', 'ai');
+      if(e.message.includes('429')) addMsg('⚠️ Limite Gemini. Tentando Qwen...','ai');
+      else if(e.message.includes('403')||e.message.includes('INVALID')) addMsg('⚠️ Chave Gemini inválida. Tentando Qwen...','ai');
+      else if(e.message.includes('MODEL_NOT_FOUND')) {
+        try {
+          const resp = await callGemini(msg,ctx,'gemini-2.0-flash');
+          rmTyping(); addMsg(resp,'ai');
+          PERFIL.salvarMemoria(ctx,msg,resp);
+          atualizarBadgeIA();
+          return;
+        } catch(e2) { rmTyping(); addMsg('⚠️ Gemini falhou. Tentando Qwen...','ai'); }
+      }
+      else addMsg('⚠️ Gemini falhou. Tentando Qwen...','ai');
+      try {
+        const resp = await callQwen(msg,ctx);
+        rmTyping(); addMsg(resp,'ai');
+        PERFIL.salvarMemoria(ctx,msg,resp);
+        atualizarBadgeIA();
+        return;
+      } catch(e2) { rmTyping(); }
     }
+  }
+  if(prov==='qwen') {
+    try {
+      const resp = await callQwen(msg,ctx);
+      rmTyping(); addMsg(resp,'ai');
+      PERFIL.salvarMemoria(ctx,msg,resp);
+      atualizarBadgeIA();
+      return;
+    } catch(e) {
+      rmTyping();
+      addMsg('⚠️ Qwen falhou. Tentando Gemini...','ai');
+      if(PERFIL.apiKey) {
+        try {
+          const resp = await callGemini(msg,ctx);
+          rmTyping(); addMsg(resp,'ai');
+          PERFIL.salvarMemoria(ctx,msg,resp);
+          atualizarBadgeIA();
+          return;
+        } catch(e2) { rmTyping(); }
+      }
+    }
+  }
+  try {
+    const resp = await callQwen(msg,ctx);
+    rmTyping(); addMsg(resp,'ai');
+    PERFIL.salvarMemoria(ctx,msg,resp);
+    atualizarBadgeIA();
+    return;
+  } catch(e) {
+    rmTyping();
   }
   rmTyping();
   const resp = respostaLocal(msg,ctx);
   addMsg(resp,'ai');
   PERFIL.salvarMemoria(ctx,msg,resp);
+  atualizarBadgeIA();
 }
 
-async function callGemini(msg,ctx) {
+async function callGemini(msg,ctx,model) {
   const sys = `Você é tutor de Direito em ${ctx}, respondendo a ${PERFIL.nome||'estudante'}. Seja didático, cite leis e jurisprudência. Lembre do contexto da matéria.`;
   const ctrl = new AbortController();
-  const tid = setTimeout(()=>ctrl.abort(),12000);
-  const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${PERFIL.apiKey}`,{
+  const tid = setTimeout(()=>ctrl.abort(),15000);
+  const m = model || 'gemini-1.5-flash';
+  const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${PERFIL.apiKey}`,{
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({contents:[{parts:[{text:`${sys}\n\n${msg}`}]}],generationConfig:{temperature:0.7,maxOutputTokens:1024}}),
     signal:ctrl.signal
   });
   clearTimeout(tid);
   if(resp.status===429) throw new Error('429');
-  if(!resp.ok){const t=await resp.text();if(t.includes('API_KEY_INVALID'))throw new Error('403 INVALID');throw new Error(`Erro ${resp.status}`);}
+  if(!resp.ok){const t=await resp.text();
+    if(t.includes('API_KEY_INVALID'))throw new Error('403 INVALID');
+    if(t.includes('NOT_FOUND'))throw new Error('404 MODEL_NOT_FOUND');
+    throw new Error(`Erro ${resp.status}`);}
   const d=await resp.json(),t=d?.candidates?.[0]?.content?.parts?.[0]?.text;
   if(!t) throw new Error('Vazio');
+  return t;
+}
+
+async function callQwen(msg,ctx) {
+  const sys = `Você é um tutor de Direito brasileiro. Responda a ${PERFIL.nome||'estudante'} de forma didática, citando leis, artigos e jurisprudência quando relevante. Contexto: ${ctx}.`;
+  const ctrl = new AbortController();
+  const tid = setTimeout(()=>ctrl.abort(),20000);
+  const hdrs={'Content-Type':'application/json'};
+  if(PERFIL.qwenKey) hdrs['Authorization']='Bearer '+PERFIL.qwenKey;
+  const resp = await fetch('https://api-inference.huggingface.co/models/Qwen/Qwen2.5-7B-Instruct/v1/chat/completions',{
+    method:'POST',
+    headers:hdrs,
+    body:JSON.stringify({
+      model:'Qwen/Qwen2.5-7B-Instruct',
+      messages:[{role:'system',content:sys},{role:'user',content:msg}],
+      max_tokens:512,temperature:0.7
+    }),
+    signal:ctrl.signal
+  });
+  clearTimeout(tid);
+  if(resp.status===429) throw new Error('429');
+  if(!resp.ok){const t=await resp.text();throw new Error('Qwen: '+resp.status);}
+  const d=await resp.json();
+  const t=d?.choices?.[0]?.message?.content;
+  if(!t) throw new Error('Qwen vazio');
   return t;
 }
 
@@ -12537,7 +12748,7 @@ function respostaLocal(msg,ctx) {
   if(m.includes('obrigad')||m.includes('valeu')) return `😊 De nada, ${nome}! Continue que a aprovação vem! 🔥`;
   if(m.includes('como vc')||m.includes('como você')) return `🤖 Estou evoluindo com você! Já respondi ${PERFIL.memoria.length} perguntas. Pergunte o que quiser sobre ${ctx}!`;
   if(m.includes('meu nome')) return `📝 Seu nome é ${nome||'não definido'}. Para mudar, clique em 👤 no topo.`;
-  return `📌 Sobre **${ctx}**: conceitos fundamentais, base legal, jurisprudência e prática.\n\n💡 ${nome}, seja mais específico(a)! ${!PERFIL.apiKey?'🔑 Ative a IA em 👤 para respostas mais precisas.':''}`;
+  return `📌 Sobre **${ctx}**: conceitos fundamentais, base legal, jurisprudência e prática.\n\n💡 ${nome}, seja mais específico(a)! ${(!PERFIL.apiKey && PERFIL.provider!=='qwen')?'🔑 Ative a IA em 👤 para respostas mais precisas.':''}`;
 }
 
 function addMsg(text,sender,typing=false){
@@ -12551,20 +12762,48 @@ function addMsg(text,sender,typing=false){
 function rmTyping(){const e=document.getElementById('typing');if(e)e.remove();}
 function agora(){return new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}
 
+function abrirChatIA(){
+  fecharModal('modal-chat');
+  atualizarBadgeIA();
+  abrirModal('modal-chat');
+  setTimeout(function(){var i=document.getElementById('ai-input');if(i)i.focus();},300);
+}
+function limparChat(){
+  var c=document.getElementById('ai-chat');
+  if(c){c.innerHTML='';addMsg('🧹 Chat limpo! Pergunte o que quiser sobre Direito.','ai');}
+}
+function atualizarBadgeIA(){
+  var b=document.getElementById('ai-status-header'),s=document.getElementById('ai-model-badge');
+  var p=PERFIL.provider;
+  if(p==='gemini' && PERFIL.apiKey){if(b)b.textContent='🔑 Gemini ativo';if(s)s.textContent='Gemini 1.5 Flash';}
+  else if(p==='qwen'){if(b)b.textContent='♾️ Qwen ativo';if(s)s.textContent='Qwen 2.5';}
+  else{if(b)b.textContent='♾️ Qwen grátis';if(s)s.textContent='Qwen 2.5 (grátis)';}
+}
+
 // ===================================================================
 // PERFIL
 // ===================================================================
 function abrirPerfil(){
   document.getElementById('profile-name').value=PERFIL.nome;
   document.getElementById('profile-goal').value=PERFIL.meta;
+  document.getElementById('profile-provider').value=PERFIL.provider;
   document.getElementById('profile-apikey').value=PERFIL.apiKey;
+  document.getElementById('profile-qwenkey').value=PERFIL.qwenKey;
   document.getElementById('perfil-feedback').textContent='';
+  toggleProviderFields();
   abrirModal('modal-perfil');
+}
+function toggleProviderFields(){
+  var p=document.getElementById('profile-provider').value;
+  document.getElementById('provider-gemini-field').style.display=p==='gemini'?'':'none';
+  document.getElementById('provider-qwen-field').style.display=p==='qwen'?'':'none';
 }
 function salvarPerfil(){
   PERFIL.nome=document.getElementById('profile-name').value.trim();
   PERFIL.meta=document.getElementById('profile-goal').value;
+  PERFIL.provider=document.getElementById('profile-provider').value;
   PERFIL.apiKey=document.getElementById('profile-apikey').value.trim();
+  PERFIL.qwenKey=document.getElementById('profile-qwenkey').value.trim();
   if(!PERFIL.dataCriacao) PERFIL.dataCriacao=Date.now();
   document.getElementById('perfil-feedback').textContent='✅ Salvo!';
   document.getElementById('perfil-feedback').style.color='var(--success)';
@@ -12579,7 +12818,11 @@ function atualizarSaudacao(){
 }
 function atualizarStatusIA(){
   const el=document.getElementById('ai-status');
-  if(el){el.textContent=PERFIL.apiKey?'✅ IA ativa':'💡 offline';el.style.color=PERFIL.apiKey?'var(--success)':'var(--warning)';}
+  if(!el)return;
+  var p=PERFIL.provider;
+  if(p==='gemini' && PERFIL.apiKey){el.textContent='✅ Gemini ativo';el.style.color='var(--success)';}
+  else if(p==='qwen'){el.textContent='♾️ Qwen ativo';el.style.color='var(--success)';}
+  else{el.textContent='💡 offline';el.style.color='var(--warning)';}
 }
 
 // ===================================================================
@@ -12624,6 +12867,111 @@ function salvarVersao() {
     .catch(() => {});
 }
 salvarVersao();
+
+// ===================================================================
+// EFEITO CAMALEÃO - Bordas/orbes alternam dourado↔lilás, texto fixo dourado
+// ===================================================================
+(function(){
+  var r=document.documentElement;
+  r.style.setProperty('--gold','hsl(39,45%,61%)');
+  r.style.setProperty('--gold-light','hsl(41,58%,78%)');
+  r.style.setProperty('--gold-dark','hsl(37,36%,47%)');
+  var o1=document.querySelector('.orb1'),o2=document.querySelector('.orb2'),o3=document.querySelector('.orb3');
+  function animar(){
+    var ciclo=120000,t=(Date.now()%ciclo)/ciclo,p=t<.5?t*2:2-t*2;
+    var acH=280+(39-280)*p,acS=30+(45-30)*p,acL=65+(61-65)*p;
+    r.style.setProperty('--accent','hsl('+Math.round(acH)+','+Math.round(acS)+'%,'+Math.round(acL)+'%)');
+    if(o1) o1.style.background='hsla('+Math.round(39+(280-39)*p)+','+Math.round(45+(40-45)*p)+'%,'+Math.round(61+(75-61)*p)+'%,.12)';
+    if(o2) o2.style.background='hsla('+Math.round(280+(39-280)*p)+','+Math.round(40+(45-40)*p)+'%,'+Math.round(75+(60-75)*p)+'%,.12)';
+    if(o3) o3.style.background='hsla('+Math.round(acH)+','+Math.round(acS)+'%,'+Math.round(acL)+'%,.10)';
+    requestAnimationFrame(animar);
+  }
+  if(document.readyState==='complete') animar(); else window.addEventListener('load',animar);
+})();
+
+// ===================================================================
+// SISTEMA DE IMPORTACAO - Adicionar arquivos locais
+// ===================================================================
+var IMPORT_TIPO = 'videos';
+var IMPORTADOS = JSON.parse(localStorage.getItem('jurispath_importados') || '{"videos":[],"documentos":[],"livros":[]}');
+var ITENS_REMOVIDOS = JSON.parse(localStorage.getItem('jurispath_removidos') || '[]');
+function chaveRemover(tipo, item) { return tipo+':'+(item.nome||item.titulo)+':'+(item.arquivo||''); }
+function itemRemovido(tipo, item) { return ITENS_REMOVIDOS.indexOf(chaveRemover(tipo,item))!==-1; }
+function removerItem(tipo, chave) {
+  chave = decodeURIComponent(chave);
+  if(!confirm('Remover este item da lista?')) return;
+  ITENS_REMOVIDOS.push(chave);
+  localStorage.setItem('jurispath_removidos', JSON.stringify(ITENS_REMOVIDOS));
+  renderContent();
+}
+
+function salvarImportados() {
+  localStorage.setItem('jurispath_importados', JSON.stringify(IMPORTADOS));
+}
+
+function abrirImportador() {
+  var tab = STATE.currentTab;
+  if(tab==='videos') IMPORT_TIPO = 'videos';
+  else if(tab==='documentos') IMPORT_TIPO = 'documentos';
+  else if(tab.startsWith('1')||tab.startsWith('2')||tab.startsWith('3')||tab.startsWith('4')||tab.startsWith('5')||tab.startsWith('6')||tab.startsWith('7')||tab.startsWith('8')||tab.startsWith('9')||tab==='10') IMPORT_TIPO = 'livros';
+  else return;
+  var labels = {videos:'🎬 Vídeo',documentos:'📄 Documento',livros:'📚 Livro/Resumo'};
+  document.getElementById('import-title').textContent = '📥 Importar ' + labels[IMPORT_TIPO];
+  document.getElementById('import-file').accept = IMPORT_TIPO==='videos'?'.mp4,.webm,.avi,.mkv':IMPORT_TIPO==='documentos'?'.pdf,.doc,.docx,.pptx,.ppt,.xls,.xlsx,.txt,.epub,.mobi':'.txt,.md,.html,.pdf';
+  document.getElementById('import-file').value = '';
+  document.getElementById('import-nome').value = '';
+  document.getElementById('import-materia').value = '';
+  document.getElementById('import-desc').value = '';
+  document.getElementById('import-msg').textContent = 'Selecione o arquivo para importar.';
+  document.getElementById('import-file').onchange = function(e) {
+    var file = e.target.files && e.target.files[0];
+    if(!file) return;
+    var nome = document.getElementById('import-nome');
+    if(!nome.value) nome.value = file.name.replace(/\.[^.]+$/, '');
+    document.getElementById('import-msg').textContent = '📁 ' + file.name + ' (' + (file.size/1024/1024).toFixed(1) + ' MB) — Após salvar, copie o arquivo para a pasta dados/ do programa.';
+  };
+  abrirModal('modal-importar');
+}
+
+function salvarImportado() {
+  var fileInput = document.getElementById('import-file');
+  var file = fileInput.files && fileInput.files[0];
+  var nome = document.getElementById('import-nome').value.trim();
+  var materia = document.getElementById('import-materia').value.trim();
+  var desc = document.getElementById('import-desc').value.trim();
+  if(!file) { document.getElementById('import-msg').textContent = '⚠ Selecione um arquivo primeiro!'; return; }
+  if(!nome) { document.getElementById('import-msg').textContent = '⚠ Digite um nome para o arquivo!'; return; }
+  var entry = { nome: nome, arquivo: file.name, materia: materia || (IMPORT_TIPO==='videos'?'Geral':''), descricao: desc };
+  IMPORTADOS[IMPORT_TIPO].push(entry);
+  salvarImportados();
+  fecharModal('modal-importar');
+  renderContent();
+  document.getElementById('import-msg').textContent = '✅ Salvo! Lembre-se de copiar "' + file.name + '" para a pasta dados/ do JurisPath.';
+  // Abrir pasta dados para facilitar
+  var path = window.location.pathname.replace(/\/[^/]*$/, '') + '/dados';
+  try { var sh = new ActiveXObject('WScript.Shell'); sh.Run('explorer ' + path, 1, false); } catch(e) {}
+}
+
+function getImportadosMerged(tipo) {
+  return (tipo==='videos' ? (typeof VIDEOS!=='undefined'?VIDEOS:[]) : tipo==='documentos' ? (typeof DOCUMENTOS!=='undefined'?DOCUMENTOS:[]) : (typeof LIVROS!=='undefined'?LIVROS:[])).concat(IMPORTADOS[tipo].map(function(v,i) { v._importado = true; v._idx = i; return v; }));
+}
+
+function removerImportado(tipo, idx) {
+  var item = IMPORTADOS[tipo][idx];
+  if(!item) return;
+  if(!confirm('Remover "' + item.nome + '" da lista?')) return;
+  if(item.arquivo && confirm('Também excluir o arquivo "' + item.arquivo + '" da pasta dados/?')) {
+    try {
+      var sh = new ActiveXObject('Scripting.FileSystemObject');
+      var fPath = window.location.pathname.replace(/\/[^/]*$/, '') + '\\dados\\' + item.arquivo;
+      if(sh.FileExists(fPath)) { sh.DeleteFile(fPath, true); alert('✅ Arquivo excluído!'); }
+      else alert('⚠ Arquivo não encontrado em dados/.');
+    } catch(e) { alert('⚠ Não foi possível excluir. Exclua manualmente na pasta dados/.'); }
+  }
+  IMPORTADOS[tipo].splice(idx, 1);
+  salvarImportados();
+  renderContent();
+}
 
 // ===================================================================
 // INIT
