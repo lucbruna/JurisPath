@@ -1,7 +1,7 @@
 {
-  "version": "3.0.0",
+  "version": "3.0.1",
   "releaseDate": "2026-06-05",
-  "description": "Constituicao Federal completa 2026 + Notas coloridas + Agenda avancada em massa + Material de estudo completo 2026 + Sincronizacao GitHub Gist entre dispositivos + Mapa mental top + Lembretes em cores personalizadas",
+  "description": "Sistema de atualizacao automatica inteligente - modal aparece automaticamente ao detectar nova versao, download em massa pelo navegador, atualizacao periodica a cada 5 minutos. Funciona em qualquer PC, mesmo sem PowerShell.",
   "files": [
     "JurisPath.html",
     "vade.js",
@@ -18,24 +18,27 @@
     "EstudiosDireitoInstaller.iss"
   ],
   "changes": [
-    "CONSTITUICAO FEDERAL COMPLETA E ATUALIZADA 2026: novos titulos (Organizacao do Estado, Poderes, Tributacao, Ordem Social, Disposicoes Constitucionais Gerais, ADCT); artigos 40-46, 48, 51-52, 60-61, 68, 84, 102, 105, 145-146, 148, 150, 153, 156, 193, 196, 198, 205, 208, 225, 227-232; total de 200+ artigos com palavras-chave.",
-    "SISTEMA DE NOTAS COLORIDAS: 8 cores personalizadas (amarelo, verde, azul, vermelho, roxo, rosa, laranja, ciano); borda lateral colorida + fundo gradiente sutil; label visual da cor; picker de cores no editor.",
-    "DESTAQUE EM CORES PARA ANOTACOES: cada nota pode ter sua cor; visualizacao rapida no painel de notas e no dashboard; exportacao preserva as cores.",
-    "ANOTACAO RAPIDA EM TODAS AS PAGINAS: botao flutuante lateral 'NOTA' (Ctrl+Shift+N); popup com titulo, conteudo, cor e tags; contexto automatico da pagina atual; atalho de teclado.",
-    "BLOCO DE NOTAS COM PAINEL NO DASHBOARD: widget 'Minhas anotacoes recentes' no inicio do dashboard; ate 8 notas com preview; clique rapido para abrir/editar.",
-    "AGENDA AVANCADA COM TUDO ABERTO: 4 modos - Evento Unico (titulo, categoria, data, hora, duracao, local, link, participantes, processo, cliente, vara, descricao, antecedencia, repeticao), Em Massa (varios eventos em linhas), Recorrente (gerar multiplos eventos), Plano de Estudo automatico.",
-    "AGENDA - BOTAO FLUTUANTE 'AGENDA AVANCADA' (laranja, inferior direito); abre formulario completo com todos os campos expandidos em secoes (Informacoes Basicas, Data e Hora, Local, Detalhes, Notificacao).",
-    "LEMBRETES COM CORES PERSONALIZADAS: cada evento da agenda tem cor; barra lateral colorida; botao 'Cor' no modal de edicao; marcador de cor no calendario; toasts coloridos.",
-    "MATERIAS DE AULA 2026 COMPLETAS: 14 areas (Constitucional, Administrativo, Civil, Penal, Processual Civil, Processual Penal, Trabalho, Tributario, Empresarial, Constitucional Economico, Internacional, Consumidor, Ambiental, Processual do Trabalho); centenas de topicos; plano de estudo automatico.",
-    "MATERIAS 2026: filtro por categoria (publicas, privadas, sociais, novas leis); botao 'Ver Tudo' abre conteudo programatico completo; botao 'Plano de Estudo' gera eventos automaticos; botao 'Anotar' cria nota rapida.",
-    "SINCRONIZACAO ENTRE DISPOSITIVOS VIA GITHUB GIST: botao flutuante roxo; configura token PAT + Gist ID; envia/recebe notas, agenda, mapas e perfil; auto-sync silencioso a cada 10 minutos.",
-    "MAPA MENTAL: ja existente, com presets e busca melhorada; exportacao JSON/PNG; conexoes pai/filho; multi-mapa.",
-    "PLANO DE ESTUDO AUTOMATICO: gera N sessoes de estudo distribuidas nos dias da semana escolhidos; titulo com numero do topico; cor azul por padrao; categoria 'est'.",
-    "EVENTO RECORRENTE: titulo base, data inicio, data fim, frequencia (1 dia, 1 semana, 2 semanas, 1 mes), dias da semana; gera ate 200 eventos; cor personalizavel.",
-    "EVENTOS EM MASSA (BULK): formato 'DATA | HORA | TITULO | CATEGORIA | LOCAL | DESCRICAO'; uma linha por evento; contador de sucessos/erros.",
-    "DASHBOARD REORGANIZADO: widget de notas recentes + widget de agenda proxima (14 dias) sempre no topo; clique rapido para abrir/editar; cores visiveis.",
-    "TOASTS/NOTIFICACOES EM TELA: 7 cores (verde, vermelho, azul, amarelo, roxo, rosa, info); auto-fecha em 4 segundos; clique para fechar.",
-    "MODAL AGENDA EVENTO com novo botao 'Cor' para personalizacao por compromisso.",
-    "CSS NOVO v3.0: notas coloridas, quick note popup, agenda avancada em secoes, dashboard widgets, mapa mental presets, lembrete toasts, atalhos de teclado."
-  ]
+    "SISTEMA DE ATUALIZACAO AUTOMATICA: modal bonito aparece automaticamente ao detectar nova versao no GitHub (apos 5s do boot), 5s apos verificacao periodica, ou ao abrir em qualquer PC.",
+    "ATUALIZACAO EM MASSA PELO NAVEGADOR: botao 'Baixar arquivos' baixa TODOS os 14 arquivos do JurisPath direto pelo navegador (HTML, JS, PS1, BAT, ISS, JSON). Barra de progresso, contador de sucessos/erros. Funciona em qualquer PC sem privilegios admin.",
+    "ATUALIZACAO VIA POWERSHELL: botao 'Atualizar agora' tenta executar o atualizar.ps1 nativo (mais confiavel no Windows).",
+    "ATUALIZACAO COMPLETA AUTOMATICA: botao 'Atualizacao completa' detecta o ambiente (file://) e escolhe a melhor estrategia.",
+    "VERIFICACAO PERIODICA: a cada 5 minutos checa GitHub silenciosamente; se houver nova versao mostra toast clicavel + modal.",
+    "TOGGLE 'MOSTRAR AUTOMATICAMENTE': checkbox no modal permite desativar o auto-modal (configuracao salva no localStorage).",
+    "BADGE 'NOVO' no botao de atualizacao: continua funcionando como antes para feedback visual rapido.",
+    "TOAST CLICAVEL: o toast de nova versao abre o modal ao ser clicado.",
+    "LISTA ARQUIVOS_UPDATE centralizada: facilita manutencao do que e sincronizado.",
+    "v3.0.0 (liberada anteriormente): CF/88 completa, notas coloridas, agenda avancada, Material 2026, GitHub Gist sync, mapa mental, lembretes coloridos."
+  ],
+  "autoUpdate": {
+    "enabled": true,
+    "showModalOnBoot": true,
+    "checkInterval": 300000,
+    "downloadStrategy": "powershell_or_browser",
+    "files": [
+      "JurisPath.html", "vade.js", "data.js", "version.json",
+      "src/data/lawSubjects.json", "dados/livros.js", "dados/videos.js",
+      "dados/documentos.js", "dados/jurisprudencia.js", "dados/questoes.js",
+      "atualizar.ps1", "instalar.ps1", "jurispath.bat", "EstudiosDireitoInstaller.iss"
+    ]
+  }
 }

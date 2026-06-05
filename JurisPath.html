@@ -14119,6 +14119,17 @@ function checarAtualizacaoSilenciosa() {
       var btn = document.querySelector('button[onclick="verificarAtualizacao()"]');
       if(btn && !document.getElementById('update-badge')) { btn.style.position='relative'; btn.appendChild(badge); }
       window._novaVersao = remoto;
+      // AUTO-MODAL: Mostra um modal bonito automaticamente ao detectar nova versao
+      // (configuravel: pode ser desativado pelo usuario)
+      var autoShow = localStorage.getItem('jurispath_auto_update_modal');
+      if(autoShow !== 'false') {
+        // Mostrar apos 5 segundos para nao atrapalhar o boot
+        setTimeout(function(){
+          if(!document.getElementById('update-modal').classList.contains('active')) {
+            mostrarModalAtualizacao(remoto);
+          }
+        }, 5000);
+      }
     }
   }).catch(()=>{});
 }
@@ -16131,6 +16142,300 @@ document.addEventListener('click', function(e){
   }
 });
 
+// ===================================================================
+// v3.0.1 - SISTEMA DE ATUALIZACAO AUTOMATICA INTELIGENTE
+// ===================================================================
+// Lista de arquivos que o JurisPath mantem atualizados via GitHub
+var ARQUIVOS_UPDATE = [
+  'JurisPath.html',
+  'vade.js',
+  'data.js',
+  'version.json',
+  'src/data/lawSubjects.json',
+  'dados/livros.js',
+  'dados/videos.js',
+  'dados/documentos.js',
+  'dados/jurisprudencia.js',
+  'dados/questoes.js',
+  'atualizar.ps1',
+  'instalar.ps1',
+  'jurispath.bat',
+  'EstudiosDireitoInstaller.iss'
+];
+
+// Mostrar modal de atualizacao
+function mostrarModalAtualizacao(remoto) {
+  if(!remoto) return;
+  var local = localStorage.getItem('jurispath_version') || '1.0.0';
+  var modal = document.getElementById('update-modal');
+  if(!modal) return;
+  // Preencher dados
+  var vl = document.getElementById('upd-ver-local');
+  var vr = document.getElementById('upd-ver-remota');
+  var dt = document.getElementById('upd-data');
+  var ds = document.getElementById('upd-descricao');
+  var ch = document.getElementById('upd-changes');
+  if(vl) vl.textContent = 'v'+local;
+  if(vr) vr.textContent = 'v'+remoto.version;
+  if(dt) dt.textContent = '📅 '+(remoto.releaseDate||'data desconhecida');
+  if(ds) ds.textContent = remoto.description||'';
+  if(ch) {
+    ch.innerHTML = '';
+    (remoto.changes||[]).forEach(function(c){
+      var li = document.createElement('li');
+      li.textContent = c;
+      ch.appendChild(li);
+    });
+  }
+  // Marcar checkbox de auto-show
+  var chk = document.getElementById('upd-auto-show');
+  if(chk) chk.checked = localStorage.getItem('jurispath_auto_update_modal') !== 'false';
+  // Salvar referencia global
+  window._novaVersao = remoto;
+  modal.classList.add('active');
+}
+
+function fecharModalAtualizacao() {
+  var modal = document.getElementById('update-modal');
+  if(modal) modal.classList.remove('active');
+}
+
+// Toggle do checkbox
+setTimeout(function(){
+  var chk = document.getElementById('upd-auto-show');
+  if(chk) chk.addEventListener('change', function(){
+    localStorage.setItem('jurispath_auto_update_modal', chk.checked?'true':'false');
+    if(!chk.checked) {
+      showToast('🔕 Você não verá mais o modal automaticamente. Use o botão 🔄 para verificar.', 'info');
+    } else {
+      showToast('🔔 Modal de atualização reativado.', 'verde');
+    }
+  });
+}, 3000);
+
+// ESTRATEGIA 1: PowerShell (Windows nativo)
+function atualizarViaPowerShell() {
+  try {
+    var shell = new ActiveXObject('WScript.Shell');
+    var dir = window.location.pathname.replace(/JurisPath\.html$/i, '').replace(/^\//,'').replace(/\//g,'\\');
+    if(dir && !dir.endsWith('\\')) dir += '\\';
+    var script = dir + 'atualizar.ps1';
+    if(!script) throw new Error('caminho invalido');
+    shell.Run('powershell.exe -NoProfile -ExecutionPolicy Bypass -File "'+script+'"', 1, false);
+    showToast('⚡ Atualizador PowerShell iniciado! Aguarde a conclusao na janela que abriu.', 'verde');
+    setTimeout(function(){
+      if(confirm('✅ Atualizacao iniciada.\n\nApos a conclusao, recarregar a pagina agora?')) {
+        location.reload();
+      }
+    }, 3000);
+  } catch(e) {
+    alert('❌ Nao foi possivel iniciar o PowerShell automaticamente.\n\nMotivo: '+e.message+'\n\nSolucao: Execute manualmente o arquivo "atualizar.ps1" na pasta do JurisPath, ou use a opcao "Baixar arquivos".');
+    // Fallback para navegador
+    atualizarViaNavegador();
+  }
+}
+
+// ESTRATEGIA 2: Download em massa via navegador
+// Baixa todos os arquivos e oferece como downloads individuais
+function atualizarViaNavegador() {
+  if(!window._novaVersao) return;
+  var prog = document.getElementById('upd-progress');
+  var fill = document.getElementById('upd-prog-fill');
+  var pctEl = document.getElementById('upd-prog-pct');
+  var msgEl = document.getElementById('upd-prog-msg');
+  var detEl = document.getElementById('upd-prog-detail');
+  if(prog) prog.classList.add('show');
+  if(msgEl) msgEl.textContent = 'Baixando arquivos do GitHub...';
+  if(detEl) detEl.textContent = 'Iniciando...';
+  if(fill) fill.style.width = '0%';
+
+  var baixados = 0;
+  var total = ARQUIVOS_UPDATE.length;
+  var erros = [];
+
+  function baixar(idx) {
+    if(idx >= total) {
+      // Finalizou
+      if(fill) fill.style.width = '100%';
+      if(pctEl) pctEl.textContent = '100%';
+      if(msgEl) msgEl.textContent = 'Concluido!';
+      if(detEl) detEl.textContent = '✅ '+baixados+' de '+total+' arquivos baixados'+(erros.length>0?' ('+erros.length+' erros)':'');
+      // Salvar nova versao
+      if(window._novaVersao) {
+        localStorage.setItem('jurispath_version', window._novaVersao.version);
+      }
+      // Mostrar instrucoes
+      setTimeout(function(){
+        if(confirm('✅ '+baixados+' arquivos baixados com sucesso!\n\n'+
+          (erros.length>0?'⚠ '+erros.length+' arquivos com erro: '+erros.join(', ')+'\n\n':'')+
+          'Os arquivos foram salvos na pasta de Downloads.\n\n'+
+          'PROXIMOS PASSOS:\n'+
+          '1. Va ate a pasta Downloads do seu navegador\n'+
+          '2. Copie/Mova os arquivos para a pasta do JurisPath (substituindo os antigos)\n'+
+          '3. Recarregue esta pagina (F5)\n\n'+
+          'Deseja abrir a pasta Downloads agora?')) {
+          try {
+            var shell = new ActiveXObject('WScript.Shell');
+            shell.Run('explorer ' + (shell.SpecialFolders('Desktop') || '%USERPROFILE%\\Downloads'), 1, false);
+          } catch(e) {
+            window.open('about:blank').focus();
+          }
+        }
+      }, 800);
+      return;
+    }
+    var arq = ARQUIVOS_UPDATE[idx];
+    if(msgEl) msgEl.textContent = 'Baixando '+(idx+1)+'/'+total+': '+arq;
+    if(detEl) detEl.textContent = arq;
+    fetch(GITHUB_RAW+'/'+arq+'?_='+Date.now())
+      .then(function(r){
+        if(!r.ok) throw new Error('HTTP '+r.status);
+        return r.blob();
+      })
+      .then(function(blob){
+        // Determinar MIME
+        var ext = arq.split('.').pop().toLowerCase();
+        var mime = {
+          'html':'text/html', 'js':'application/javascript', 'json':'application/json',
+          'ps1':'text/plain', 'bat':'text/plain', 'iss':'text/plain'
+        }[ext] || 'application/octet-stream';
+        var fblob = new Blob([blob], {type: mime});
+        var url = URL.createObjectURL(fblob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = arq;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+        baixados++;
+      })
+      .catch(function(err){
+        console.warn('Erro ao baixar '+arq+':', err);
+        erros.push(arq);
+      })
+      .then(function(){
+        var pct = Math.round(((idx+1)/total)*100);
+        if(fill) fill.style.width = pct+'%';
+        if(pctEl) pctEl.textContent = pct+'%';
+        // Continuar
+        setTimeout(function(){ baixar(idx+1); }, 200);
+      });
+  }
+  baixar(0);
+}
+
+// ESTRATEGIA 3: Atualizacao completa automatica
+// Tenta PowerShell primeiro, depois fallback para navegador
+function atualizarTudo() {
+  // Verificar se estamos em protocolo file:// (local)
+  var isLocal = window.location.protocol === 'file:';
+  if(isLocal) {
+    // Estamos rodando local - tentar PowerShell primeiro
+    try {
+      var shell = new ActiveXObject('WScript.Shell');
+      var dir = window.location.pathname.replace(/JurisPath\.html$/i, '').replace(/^\//,'').replace(/\//g,'\\');
+      shell.Run('powershell.exe -NoProfile -ExecutionPolicy Bypass -File "'+dir+'atualizar.ps1"', 1, false);
+      showToast('⚡ Atualizacao automatica iniciada em segundo plano!', 'verde');
+      setTimeout(function(){
+        if(confirm('Atualizacao iniciada.\n\nRecarregar a pagina agora?')) location.reload();
+      }, 4000);
+      fecharModalAtualizacao();
+      return;
+    } catch(e) {}
+  }
+  // Fallback para navegador
+  atualizarViaNavegador();
+}
+
+// ===================================================================
+// VERIFICACAO PERIODICA AUTOMATICA (a cada 5 minutos)
+// ===================================================================
+function iniciarCheckPeriodico() {
+  // Primeira verificacao ja e feita em checarAtualizacaoSilenciosa
+  // Aqui fazemos verificacoes periodicas
+  setInterval(function(){
+    if(!navigator.onLine) return;
+    // So verificar se a pagina esta visivel
+    if(document.hidden) return;
+    fetch(GITHUB_RAW+'/version.json?_='+Date.now())
+      .then(function(r){ return r.json(); })
+      .then(function(remoto){
+        var local = localStorage.getItem('jurispath_version') || '1.0.0';
+        if(compararVersao(remoto.version, local) > 0) {
+          // Nova versao detectada durante a sessao
+          if(!window._novaVersao || window._novaVersao.version !== remoto.version) {
+            window._novaVersao = remoto;
+            // Adicionar/atualizar badge
+            var badge = document.getElementById('update-badge');
+            if(!badge) {
+              badge = document.createElement('span');
+              badge.id = 'update-badge';
+              badge.style.cssText = 'position:absolute;top:-4px;right:-4px;background:#ef4444;color:white;font-size:0.55rem;padding:1px 4px;border-radius:8px;font-weight:700;animation:pulse 2s infinite';
+              badge.textContent = 'NOVO';
+              var btn = document.querySelector('button[onclick="verificarAtualizacao()"]');
+              if(btn) { btn.style.position='relative'; btn.appendChild(badge); }
+            }
+            // Toast
+            showToast('🆕 Nova versao v'+remoto.version+' disponivel! Clique aqui para atualizar.', 'verde');
+            // Mostrar modal se configurado
+            var autoShow = localStorage.getItem('jurispath_auto_update_modal');
+            if(autoShow !== 'false') {
+              setTimeout(function(){
+                if(!document.getElementById('update-modal').classList.contains('active')) {
+                  mostrarModalAtualizacao(remoto);
+                }
+              }, 2000);
+            }
+          }
+        }
+      })
+      .catch(function(){});
+  }, 300000); // 5 minutos
+}
+
+// Iniciar check periodico
+setTimeout(iniciarCheckPeriodico, 10000);
+
+// Hook no botao verificarAtualizacao para abrir o novo modal
+var _verificarAtualizacaoOriginal = verificarAtualizacao;
+verificarAtualizacao = function() {
+  var btn = event && event.target;
+  if(btn) { btn.disabled = true; btn.textContent = '⏳'; }
+  fetch(GITHUB_RAW+'/version.json?_='+Date.now()).then(function(r){ return r.json(); }).then(function(remoto){
+    if(btn) { btn.disabled = false; btn.textContent = '🔄'; }
+    var local = localStorage.getItem('jurispath_version') || '1.0.0';
+    if(compararVersao(remoto.version, local) > 0) {
+      window._novaVersao = remoto;
+      mostrarModalAtualizacao(remoto);
+    } else {
+      // Sem atualizacao - mostrar toast bonito
+      showToast('✅ Ja esta atualizado! v'+local, 'verde');
+    }
+  }).catch(function(){
+    if(btn) { btn.disabled = false; btn.textContent = '🔄'; }
+    showToast('❌ Sem conexao com GitHub', 'vermelho');
+  });
+};
+
+// ===================================================================
+// TOQUE GLOBAL: clique no toast de update vai direto para o modal
+// ===================================================================
+setTimeout(function(){
+  setInterval(function(){
+    document.querySelectorAll('.lembrete-toast-custom').forEach(function(t){
+      if(t.textContent.indexOf('Nova versao')>=0 && !t.dataset.clickable) {
+        t.dataset.clickable = '1';
+        t.style.cursor = 'pointer';
+        t.onclick = function(){
+          if(window._novaVersao) mostrarModalAtualizacao(window._novaVersao);
+          t.remove();
+        };
+      }
+    });
+  }, 1000);
+}, 5000);
+
 // Auto-sync silencioso a cada 10 minutos (se configurado)
 setTimeout(function(){
   if(GIST_CFG.token && GIST_CFG.gistId) {
@@ -16394,6 +16699,81 @@ setTimeout(function(){
 
 <!-- BOTAO FLUTUANTE AGENDA AVANCADA -->
 <button class="notas-fab" id="agenda-avancada-fab" onclick="abrirAgendaAvancada()" title="Agenda Avancada (em massa)" style="bottom:11rem;right:5rem;background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 4px 20px rgba(245,158,11,0.3);font-size:1.1rem">📅＋</button>
+
+<!-- ============================== MODAL DE ATUALIZACAO AUTOMATICA ============================== -->
+<style>
+.update-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:99999;display:none;align-items:center;justify-content:center;animation:fadeIn 0.3s}
+.update-modal-overlay.active{display:flex}
+.update-modal{background:linear-gradient(135deg,#0a0a0f 0%,#1a1a2e 100%);border:1px solid rgba(99,102,241,0.3);border-radius:18px;max-width:680px;width:94%;max-height:88vh;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.7),0 0 60px rgba(99,102,241,0.3);animation:slideUp 0.4s cubic-bezier(0.22,1,0.36,1);position:relative}
+@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+.update-modal::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#a78bfa,#7c3aed,#3b82f6,#10b981,#fbbf24,#a78bfa);background-size:300% 100%;animation:shimmer 3s linear infinite}
+.update-modal-header{padding:1.4rem 1.6rem 1rem;background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(167,139,250,0.05));border-bottom:1px solid rgba(99,102,241,0.15)}
+.update-modal-header h2{margin:0 0 0.3rem;font-size:1.3rem;color:#a78bfa;display:flex;align-items:center;gap:0.5rem}
+.update-modal-header .versao-info{font-size:0.78rem;color:#cbd5e1;display:flex;gap:0.5rem;flex-wrap:wrap}
+.update-modal-header .versao-info .badge{background:rgba(99,102,241,0.2);padding:2px 8px;border-radius:5px;font-weight:600}
+.update-modal-header .versao-info .badge.local{background:rgba(220,38,38,0.2);color:#fca5a5}
+.update-modal-header .versao-info .badge.remota{background:rgba(16,185,129,0.2);color:#6ee7b7}
+.update-modal-header .versao-info .arrow{color:#fbbf24;font-weight:700}
+.update-modal-body{padding:1.2rem 1.6rem;max-height:50vh;overflow-y:auto}
+.update-modal-body h3{color:#fbbf24;font-size:0.95rem;margin:0 0 0.6rem}
+.update-modal-body p{color:#cbd5e1;font-size:0.85rem;line-height:1.55;margin-bottom:0.7rem}
+.update-modal-body .changes-list{list-style:none;padding:0;margin:0}
+.update-modal-body .changes-list li{padding:0.4rem 0 0.4rem 1.5rem;position:relative;color:#e5e7eb;font-size:0.82rem;line-height:1.5;border-bottom:1px solid rgba(255,255,255,0.04)}
+.update-modal-body .changes-list li:last-child{border-bottom:none}
+.update-modal-body .changes-list li::before{content:'✨';position:absolute;left:0;top:0.4rem}
+.update-modal-footer{padding:1rem 1.6rem;border-top:1px solid rgba(99,102,241,0.15);background:rgba(0,0,0,0.3);display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center}
+.update-modal-footer .update-btns{display:flex;gap:0.4rem;flex-wrap:wrap}
+.update-modal-footer .btn-update{padding:0.7rem 1.1rem;border-radius:9px;border:none;cursor:pointer;font-weight:700;font-size:0.82rem;transition:0.25s;display:inline-flex;align-items:center;gap:0.4rem;letter-spacing:0.2px}
+.btn-update.primary{background:linear-gradient(135deg,#a78bfa,#7c3aed);color:white;box-shadow:0 4px 20px rgba(167,139,250,0.3)}
+.btn-update.primary:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(167,139,250,0.4)}
+.btn-update.success{background:linear-gradient(135deg,#10b981,#059669);color:white;box-shadow:0 4px 20px rgba(16,185,129,0.3)}
+.btn-update.success:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(16,185,129,0.4)}
+.btn-update.warning{background:linear-gradient(135deg,#f59e0b,#d97706);color:white}
+.btn-update.warning:hover{transform:translateY(-2px)}
+.btn-update.ghost{background:rgba(255,255,255,0.05);color:#cbd5e1;border:1px solid rgba(255,255,255,0.1)}
+.btn-update.ghost:hover{background:rgba(255,255,255,0.1);color:white}
+.update-progress{padding:0.8rem 1.6rem;background:rgba(0,0,0,0.4);border-top:1px solid rgba(99,102,241,0.15);display:none}
+.update-progress.show{display:block}
+.update-progress .prog-label{font-size:0.75rem;color:#a78bfa;margin-bottom:0.3rem;display:flex;justify-content:space-between}
+.update-progress .prog-bar{height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden}
+.update-progress .prog-fill{height:100%;background:linear-gradient(90deg,#a78bfa,#3b82f6,#10b981);width:0%;transition:width 0.3s;border-radius:3px}
+.update-progress .prog-detail{font-size:0.7rem;color:var(--muted);margin-top:0.3rem;text-align:center}
+.update-toggle{display:flex;align-items:center;gap:0.3rem;font-size:0.7rem;color:var(--muted);cursor:pointer;user-select:none}
+.update-toggle input{accent-color:#a78bfa}
+</style>
+
+<div class="update-modal-overlay" id="update-modal">
+  <div class="update-modal">
+    <div class="update-modal-header">
+      <h2>🎉 Nova versão disponível!</h2>
+      <div class="versao-info">
+        <span class="badge local" id="upd-ver-local">v?.?.?</span>
+        <span class="arrow">→</span>
+        <span class="badge remota" id="upd-ver-remota">v?.?.?</span>
+        <span class="badge" id="upd-data" style="background:rgba(0,0,0,0.3)">—</span>
+      </div>
+    </div>
+    <div class="update-modal-body">
+      <p id="upd-descricao" style="color:#a78bfa;font-weight:600">...</p>
+      <h3>📋 Novidades</h3>
+      <ul class="changes-list" id="upd-changes"></ul>
+    </div>
+    <div class="update-progress" id="upd-progress">
+      <div class="prog-label"><span id="upd-prog-msg">Baixando arquivos...</span><span id="upd-prog-pct">0%</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="upd-prog-fill"></div></div>
+      <div class="prog-detail" id="upd-prog-detail">Preparando...</div>
+    </div>
+    <div class="update-modal-footer">
+      <label class="update-toggle"><input type="checkbox" id="upd-auto-show" checked> Mostrar automaticamente</label>
+      <div class="update-btns">
+        <button class="btn-update ghost" onclick="fecharModalAtualizacao()">Mais tarde</button>
+        <button class="btn-update warning" onclick="atualizarViaPowerShell()">⚡ Atualizar agora (PowerShell)</button>
+        <button class="btn-update success" onclick="atualizarViaNavegador()">📥 Baixar arquivos</button>
+        <button class="btn-update primary" onclick="atualizarTudo()">🚀 Atualização completa</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
