@@ -1,7 +1,7 @@
 {
-  "version": "2.0.0",
-  "releaseDate": "2026-05-26",
-  "description": "Design premium milionario + OAB completo + materiais PDF",
+  "version": "2.1.0",
+  "releaseDate": "2026-06-05",
+  "description": "CF/88 atalho + Agenda Profissional + Bloco de Notas universal + auto-update",
   "files": [
     "JurisPath.html",
     "vade.js",
@@ -11,15 +11,20 @@
     "dados/videos.js",
     "dados/documentos.js",
     "dados/jurisprudencia.js",
-    "dados/questoes.js"
+    "dados/questoes.js",
+    "atualizar.ps1",
+    "instalar.ps1",
+    "jurispath.bat",
+    "EstudiosDireitoInstaller.iss"
   ],
   "changes": [
-    "Design premium ouro/onix com glassmorphism",
-    "Dashboard com contadores animados e cards luxuosos",
-    "Aba OAB com materiais PDF por disciplina com icones clicaveis",
-    "32 questoes (adicionado Tributario, Processo Penal, Adm, Empresarial)",
-    "25 jurisprudencias (adicionado 6 novos julgados importantes)",
-    "Videos com descricao, materia e destaque",
-    "Animated stats no dashboard",
-    "Scroll fix do modal de livros"
+    "Atalho direto CF/88 (Constituicao Federal completa) na barra",
+    "Agenda Profissional completa com calendario mensal, dia, hora, categorias e lembretes",
+    "Bloco de Notas universal flutuante em todas as paginas (interligado por backlinks)",
+    "Atalhos rapidos na barra: Vade Mecum, Livros, Videos, PDFs, Flash, OAB",
+    "Auto-atualizacao via GitHub (repo lucbruna/JurisPath) com verificacao silenciosa",
+    "Materias ampliadas: 1o-10o semestres + disciplinas complementares (Bioetica, Direito Digital, Compliance, LGPD, ESG, Direito Desportivo, Medico, Sucessoes, Internacional Privado)",
+    "Estrategia anti-perda: notas/agenda salvas em localStorage e exportaveis (JSON)",
+    "Botao 'verificar atualizacoes' agora baixa automaticamente do GitHub"
+  ]
 }

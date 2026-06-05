@@ -224,6 +224,133 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 .weekdays .day.today.done{border-color:var(--gold-light)}
 
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(201,168,108,0.08);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:rgba(201,168,108,0.15)}
+
+/* AGENDA PROFISSIONAL */
+.ag-wrap{display:grid;grid-template-columns:1fr 340px;gap:1rem;margin-top:0.5rem}
+@media(max-width:900px){.ag-wrap{grid-template-columns:1fr}}
+.ag-cal{background:var(--card);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);padding:1rem}
+.ag-cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;gap:0.5rem;flex-wrap:wrap}
+.ag-cal-title{font-size:1.1rem;font-weight:800;color:var(--gold-light);text-transform:capitalize;letter-spacing:-0.3px;text-shadow:0 0 12px rgba(201,168,108,0.15)}
+.ag-cal-nav{display:flex;gap:0.3rem;align-items:center}
+.ag-cal-btn{background:rgba(201,168,108,0.06);border:1px solid rgba(201,168,108,0.1);color:var(--gold-light);width:30px;height:30px;border-radius:7px;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center;transition:0.2s}
+.ag-cal-btn:hover{background:rgba(201,168,108,0.15);border-color:var(--accent)}
+.ag-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.ag-cal-dow{font-size:0.66rem;color:var(--muted);text-align:center;padding:0.3rem 0;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+.ag-cal-day{aspect-ratio:1;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);border-radius:6px;padding:0.3rem;cursor:pointer;transition:0.2s;display:flex;flex-direction:column;font-size:0.72rem;color:var(--muted);position:relative;overflow:hidden;min-height:55px}
+.ag-cal-day:hover{background:rgba(201,168,108,0.06);border-color:rgba(201,168,108,0.15);transform:scale(1.02)}
+.ag-cal-day.other{opacity:0.3}
+.ag-cal-day.today{background:linear-gradient(135deg,rgba(201,168,108,0.15),rgba(168,136,74,0.08));border-color:var(--gold);color:var(--gold-light);font-weight:700;box-shadow:0 0 0 1px var(--gold)}
+.ag-cal-day.selected{border-color:var(--accent);background:rgba(168,85,247,0.08);box-shadow:0 0 0 2px rgba(168,85,247,0.3)}
+.ag-cal-day .num{font-weight:600;font-size:0.78rem}
+.ag-cal-day .dots{display:flex;gap:2px;margin-top:auto;flex-wrap:wrap}
+.ag-cal-day .dot{width:5px;height:5px;border-radius:50%}
+.ag-cal-day .dot.audi{background:#ef4444}
+.ag-cal-day .dot.prazo{background:#f59e0b}
+.ag-cal-day .dot.reun{background:#3b82f6}
+.ag-cal-day .dot.est{background:var(--gold)}
+.ag-cal-day .dot.lemb{background:#a855f7}
+.ag-cal-day .badge-count{position:absolute;top:2px;right:3px;font-size:0.55rem;background:var(--gold);color:#0a0a0f;border-radius:8px;padding:0 4px;font-weight:700;min-width:13px;text-align:center}
+.ag-side{background:var(--card);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);padding:1rem;max-height:75vh;overflow-y:auto}
+.ag-side-h{font-size:0.9rem;font-weight:700;color:var(--gold-light);margin-bottom:0.5rem;display:flex;justify-content:space-between;align-items:center;gap:0.4rem}
+.ag-evento{background:rgba(0,0,0,0.25);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;padding:0.55rem 0.7rem;margin-bottom:0.4rem;cursor:pointer;transition:0.2s;position:relative}
+.ag-evento:hover{background:rgba(201,168,108,0.06);transform:translateX(3px)}
+.ag-evento.cat-audi{border-left-color:#ef4444}
+.ag-evento.cat-prazo{border-left-color:#f59e0b}
+.ag-evento.cat-reun{border-left-color:#3b82f6}
+.ag-evento.cat-est{border-left-color:var(--gold)}
+.ag-evento.cat-lemb{border-left-color:#a855f7}
+.ag-evento .ev-time{font-size:0.7rem;color:var(--gold-light);font-weight:600}
+.ag-evento .ev-title{font-size:0.82rem;color:var(--text);font-weight:600;margin:0.15rem 0}
+.ag-evento .ev-desc{font-size:0.7rem;color:var(--muted);line-height:1.3}
+.ag-evento .ev-del{position:absolute;top:0.3rem;right:0.4rem;background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:0.85rem;opacity:0;transition:0.2s}
+.ag-evento:hover .ev-del{opacity:1}
+.ag-evento .ev-del:hover{color:#ef4444}
+.ag-categs{display:flex;gap:0.3rem;flex-wrap:wrap;margin:0.4rem 0}
+.ag-cat-chip{font-size:0.65rem;padding:2px 7px;border-radius:10px;border:1px solid;cursor:pointer;transition:0.2s;background:rgba(0,0,0,0.2)}
+.ag-cat-chip.audi{color:#ef4444;border-color:rgba(239,68,68,0.3)}
+.ag-cat-chip.prazo{color:#f59e0b;border-color:rgba(245,158,11,0.3)}
+.ag-cat-chip.reun{color:#3b82f6;border-color:rgba(59,130,246,0.3)}
+.ag-cat-chip.est{color:var(--gold);border-color:rgba(201,168,108,0.3)}
+.ag-cat-chip.lemb{color:#a855f7;border-color:rgba(168,85,247,0.3)}
+.ag-cat-chip.active{background:rgba(255,255,255,0.08);box-shadow:0 0 0 1px currentColor}
+.ag-form{background:rgba(0,0,0,0.25);border:1px solid rgba(201,168,108,0.06);border-radius:9px;padding:0.7rem;margin-bottom:0.7rem;display:none}
+.ag-form.open{display:block;animation:fadeIn 0.25s}
+.ag-form input,.ag-form select,.ag-form textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,108,0.1);border-radius:6px;padding:0.4rem 0.55rem;color:var(--text);font-size:0.78rem;outline:none;margin-bottom:0.4rem;font-family:inherit;transition:0.2s}
+.ag-form input:focus,.ag-form select:focus,.ag-form textarea:focus{border-color:var(--accent)}
+.ag-form .ag-row{display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;margin-bottom:0.4rem}
+.ag-form .ag-row input{margin-bottom:0}
+.ag-stats{display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;margin-bottom:0.7rem}
+.ag-stat{background:rgba(0,0,0,0.25);padding:0.5rem;border-radius:7px;text-align:center;border:1px solid rgba(201,168,108,0.04)}
+.ag-stat .v{font-size:1.1rem;font-weight:800;color:var(--gold-light)}
+.ag-stat .l{font-size:0.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
+
+/* BLOCO DE NOTAS UNIVERSAL */
+.notas-fab{position:fixed;bottom:5rem;right:5rem;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#10b981,#059669);border:none;color:white;font-size:1.4rem;cursor:pointer;box-shadow:0 4px 20px rgba(16,185,129,0.3);z-index:150;transition:0.3s;display:flex;align-items:center;justify-content:center}
+.notas-fab:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(16,185,129,0.4)}
+.notas-fab .badge{position:absolute;top:-3px;right:-3px;background:var(--gold);color:#0a0a0f;font-size:0.55rem;padding:1px 5px;border-radius:9px;font-weight:700;min-width:16px;text-align:center}
+.notas-side{position:fixed;top:0;right:-420px;width:420px;height:100vh;background:var(--card);border-left:1px solid rgba(201,168,108,0.1);z-index:170;display:flex;flex-direction:column;transition:right 0.35s cubic-bezier(0.22,1,0.36,1);box-shadow:-20px 0 40px rgba(0,0,0,0.4)}
+.notas-side.open{right:0}
+@media(max-width:500px){.notas-side{width:100%;right:-100%}}
+.notas-head{padding:0.8rem 1rem;border-bottom:1px solid rgba(201,168,108,0.08);display:flex;align-items:center;gap:0.5rem;background:rgba(0,0,0,0.3)}
+.notas-head h2{font-size:0.95rem;font-weight:700;color:var(--gold-light);flex:1;text-shadow:0 0 12px rgba(201,168,108,0.15)}
+.notas-head button{background:transparent;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;padding:2px 7px;border-radius:5px;transition:0.2s}
+.notas-head button:hover{color:var(--gold-light);background:rgba(201,168,108,0.08)}
+.notas-search-bar{padding:0.4rem 0.6rem;border-bottom:1px solid rgba(201,168,108,0.05)}
+.notas-search-bar input{width:100%;background:rgba(0,0,0,0.3);border:1px solid rgba(201,168,108,0.08);border-radius:7px;padding:0.4rem 0.6rem;color:var(--text);font-size:0.78rem;outline:none}
+.notas-search-bar input:focus{border-color:var(--accent)}
+.notas-list{flex:1;overflow-y:auto;padding:0.4rem}
+.nota-item{background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.03);border-radius:8px;padding:0.6rem 0.7rem;margin-bottom:0.4rem;cursor:pointer;transition:0.2s;position:relative}
+.nota-item:hover{border-color:rgba(201,168,108,0.15);background:rgba(201,168,108,0.04)}
+.nota-item.active{border-color:var(--gold);box-shadow:0 0 0 1px rgba(201,168,108,0.3)}
+.nota-item h4{font-size:0.82rem;color:var(--gold-light);margin-bottom:0.2rem;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:0.3rem}
+.nota-item h4 .nota-fav{font-size:0.7rem;cursor:pointer;opacity:0.5;transition:0.2s}
+.nota-item h4 .nota-fav.on{opacity:1;color:var(--gold)}
+.nota-item h4 .nota-fav:hover{opacity:1}
+.nota-item .nota-preview{font-size:0.72rem;color:var(--muted);line-height:1.4;max-height:2.8em;overflow:hidden;white-space:pre-wrap}
+.nota-item .nota-meta{font-size:0.62rem;color:var(--muted);margin-top:0.3rem;display:flex;justify-content:space-between;align-items:center}
+.nota-item .nota-tags{display:flex;gap:3px;flex-wrap:wrap;margin-top:0.25rem}
+.nota-item .nota-tag{font-size:0.6rem;background:rgba(201,168,108,0.08);color:var(--gold-light);padding:1px 6px;border-radius:8px}
+.nota-item .nota-ctx{font-size:0.6rem;color:#a78bfa;background:rgba(168,85,247,0.08);padding:1px 6px;border-radius:8px;margin-right:auto}
+.nota-item .nota-del{position:absolute;top:0.4rem;right:0.5rem;background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:0.85rem;opacity:0;transition:0.2s}
+.nota-item:hover .nota-del{opacity:0.7}
+.nota-item .nota-del:hover{color:#ef4444;opacity:1}
+.notas-editor{padding:0.6rem;border-top:1px solid rgba(201,168,108,0.08);background:rgba(0,0,0,0.2);display:flex;flex-direction:column;gap:0.4rem}
+.notas-editor input.tit{background:rgba(0,0,0,0.35);border:1px solid rgba(201,168,108,0.08);border-radius:7px;padding:0.5rem 0.6rem;color:var(--text);font-size:0.85rem;font-weight:600;outline:none}
+.notas-editor input.tit:focus{border-color:var(--accent)}
+.notas-editor textarea{background:rgba(0,0,0,0.35);border:1px solid rgba(201,168,108,0.08);border-radius:7px;padding:0.5rem 0.6rem;color:var(--text);font-size:0.78rem;outline:none;min-height:120px;resize:vertical;font-family:'JetBrains Mono','Fira Code',monospace;line-height:1.5}
+.notas-editor textarea:focus{border-color:var(--accent)}
+.notas-editor .ed-meta{display:flex;gap:0.3rem;font-size:0.7rem;align-items:center;flex-wrap:wrap}
+.notas-editor .ed-meta input{flex:1;background:rgba(0,0,0,0.35);border:1px solid rgba(201,168,108,0.08);border-radius:6px;padding:0.35rem 0.55rem;color:var(--text);font-size:0.72rem;outline:none}
+.notas-editor .ed-actions{display:flex;gap:0.3rem;justify-content:space-between}
+.notas-editor .ed-actions .btn-grupo{display:flex;gap:0.3rem}
+.notas-editor .ed-info{font-size:0.65rem;color:var(--muted);line-height:1.4}
+.notas-toolbar{display:flex;gap:0.3rem;padding:0.3rem 0.5rem;border-bottom:1px solid rgba(201,168,108,0.05);flex-wrap:wrap;background:rgba(0,0,0,0.15)}
+.notas-toolbar button{background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,108,0.06);color:var(--muted);padding:0.25rem 0.55rem;border-radius:5px;font-size:0.68rem;cursor:pointer;transition:0.2s}
+.notas-toolbar button:hover{background:rgba(201,168,108,0.08);color:var(--gold-light);border-color:rgba(201,168,108,0.15)}
+.notas-toolbar button.active{background:rgba(201,168,108,0.15);color:var(--gold-light);border-color:var(--gold)}
+.nota-link{color:var(--gold-light);background:rgba(201,168,108,0.08);padding:1px 5px;border-radius:4px;cursor:pointer;text-decoration:underline;text-decoration-color:rgba(201,168,108,0.3)}
+.nota-link:hover{background:rgba(201,168,108,0.15);text-decoration-color:var(--gold)}
+.nota-backlinks{margin-top:0.8rem;padding-top:0.6rem;border-top:1px dashed rgba(201,168,108,0.1)}
+.nota-backlinks h5{font-size:0.7rem;color:var(--gold);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.3rem}
+.nota-backlinks .bl-item{font-size:0.7rem;color:var(--muted);padding:3px 6px;border-radius:5px;cursor:pointer;transition:0.2s;display:block}
+.nota-backlinks .bl-item:hover{background:rgba(201,168,108,0.06);color:var(--gold-light)}
+.notas-empty{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:0.8rem}
+.notas-empty .icon{font-size:2rem;display:block;margin-bottom:0.5rem;opacity:0.5}
+
+/* ATALHO BAR (rápidos da barra) */
+.atalho-bar{display:flex;gap:0.3rem;margin:0.5rem 0;flex-wrap:wrap;max-width:1400px;margin:0.4rem auto;padding:0 1.2rem}
+.atalho-bar .atalho{background:linear-gradient(135deg,rgba(201,168,108,0.04),rgba(168,136,74,0.02));border:1px solid rgba(201,168,108,0.08);color:var(--gold-light);padding:0.35rem 0.7rem;border-radius:7px;font-size:0.72rem;cursor:pointer;transition:0.25s;text-decoration:none;display:inline-flex;align-items:center;gap:0.25rem;font-weight:500}
+.atalho-bar .atalho:hover{background:rgba(201,168,108,0.1);border-color:var(--gold);transform:translateY(-2px);box-shadow:0 4px 12px rgba(201,168,108,0.15)}
+.atalho-bar .atalho.cf{background:linear-gradient(135deg,rgba(59,130,246,0.06),rgba(37,99,235,0.03));border-color:rgba(59,130,246,0.15);color:#93c5fd}
+.atalho-bar .atalho.cf:hover{background:rgba(59,130,246,0.12);border-color:#60a5fa}
+.atalho-bar .atalho.cp{background:linear-gradient(135deg,rgba(239,68,68,0.06),rgba(220,38,38,0.03));border-color:rgba(239,68,68,0.15);color:#fca5a5}
+.atalho-bar .atalho.cp:hover{background:rgba(239,68,68,0.12);border-color:#f87171}
+.atalho-bar .atalho.cc{background:linear-gradient(135deg,rgba(16,185,129,0.06),rgba(5,150,105,0.03));border-color:rgba(16,185,129,0.15);color:#6ee7b7}
+.atalho-bar .atalho.cc:hover{background:rgba(16,185,129,0.12);border-color:#34d399}
+.atalho-bar .atalho.cpc{background:linear-gradient(135deg,rgba(245,158,11,0.06),rgba(217,119,6,0.03));border-color:rgba(245,158,11,0.15);color:#fcd34d}
+.atalho-bar .atalho.cpc:hover{background:rgba(245,158,11,0.12);border-color:#fbbf24}
+.atalho-bar .atalho.clt{background:linear-gradient(135deg,rgba(168,85,247,0.06),rgba(147,51,234,0.03));border-color:rgba(168,85,247,0.15);color:#c4b5fd}
+.atalho-bar .atalho.clt:hover{background:rgba(168,85,247,0.12);border-color:#a78bfa}
 </style>
 </head>
 <body>
@@ -247,6 +374,7 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 <button class="fab-import" id="fab-chat" onclick="abrirChatIA()" title="Tutor IA" style="bottom:5rem;background:linear-gradient(135deg,#7c3aed,#4f46e5);box-shadow:0 4px 20px rgba(124,58,237,0.3);font-size:1.2rem;display:flex;align-items:center;justify-content:center">💬</button>
 
 <div class="tabs-container" id="tabs"></div>
+<div class="atalho-bar" id="atalho-bar"></div>
 <div class="content-area" id="content"></div>
 
 <!-- MODAL AULA -->
@@ -353,6 +481,57 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 </div>
 
 <button class="fab-import" id="fab-import" onclick="abrirImportador()" title="Importar arquivo">+</button>
+
+<!-- BOTAO FLUTUANTE BLOCO DE NOTAS (universal, todas as paginas) -->
+<button class="notas-fab" id="notas-fab" onclick="abrirNotas()" title="Bloco de Notas (interligado)">📝<span class="badge" id="notas-badge" style="display:none">0</span></button>
+
+<!-- PAINEL LATERAL DE NOTAS (interligado, todas as paginas) -->
+<div class="notas-side" id="notas-side">
+  <div class="notas-head">
+    <span style="font-size:1.1rem">📝</span>
+    <h2>Bloco de Notas</h2>
+    <button onclick="novaNota()" title="Nova nota">＋</button>
+    <button onclick="exportarNotas()" title="Exportar JSON">⬇</button>
+    <button onclick="importarNotas()" title="Importar JSON">⬆</button>
+    <button onclick="fecharNotas()" title="Fechar">✕</button>
+  </div>
+  <div class="notas-search-bar">
+    <input type="text" id="notas-search" placeholder="🔎 Buscar título, conteúdo, tag ou [[link]]..." oninput="renderNotasList()">
+  </div>
+  <div class="notas-toolbar">
+    <button onclick="filtrarNotas('todas')" id="fn-todas" class="active">Todas</button>
+    <button onclick="filtrarNotas('fav')" id="fn-fav">⭐ Favoritas</button>
+    <button onclick="filtrarNotas('ctx')" id="fn-ctx">📍 Desta página</button>
+    <button onclick="filtrarNotas('recente')" id="fn-recente">🕒 Recentes</button>
+  </div>
+  <div class="notas-list" id="notas-list"></div>
+  <div class="notas-editor" id="notas-editor" style="display:none">
+    <input type="text" class="tit" id="nota-tit" placeholder="Título da nota..." oninput="autoSalvarNota()">
+    <textarea id="nota-cont" placeholder="Escreva aqui... Use [[nome da outra nota]] para criar links interligados. Markdown básico suportado." oninput="autoSalvarNota()"></textarea>
+    <div class="ed-meta">
+      <input type="text" id="nota-tags" placeholder="tags (separadas por vírgula)" oninput="autoSalvarNota()">
+    </div>
+    <div class="ed-info" id="nota-info"></div>
+    <div class="ed-actions">
+      <div class="btn-grupo">
+        <button class="btn btn-sm" onclick="salvarNota()">💾 Salvar</button>
+        <button class="btn btn-sm btn-outline" onclick="toggleFavNota()" id="btn-fav">⭐ Favoritar</button>
+      </div>
+      <div class="btn-grupo">
+        <button class="btn btn-sm btn-outline" onclick="fecharEditor()">← Voltar</button>
+        <button class="btn btn-sm" onclick="excluirNotaAtual()" style="background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.3)">🗑</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL AGENDA EVENTO -->
+<div class="modal-overlay" id="modal-evento">
+  <div class="modal-sm" style="max-width:520px">
+    <div class="modal-header"><h2 id="evento-title">📅 Detalhes do Evento</h2><button class="close-btn" onclick="fecharModal('modal-evento')">&times;</button></div>
+    <div class="artigo-full" id="evento-body" style="max-height:70vh;overflow-y:auto;padding:1rem"></div>
+  </div>
+</div>
 
 <script src="vade.js"></script>
 <script src="data.js"></script>
@@ -11738,6 +11917,24 @@ function renderTabs() {
   d.textContent = '📊 Painel';
   d.onclick = () => switchTab('dash');
   c.appendChild(d);
+  // Agenda Profissional (novo)
+  const ag = document.createElement('div');
+  ag.className = `tab ${STATE.currentTab==='agenda'?'active':''}`;
+  ag.textContent = '📅 Agenda';
+  ag.onclick = () => switchTab('agenda');
+  c.appendChild(ag);
+  // Notas (atalho de aba - tambem disponivel via FAB)
+  const nt = document.createElement('div');
+  nt.className = `tab ${STATE.currentTab==='notas'?'active':''}`;
+  nt.textContent = '📝 Notas';
+  nt.onclick = () => switchTab('notas');
+  c.appendChild(nt);
+  // CF/88 direta (novo)
+  const cf = document.createElement('div');
+  cf.className = `tab ${STATE.currentTab==='cf88'?'active':''}`;
+  cf.textContent = '📜 CF/88';
+  cf.onclick = () => switchTab('cf88');
+  c.appendChild(cf);
   for(let i=1;i<=10;i++) {
     const t = document.createElement('div');
     t.className = `tab ${i===Number(STATE.currentTab)?'active':''}`;
@@ -11769,12 +11966,63 @@ function renderTabs() {
   dc.className = `tab ${STATE.currentTab==='documentos'?'active':''}`;
   dc.textContent = '📄 PDFs'; dc.onclick = () => switchTab('documentos');
   c.appendChild(dc);
+  // Renderizar atalhos rapidos a CFs e codigos
+  renderAtalhoBar();
+}
+
+function renderAtalhoBar() {
+  var bar = document.getElementById('atalho-bar'); if(!bar) return;
+  bar.innerHTML =
+    '<a class="atalho cf" onclick="irLei(\'constitucional\',\'CF/88\')">📜 CF/88</a>' +
+    '<a class="atalho cp" onclick="irLei(\'penal\',\'CP\')">⚖️ Código Penal</a>' +
+    '<a class="atalho cc" onclick="irLei(\'civil\',\'CC\')">📘 Código Civil</a>' +
+    '<a class="atalho cpc" onclick="irLei(\'processo_civil\',\'CPC\')">📗 CPC</a>' +
+    '<a class="atalho cp" onclick="irLei(\'processo_penal\',\'CPP\')">📕 CPP</a>' +
+    '<a class="atalho clt" onclick="irLei(\'trabalho\',\'CLT\')">💼 CLT</a>' +
+    '<a class="atalho" onclick="irLei(\'tributario\',\'CTN\')">💰 CTN</a>' +
+    '<a class="atalho cc" onclick="irLei(\'consumidor\',\'CDC\')">🛒 CDC</a>' +
+    '<a class="atalho" onclick="irLei(\'administrativo\',\'\')">🏛️ Administrativo</a>' +
+    '<a class="atalho" onclick="irLei(\'previdenciario\',\'\')">🛡️ Previdenciário</a>' +
+    '<a class="atalho" onclick="switchTab(\'vade\')">📕 Todo o Vade Mecum</a>' +
+    '<a class="atalho" onclick="switchTab(\'documentos\')">📄 PDFs jurídicos</a>' +
+    '<a class="atalho" onclick="switchTab(\'livros\')">📚 Livros</a>' +
+    '<a class="atalho" onclick="abrirNotas()">📝 Minhas notas</a>' +
+    '<a class="atalho" onclick="switchTab(\'agenda\')">📅 Minha agenda</a>';
+}
+
+function irLei(ramoId, leiSigla) {
+  switchTab('vade');
+  setTimeout(function(){
+    // expandir o ramo e a lei no Vade Mecum
+    try {
+      if(typeof VADE!=='undefined') {
+        var ramo = VADE.ramos.find(function(r){return r.id===ramoId;});
+        if(ramo) {
+          var rb = document.getElementById('vr-'+ramoId);
+          var rt = document.getElementById('vt-'+ramoId);
+          if(rb) rb.classList.add('open');
+          if(rt) rt.textContent = '−';
+          if(leiSigla) {
+            var leiIdx = ramo.leis.findIndex(function(l){return l.sigla===leiSigla;});
+            if(leiIdx>=0) {
+              var lid = ramoId+'_'+leiIdx;
+              var lb = document.getElementById('vl-'+lid);
+              if(lb) lb.classList.add('open');
+            }
+          }
+          // scroll até o ramo
+          var rh = document.querySelector('[onclick*="toggleRamo(\''+ramoId+'\')"]');
+          if(rh) rh.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      }
+    } catch(e) { console.warn('Erro ao expandir lei:', e); }
+  }, 200);
 }
 
 function switchTab(key) {
   STATE.currentTab = key;
   renderTabs(); renderContent(); updateStats();
-  if(key!=='dash') document.getElementById('sem-count').textContent = key==='oab1'?'🎯':key==='vade'?'📕':key==='flash'?'🃏':key==='livros'?'📚':key==='videos'?'🎬':key==='documentos'?'📄':`${key}º`;
+  if(key!=='dash') document.getElementById('sem-count').textContent = key==='oab1'?'🎯':key==='vade'?'📕':key==='flash'?'🃏':key==='livros'?'📚':key==='videos'?'🎬':key==='documentos'?'📄':key==='cf88'?'📜':key==='agenda'?'📅':key==='notas'?'📝':`${key}º`;
   // Mostrar FAB apenas nas abas com importacao
   var fab = document.getElementById('fab-import');
   if(fab) fab.className = 'fab-import' + (key==='videos'||key==='documentos'||key==='livros'||(!isNaN(key)&&key>=1&&key<=10)?' show':'');
@@ -11789,6 +12037,9 @@ function renderContent() {
   if(STATE.currentTab==='livros') return renderLivros();
   if(STATE.currentTab==='videos') return renderVideos();
   if(STATE.currentTab==='documentos') return renderDocumentos();
+  if(STATE.currentTab==='cf88') return renderCF88();
+  if(STATE.currentTab==='agenda') return renderAgenda();
+  if(STATE.currentTab==='notas') return renderNotasTab();
   const sem = DATA.semestres[STATE.currentTab];
   if(!sem) return;
   let html = `<h2 class="section-title">${sem.titulo}</h2>
@@ -12922,21 +13173,727 @@ function updateSemProgress(){
 function resetProgress(){if(confirm('Resetar tudo?')){localStorage.clear();location.reload();}}
 
 // ===================================================================
-// ATUALIZACAO AUTOMATICA
+// CF/88 - ATALHO DIRETO PARA CONSTITUICAO FEDERAL
 // ===================================================================
-function verificarAtualizacao() {
-  const versaoAtual = localStorage.getItem('jurispath_version') || '1.0.0';
-  const msg = `Versao atual: v${versaoAtual}\n\nDeseja verificar se ha uma versao mais recente?\n\nO script "atualizar.ps1" sera aberto para voce executar.`;
-  if (confirm(msg)) {
-    const shell = new ActiveXObject('WScript.Shell');
-    shell.Run('powershell.exe -NoProfile -ExecutionPolicy Bypass -File "' + window.location.pathname.replace(/JurisPath\.html$/i, '') + 'atualizar.ps1"', 1, false);
+function renderCF88() {
+  const c = document.getElementById('content');
+  if(typeof VADE==='undefined') {
+    c.innerHTML='<div style="padding:2rem;text-align:center;color:var(--muted)">Carregando Constituição Federal...<br><small>vade.js pode levar alguns segundos</small></div>';
+    setTimeout(renderCF88,500); return;
+  }
+  const ramo = VADE.ramos.find(r=>r.id==='constitucional');
+  const cf = ramo && ramo.leis.find(l=>l.sigla==='CF/88');
+  if(!cf) { c.innerHTML='<div style="padding:2rem;text-align:center;color:var(--muted)">Constituição não encontrada no Vade Mecum.</div>'; return; }
+  let totalArt = 0;
+  cf.topicos.forEach(t => totalArt += (t.artigos||[]).length);
+  let html = '<h2 class="section-title">📜 Constituição Federal de 1988 (texto integral)</h2>';
+  html += '<div class="welcome-banner" style="margin-bottom:1rem">';
+  html += '<h2>📜 Constituição da República Federativa do Brasil</h2>';
+  html += '<p>Lei suprema do ordenamento jurídico brasileiro, promulgada em 5 de outubro de 1988. <strong>'+totalArt+' artigos</strong> organizados em '+cf.topicos.length+' títulos/capítulos, incluindo todas as Emendas Constitucionais vigentes. Use a busca abaixo ou clique em qualquer artigo para abrir o conteúdo completo, fazer anotações ou pedir explicação para a IA.</p>';
+  html += '</div>';
+  html += '<div class="vade-search"><input type="text" id="cf-input" placeholder="🔎 Buscar artigo (ex: Art. 5, dignidade, mandado de segurança)..." oninput="filtrarCF()"></div>';
+  html += '<div id="cf-count" style="font-size:0.72rem;color:var(--muted);margin:0.2rem 0 0.6rem"></div>';
+  html += '<div style="display:flex;gap:0.3rem;flex-wrap:wrap;margin-bottom:0.7rem">';
+  ['Art. 1','Art. 5','Art. 6','Art. 7','Art. 37','Art. 60','Art. 84','Art. 102','Art. 150','Art. 196','Art. 205','Art. 225','ADCT'].forEach(function(q){
+    html += '<button class="hint-btn" style="margin:0;font-size:0.7rem;padding:0.3rem 0.6rem" onclick="document.getElementById(\'cf-input\').value=\''+q+'\';filtrarCF()">'+q+'</button>';
+  });
+  html += '</div>';
+  html += '<div id="cf-tree">';
+  cf.topicos.forEach(function(t, ti){
+    html += '<div class="vade-ramo"><div class="vade-ramo-h" onclick="toggleCFTop('+ti+')"><span>📖 '+t.titulo+' <span style="color:var(--muted);font-size:0.72rem;font-weight:400;margin-left:0.3rem">('+(t.artigos||[]).length+' artigos)</span></span><span class="vade-tog" id="cft-'+ti+'">+</span></div>';
+    html += '<div class="vade-rb" id="cfr-'+ti+'">';
+    (t.artigos||[]).forEach(function(a, ai){
+      var aid = 'constitucional_0_'+ti+'_'+ai;
+      html += '<div class="vade-art" data-cf="1" data-num="'+a.num+'" onclick="verArtigoVade(\''+aid+'\',\'📜\')"><span class="vade-an">'+a.num+'</span><span class="vade-at">'+(a.texto||'').substring(0,140)+'...</span></div>';
+    });
+    html += '</div></div>';
+  });
+  html += '</div>';
+  c.innerHTML = html;
+}
+
+function toggleCFTop(ti) {
+  var rb = document.getElementById('cfr-'+ti); if(!rb) return;
+  var tog = document.getElementById('cft-'+ti);
+  rb.classList.toggle('open');
+  if(tog) tog.textContent = rb.classList.contains('open')?'−':'+';
+}
+
+function filtrarCF() {
+  var q = (document.getElementById('cf-input').value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  var count = 0;
+  document.querySelectorAll('#cf-tree .vade-art').forEach(function(el){
+    var txt = el.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    var v = !q||txt.includes(q);
+    el.style.display = v?'':'none';
+    if(v) count++;
+  });
+  document.querySelectorAll('#cf-tree .vade-ramo').forEach(function(el){
+    var vis = Array.from(el.querySelectorAll('.vade-art')).some(function(a){return a.style.display!=='none';});
+    el.style.display = !q||vis?'':'none';
+  });
+  if(q){
+    document.querySelectorAll('#cf-tree .vade-rb').forEach(function(el){el.classList.add('open');});
+    document.querySelectorAll('#cf-tree .vade-tog').forEach(function(el){el.textContent='−';});
+  }
+  var ce = document.getElementById('cf-count');
+  if(ce) ce.textContent = q?count+' artigo(s) encontrado(s)':'';
+}
+
+// ===================================================================
+// AGENDA PROFISSIONAL (calendario + compromissos + categorias)
+// ===================================================================
+var AGENDA = JSON.parse(localStorage.getItem('jurispath_agenda') || '[]');
+var AG_STATE = { ano: new Date().getFullYear(), mes: new Date().getMonth(), diaSel: null, filtro: 'todas' };
+
+function salvarAgenda(){ localStorage.setItem('jurispath_agenda', JSON.stringify(AGENDA)); }
+
+function nomeMes(m) {
+  return ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'][m];
+}
+
+function chavData(ano, mes, dia) {
+  return ano+'-'+String(mes+1).padStart(2,'0')+'-'+String(dia).padStart(2,'0');
+}
+
+function renderAgenda() {
+  if(!AG_STATE.diaSel) {
+    var h = new Date(); AG_STATE.diaSel = chavData(h.getFullYear(), h.getMonth(), h.getDate());
+  }
+  var c = document.getElementById('content');
+  // Estatisticas rapidas
+  var hoje = new Date(); var hojeKey = chavData(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+  var em7 = AGENDA.filter(function(e){
+    var dt = new Date(e.data); var diff = (dt-hoje)/(1000*60*60*24); return diff>=0 && diff<=7;
+  });
+  var prazos = AGENDA.filter(function(e){return e.cat==='prazo';});
+  var futuros = AGENDA.filter(function(e){return new Date(e.data)>=new Date(hojeKey);}).length;
+
+  var html = '<h2 class="section-title">📅 Agenda Profissional</h2>';
+  html += '<div class="ag-stats" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-bottom:0.8rem">';
+  html += '<div class="ag-stat"><div class="v">'+AGENDA.length+'</div><div class="l">Total</div></div>';
+  html += '<div class="ag-stat"><div class="v">'+em7.length+'</div><div class="l">Próximos 7 dias</div></div>';
+  html += '<div class="ag-stat"><div class="v">'+prazos.length+'</div><div class="l">Prazos</div></div>';
+  html += '<div class="ag-stat"><div class="v">'+futuros+'</div><div class="l">Futuros</div></div>';
+  html += '</div>';
+
+  html += '<div class="ag-wrap">';
+
+  // Calendario
+  html += '<div class="ag-cal">';
+  html += '<div class="ag-cal-header">';
+  html += '<div class="ag-cal-title">'+nomeMes(AG_STATE.mes)+' '+AG_STATE.ano+'</div>';
+  html += '<div class="ag-cal-nav">';
+  html += '<button class="ag-cal-btn" onclick="agMes(-1)" title="Mês anterior">◀</button>';
+  html += '<button class="ag-cal-btn" onclick="agHoje()" title="Ir para hoje" style="width:auto;padding:0 0.6rem;font-size:0.72rem">Hoje</button>';
+  html += '<button class="ag-cal-btn" onclick="agMes(1)" title="Próximo mês">▶</button>';
+  html += '<button class="ag-cal-btn" onclick="exportarAgenda()" title="Exportar JSON" style="width:auto;padding:0 0.6rem">⬇</button>';
+  html += '<button class="ag-cal-btn" onclick="importarAgenda()" title="Importar JSON" style="width:auto;padding:0 0.6rem">⬆</button>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '<div class="ag-categs">';
+  html += '<span class="ag-cat-chip audi'+(AG_STATE.filtro==='audi'?' active':'')+'" onclick="agFiltro(\'audi\')">⚖️ Audiências</span>';
+  html += '<span class="ag-cat-chip prazo'+(AG_STATE.filtro==='prazo'?' active':'')+'" onclick="agFiltro(\'prazo\')">⏰ Prazos</span>';
+  html += '<span class="ag-cat-chip reun'+(AG_STATE.filtro==='reun'?' active':'')+'" onclick="agFiltro(\'reun\')">👥 Reuniões</span>';
+  html += '<span class="ag-cat-chip est'+(AG_STATE.filtro==='est'?' active':'')+'" onclick="agFiltro(\'est\')">📚 Estudos</span>';
+  html += '<span class="ag-cat-chip lemb'+(AG_STATE.filtro==='lemb'?' active':'')+'" onclick="agFiltro(\'lemb\')">🔔 Lembretes</span>';
+  if(AG_STATE.filtro!=='todas') html += '<span class="ag-cat-chip" style="color:var(--muted);border-color:rgba(255,255,255,0.1)" onclick="agFiltro(\'todas\')">✕ Limpar</span>';
+  html += '</div>';
+
+  html += '<div class="ag-cal-grid">';
+  ['DOM','SEG','TER','QUA','QUI','SEX','SÁB'].forEach(function(d){
+    html += '<div class="ag-cal-dow">'+d+'</div>';
+  });
+  // Dias do mes
+  var primeiro = new Date(AG_STATE.ano, AG_STATE.mes, 1);
+  var diasNoMes = new Date(AG_STATE.ano, AG_STATE.mes+1, 0).getDate();
+  var diaSemana = primeiro.getDay(); // 0=dom
+  // dias do mes anterior para preencher
+  var diasMesAnt = new Date(AG_STATE.ano, AG_STATE.mes, 0).getDate();
+  for(var i=diaSemana-1; i>=0; i--){
+    var d = diasMesAnt - i;
+    var mPrev = AG_STATE.mes===0 ? 11 : AG_STATE.mes-1;
+    var aPrev = AG_STATE.mes===0 ? AG_STATE.ano-1 : AG_STATE.ano;
+    html += renderDiaCal(aPrev, mPrev, d, true);
+  }
+  for(var d=1; d<=diasNoMes; d++){
+    html += renderDiaCal(AG_STATE.ano, AG_STATE.mes, d, false);
+  }
+  var resto = (diaSemana+diasNoMes)%7;
+  if(resto>0){
+    for(var d=1; d<=7-resto; d++){
+      var mNext = AG_STATE.mes===11 ? 0 : AG_STATE.mes+1;
+      var aNext = AG_STATE.mes===11 ? AG_STATE.ano+1 : AG_STATE.ano;
+      html += renderDiaCal(aNext, mNext, d, true);
+    }
+  }
+  html += '</div>'; // fim cal-grid
+  html += '</div>'; // fim ag-cal
+
+  // Lateral: eventos do dia selecionado
+  var sel = AG_STATE.diaSel ? AG_STATE.diaSel.split('-') : null;
+  var dataSel = sel ? new Date(Number(sel[0]), Number(sel[1])-1, Number(sel[2])) : null;
+  var diaTxt = dataSel ? dataSel.toLocaleDateString('pt-BR', {weekday:'long', day:'numeric', month:'long', year:'numeric'}) : '';
+
+  html += '<div class="ag-side">';
+  html += '<div class="ag-side-h"><span>📌 '+diaTxt+'</span><button class="btn btn-sm" onclick="agToggleForm()" style="padding:3px 8px;font-size:0.7rem">＋ Novo</button></div>';
+  html += '<div class="ag-form" id="ag-form">';
+  html += '<input type="text" id="ag-tit" placeholder="Título (ex: Audiência - Proc. 1234-5)">';
+  html += '<div class="ag-row"><input type="date" id="ag-data" value="'+AG_STATE.diaSel+'"><input type="time" id="ag-hora"></div>';
+  html += '<select id="ag-cat"><option value="lemb" style="background:#1a1410">🔔 Lembrete</option><option value="audi" style="background:#1a1410">⚖️ Audiência</option><option value="prazo" style="background:#1a1410">⏰ Prazo</option><option value="reun" style="background:#1a1410">👥 Reunião</option><option value="est" style="background:#1a1410">📚 Estudo</option></select>';
+  html += '<input type="text" id="ag-local" placeholder="Local / Fórum / Link (opcional)">';
+  html += '<textarea id="ag-desc" rows="3" placeholder="Descrição, parte, número do processo..." style="background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,108,0.1);border-radius:6px;padding:0.4rem 0.55rem;color:var(--text);font-size:0.78rem;outline:none;width:100%;font-family:inherit;resize:vertical;margin-bottom:0.4rem"></textarea>';
+  html += '<div style="display:flex;gap:0.3rem;justify-content:flex-end"><button class="btn btn-sm btn-outline" onclick="agToggleForm()" style="font-size:0.72rem">Cancelar</button><button class="btn btn-sm" onclick="agSalvar()" style="font-size:0.72rem">💾 Salvar</button></div>';
+  html += '</div>';
+  // Listar eventos do dia
+  var doDia = AGENDA.filter(function(e){return e.data===AG_STATE.diaSel;}).sort(function(a,b){return (a.hora||'00:00').localeCompare(b.hora||'00:00');});
+  if(doDia.length===0) {
+    html += '<div style="text-align:center;padding:1.5rem 0.5rem;color:var(--muted);font-size:0.78rem"><div style="font-size:1.8rem;margin-bottom:0.3rem;opacity:0.4">📭</div>Nenhum compromisso agendado.<br><small>Clique em ＋ Novo para adicionar.</small></div>';
+  } else {
+    doDia.forEach(function(e){
+      var catIco = {audi:'⚖️',prazo:'⏰',reun:'👥',est:'📚',lemb:'🔔'}[e.cat]||'📌';
+      html += '<div class="ag-evento cat-'+(e.cat||'lemb')+'" onclick="agAbrir(\''+e.id+'\')">';
+      html += '<button class="ev-del" onclick="event.stopPropagation();agExcluir(\''+e.id+'\')" title="Excluir">✕</button>';
+      html += '<div class="ev-time">'+catIco+' '+(e.hora||'sem horário')+'</div>';
+      html += '<div class="ev-title">'+(e.titulo||'(sem título)')+'</div>';
+      if(e.local) html += '<div class="ev-desc">📍 '+e.local+'</div>';
+      if(e.desc) html += '<div class="ev-desc">'+e.desc.substring(0,80)+(e.desc.length>80?'...':'')+'</div>';
+      html += '</div>';
+    });
+  }
+
+  // Lista compromissos proximos
+  html += '<div class="ag-side-h" style="margin-top:1rem"><span>🔜 Próximos 7 dias</span></div>';
+  var em7d = AGENDA.filter(function(e){
+    var dt = new Date(e.data); var diff = (dt-hoje)/(1000*60*60*24); return diff>=0 && diff<=7;
+  }).sort(function(a,b){return a.data===b.data ? (a.hora||'').localeCompare(b.hora||'') : a.data.localeCompare(b.data);});
+  if(em7d.length===0) {
+    html += '<div style="color:var(--muted);font-size:0.75rem;padding:0.5rem 0">Nada nos próximos 7 dias.</div>';
+  } else {
+    em7d.slice(0,15).forEach(function(e){
+      var catIco = {audi:'⚖️',prazo:'⏰',reun:'👥',est:'📚',lemb:'🔔'}[e.cat]||'📌';
+      var dt = new Date(e.data).toLocaleDateString('pt-BR', {day:'2-digit', month:'short'});
+      html += '<div class="ag-evento cat-'+(e.cat||'lemb')+'" onclick="agAbrir(\''+e.id+'\')" style="padding:0.45rem 0.6rem;margin-bottom:0.3rem">';
+      html += '<div class="ev-time">'+catIco+' '+dt+(e.hora?' '+e.hora:'')+'</div>';
+      html += '<div class="ev-title" style="font-size:0.78rem">'+(e.titulo||'(sem título)')+'</div>';
+      html += '</div>';
+    });
+  }
+  html += '</div>'; // fim ag-side
+  html += '</div>'; // fim ag-wrap
+
+  c.innerHTML = html;
+}
+
+function renderDiaCal(ano, mes, dia, outraMes) {
+  var k = chavData(ano, mes, dia);
+  var hoje = new Date(); var hojeK = chavData(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+  var classes = 'ag-cal-day';
+  if(outraMes) classes += ' other';
+  if(k===hojeK) classes += ' today';
+  if(k===AG_STATE.diaSel) classes += ' selected';
+  var doDia = AGENDA.filter(function(e){return e.data===k && (AG_STATE.filtro==='todas' || e.cat===AG_STATE.filtro);});
+  var dots = '';
+  var cats = {};
+  doDia.forEach(function(e){ cats[e.cat||'lemb'] = true; });
+  Object.keys(cats).forEach(function(cat){ dots += '<div class="dot '+cat+'"></div>'; });
+  var badge = doDia.length>0 ? '<div class="badge-count">'+doDia.length+'</div>' : '';
+  return '<div class="'+classes+'" onclick="agSelecionar(\''+k+'\')"><div class="num">'+dia+'</div>'+badge+'<div class="dots">'+dots+'</div></div>';
+}
+
+function agMes(delta) {
+  AG_STATE.mes += delta;
+  if(AG_STATE.mes>11) { AG_STATE.mes=0; AG_STATE.ano++; }
+  if(AG_STATE.mes<0) { AG_STATE.mes=11; AG_STATE.ano--; }
+  renderAgenda();
+}
+function agHoje() {
+  var h = new Date();
+  AG_STATE.ano = h.getFullYear(); AG_STATE.mes = h.getMonth();
+  AG_STATE.diaSel = chavData(h.getFullYear(), h.getMonth(), h.getDate());
+  renderAgenda();
+}
+function agSelecionar(k) {
+  AG_STATE.diaSel = k;
+  var p = k.split('-'); AG_STATE.ano = Number(p[0]); AG_STATE.mes = Number(p[1])-1;
+  renderAgenda();
+}
+function agFiltro(f) {
+  AG_STATE.filtro = f;
+  renderAgenda();
+}
+function agToggleForm() {
+  var f = document.getElementById('ag-form');
+  if(!f) return;
+  f.classList.toggle('open');
+  if(f.classList.contains('open')) {
+    var t = document.getElementById('ag-tit'); if(t) t.focus();
   }
 }
+function agSalvar() {
+  var tit = document.getElementById('ag-tit').value.trim();
+  var data = document.getElementById('ag-data').value;
+  var hora = document.getElementById('ag-hora').value;
+  var cat = document.getElementById('ag-cat').value;
+  var local = document.getElementById('ag-local').value.trim();
+  var desc = document.getElementById('ag-desc').value.trim();
+  if(!tit) { alert('Informe o título do compromisso.'); return; }
+  if(!data) { alert('Informe a data.'); return; }
+  var ev = { id:'ev_'+Date.now()+'_'+Math.random().toString(36).slice(2,7), titulo:tit, data:data, hora:hora, cat:cat, local:local, desc:desc, criadoEm:new Date().toISOString() };
+  AGENDA.push(ev);
+  salvarAgenda();
+  renderAgenda();
+}
+function agExcluir(id) {
+  if(!confirm('Excluir este compromisso?')) return;
+  AGENDA = AGENDA.filter(function(e){return e.id!==id;});
+  salvarAgenda();
+  renderAgenda();
+}
+function agAbrir(id) {
+  var e = AGENDA.find(function(x){return x.id===id;});
+  if(!e) return;
+  var catLabel = {audi:'⚖️ Audiência',prazo:'⏰ Prazo',reun:'👥 Reunião',est:'📚 Estudo',lemb:'🔔 Lembrete'}[e.cat]||'📌 Evento';
+  var dt = new Date(e.data).toLocaleDateString('pt-BR', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  var html = '<div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.7rem"><span class="tag pratica">'+catLabel+'</span></div>';
+  html += '<h3 style="font-size:1.05rem;color:var(--gold-light);margin-bottom:0.4rem">'+(e.titulo||'(sem título)')+'</h3>';
+  html += '<p style="color:var(--muted);font-size:0.82rem;margin-bottom:0.3rem">📅 '+dt+(e.hora?' às '+e.hora:'')+'</p>';
+  if(e.local) html += '<p style="color:var(--muted);font-size:0.82rem;margin-bottom:0.3rem">📍 '+e.local+'</p>';
+  if(e.desc) html += '<div style="background:rgba(0,0,0,0.25);padding:0.7rem;border-radius:7px;margin-top:0.7rem;color:#d1c8d4;font-size:0.85rem;line-height:1.6;white-space:pre-wrap">'+e.desc+'</div>';
+  html += '<div style="display:flex;gap:0.4rem;margin-top:1rem;flex-wrap:wrap">';
+  html += '<button class="btn btn-sm" onclick="agEditar(\''+e.id+'\')">✏️ Editar</button>';
+  html += '<button class="btn btn-sm btn-outline" onclick="agParaNota(\''+e.id+'\')">📝 Criar nota vinculada</button>';
+  html += '<button class="btn btn-sm" onclick="agExcluir(\''+e.id+'\');fecharModal(\'modal-evento\')" style="background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.3)">🗑 Excluir</button>';
+  html += '</div>';
+  document.getElementById('evento-title').textContent = catLabel;
+  document.getElementById('evento-body').innerHTML = html;
+  abrirModal('modal-evento');
+}
+function agEditar(id) {
+  var e = AGENDA.find(function(x){return x.id===id;});
+  if(!e) return;
+  fecharModal('modal-evento');
+  AG_STATE.diaSel = e.data;
+  var p = e.data.split('-'); AG_STATE.ano = Number(p[0]); AG_STATE.mes = Number(p[1])-1;
+  renderAgenda();
+  setTimeout(function(){
+    document.getElementById('ag-form').classList.add('open');
+    document.getElementById('ag-tit').value = e.titulo||'';
+    document.getElementById('ag-data').value = e.data;
+    document.getElementById('ag-hora').value = e.hora||'';
+    document.getElementById('ag-cat').value = e.cat||'lemb';
+    document.getElementById('ag-local').value = e.local||'';
+    document.getElementById('ag-desc').value = e.desc||'';
+    AGENDA = AGENDA.filter(function(x){return x.id!==id;});
+  }, 200);
+}
+function agParaNota(id) {
+  var e = AGENDA.find(function(x){return x.id===id;});
+  if(!e) return;
+  fecharModal('modal-evento');
+  abrirNotas();
+  setTimeout(function(){
+    novaNota();
+    setTimeout(function(){
+      var tit = document.getElementById('nota-tit');
+      var cont = document.getElementById('nota-cont');
+      if(tit) tit.value = (e.titulo||'Evento')+' ('+e.data+')';
+      if(cont) cont.value = '📅 '+(e.titulo||'')+'\n📌 '+(e.cat||'lembrete')+'\n📆 Data: '+e.data+(e.hora?' '+e.hora:'')+(e.local?'\n📍 '+e.local:'')+'\n\n'+(e.desc||'');
+      autoSalvarNota();
+    }, 200);
+  }, 300);
+}
+function exportarAgenda() {
+  var blob = new Blob([JSON.stringify(AGENDA,null,2)], {type:'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'agenda-jurispath-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(url);}, 1000);
+}
+function importarAgenda() {
+  var inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = '.json';
+  inp.onchange = function(e){
+    var f = e.target.files[0]; if(!f) return;
+    var rd = new FileReader();
+    rd.onload = function(){
+      try {
+        var dados = JSON.parse(rd.result);
+        if(!Array.isArray(dados)) throw new Error('Formato inválido');
+        if(confirm('Importar '+dados.length+' compromisso(s)?\n\nSubstituir = OK / Mesclar = Cancelar')) {
+          AGENDA = dados;
+        } else {
+          AGENDA = AGENDA.concat(dados);
+        }
+        salvarAgenda(); renderAgenda();
+        alert('✅ Agenda importada com sucesso!');
+      } catch(err) { alert('❌ Arquivo inválido: '+err.message); }
+    };
+    rd.readAsText(f);
+  };
+  inp.click();
+}
+
+// ===================================================================
+// BLOCO DE NOTAS UNIVERSAL (interligado, todas as paginas)
+// ===================================================================
+var NOTAS = JSON.parse(localStorage.getItem('jurispath_notas') || '[]');
+var NOTAS_STATE = { editando: null, filtro: 'todas', autoTimer: null };
+
+function salvarNotasStorage(){ localStorage.setItem('jurispath_notas', JSON.stringify(NOTAS)); }
+
+function contextoAtual() {
+  // Captura o contexto atual (qual aba/disciplina o usuario esta)
+  var tab = STATE.currentTab;
+  var nomes = {dash:'Painel',vade:'Vade Mecum',cf88:'CF/88',oab1:'OAB',flash:'Flashcards',livros:'Livros',videos:'Vídeos',documentos:'PDFs',agenda:'Agenda',notas:'Notas'};
+  return nomes[tab] || (tab+'º semestre');
+}
+
+function abrirNotas() {
+  document.getElementById('notas-side').classList.add('open');
+  renderNotasList();
+}
+function fecharNotas() {
+  document.getElementById('notas-side').classList.remove('open');
+}
+
+function novaNota() {
+  var n = { id:'n_'+Date.now()+'_'+Math.random().toString(36).slice(2,7), titulo:'', conteudo:'', tags:[], contexto:contextoAtual(), favorita:false, criadaEm:new Date().toISOString(), atualizadaEm:new Date().toISOString() };
+  NOTAS.unshift(n);
+  salvarNotasStorage();
+  NOTAS_STATE.editando = n.id;
+  abrirNotas();
+  renderEditor();
+  setTimeout(function(){ var t = document.getElementById('nota-tit'); if(t) t.focus(); }, 100);
+}
+
+function renderEditor() {
+  var ed = document.getElementById('notas-editor');
+  var lst = document.getElementById('notas-list');
+  if(!NOTAS_STATE.editando) {
+    if(ed) ed.style.display = 'none';
+    if(lst) lst.style.display = '';
+    return;
+  }
+  var n = NOTAS.find(function(x){return x.id===NOTAS_STATE.editando;});
+  if(!n) { NOTAS_STATE.editando = null; renderEditor(); return; }
+  if(ed) ed.style.display = '';
+  if(lst) lst.style.display = 'none';
+  var tit = document.getElementById('nota-tit');
+  var cont = document.getElementById('nota-cont');
+  var tags = document.getElementById('nota-tags');
+  var btnFav = document.getElementById('btn-fav');
+  var info = document.getElementById('nota-info');
+  if(tit) tit.value = n.titulo||'';
+  if(cont) cont.value = n.conteudo||'';
+  if(tags) tags.value = (n.tags||[]).join(', ');
+  if(btnFav) btnFav.style.background = n.favorita?'rgba(201,168,108,0.15)':'';
+  if(btnFav) btnFav.textContent = n.favorita?'⭐ Favorita':'☆ Favoritar';
+  if(info) {
+    var atualizada = n.atualizadaEm ? new Date(n.atualizadaEm).toLocaleString('pt-BR') : '';
+    var backlinks = NOTAS.filter(function(o){return o.id!==n.id && (o.conteudo||'').includes('[['+(n.titulo||'__nada__')+']]');});
+    var bls = backlinks.length>0 ? '<div class="nota-backlinks"><h5>🔗 '+backlinks.length+' nota(s) referenciam esta:</h5>'+
+      backlinks.map(function(b){return '<div class="bl-item" onclick="editarNota(\''+b.id+'\')">→ '+(b.titulo||'(sem título)')+'</div>';}).join('')+'</div>' : '';
+    info.innerHTML = '📍 '+(n.contexto||'')+' &nbsp;|&nbsp; 🕒 '+atualizada+bls;
+  }
+}
+
+function renderNotasList() {
+  var lst = document.getElementById('notas-list'); if(!lst) return;
+  var q = (document.getElementById('notas-search').value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  var filtrado = NOTAS.slice();
+  // Aplicar filtro
+  if(NOTAS_STATE.filtro==='fav') filtrado = filtrado.filter(function(n){return n.favorita;});
+  if(NOTAS_STATE.filtro==='ctx') { var ctx = contextoAtual(); filtrado = filtrado.filter(function(n){return n.contexto===ctx;}); }
+  if(NOTAS_STATE.filtro==='recente') filtrado = filtrado.sort(function(a,b){return (b.atualizadaEm||'').localeCompare(a.atualizadaEm||'');}).slice(0,20);
+  // Aplicar busca
+  if(q) {
+    filtrado = filtrado.filter(function(n){
+      var txt = ((n.titulo||'')+' '+(n.conteudo||'')+' '+(n.tags||[]).join(' ')+' '+(n.contexto||'')).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+      return txt.includes(q);
+    });
+  }
+  // Atualizar badge
+  var b = document.getElementById('notas-badge');
+  if(b) { b.textContent = NOTAS.length; b.style.display = NOTAS.length>0?'':'none'; }
+  // Renderizar
+  if(filtrado.length===0) {
+    lst.innerHTML = '<div class="notas-empty"><span class="icon">📝</span>'+(q?'Nenhuma nota encontrada para "'+q+'"':'Nenhuma nota ainda.<br><br><button class="btn btn-sm" onclick="novaNota()">+ Criar primeira nota</button>')+'</div>';
+    return;
+  }
+  lst.innerHTML = filtrado.map(function(n){
+    var data = n.atualizadaEm ? new Date(n.atualizadaEm).toLocaleDateString('pt-BR') : '';
+    var prev = (n.conteudo||'').substring(0,140).replace(/\[\[([^\]]+)\]\]/g,'🔗 $1');
+    var tagsHtml = (n.tags||[]).map(function(t){return '<span class="nota-tag">'+t+'</span>';}).join('');
+    return '<div class="nota-item '+(n.id===NOTAS_STATE.editando?'active':'')+'" onclick="editarNota(\''+n.id+'\')">' +
+      '<button class="nota-del" onclick="event.stopPropagation();excluirNota(\''+n.id+'\')" title="Excluir">✕</button>' +
+      '<h4>'+(n.titulo||'(sem título)')+'<span class="nota-fav '+(n.favorita?'on':'')+'" onclick="event.stopPropagation();toggleFavoritaNota(\''+n.id+'\')">⭐</span></h4>' +
+      (prev ? '<div class="nota-preview">'+prev+'</div>' : '') +
+      (tagsHtml ? '<div class="nota-tags">'+tagsHtml+'</div>' : '') +
+      '<div class="nota-meta"><span class="nota-ctx">📍 '+(n.contexto||'Geral')+'</span><span>'+data+'</span></div>' +
+    '</div>';
+  }).join('');
+}
+
+function editarNota(id) {
+  NOTAS_STATE.editando = id;
+  renderEditor();
+  renderNotasList();
+}
+
+function fecharEditor() {
+  NOTAS_STATE.editando = null;
+  renderEditor();
+  renderNotasList();
+}
+
+function autoSalvarNota() {
+  clearTimeout(NOTAS_STATE.autoTimer);
+  NOTAS_STATE.autoTimer = setTimeout(salvarNota, 700);
+}
+
+function salvarNota() {
+  if(!NOTAS_STATE.editando) return;
+  var n = NOTAS.find(function(x){return x.id===NOTAS_STATE.editando;});
+  if(!n) return;
+  n.titulo = (document.getElementById('nota-tit').value||'').trim();
+  n.conteudo = (document.getElementById('nota-cont').value||'');
+  n.tags = (document.getElementById('nota-tags').value||'').split(',').map(function(t){return t.trim();}).filter(function(t){return t;});
+  n.atualizadaEm = new Date().toISOString();
+  salvarNotasStorage();
+  renderEditor();
+}
+
+function toggleFavNota() {
+  if(!NOTAS_STATE.editando) return;
+  var n = NOTAS.find(function(x){return x.id===NOTAS_STATE.editando;});
+  if(!n) return;
+  n.favorita = !n.favorita;
+  n.atualizadaEm = new Date().toISOString();
+  salvarNotasStorage();
+  renderEditor();
+}
+
+function toggleFavoritaNota(id) {
+  var n = NOTAS.find(function(x){return x.id===id;});
+  if(!n) return;
+  n.favorita = !n.favorita;
+  n.atualizadaEm = new Date().toISOString();
+  salvarNotasStorage();
+  renderNotasList();
+}
+
+function excluirNotaAtual() {
+  if(!NOTAS_STATE.editando) return;
+  if(!confirm('Excluir esta nota? Esta ação não pode ser desfeita.')) return;
+  NOTAS = NOTAS.filter(function(x){return x.id!==NOTAS_STATE.editando;});
+  salvarNotasStorage();
+  NOTAS_STATE.editando = null;
+  renderEditor();
+  renderNotasList();
+}
+
+function excluirNota(id) {
+  if(!confirm('Excluir esta nota?')) return;
+  NOTAS = NOTAS.filter(function(x){return x.id!==id;});
+  salvarNotasStorage();
+  if(NOTAS_STATE.editando===id) NOTAS_STATE.editando = null;
+  renderNotasList();
+}
+
+function filtrarNotas(f) {
+  NOTAS_STATE.filtro = f;
+  document.querySelectorAll('#notas-side .notas-toolbar button').forEach(function(b){b.classList.remove('active');});
+  var btn = document.getElementById('fn-'+f); if(btn) btn.classList.add('active');
+  renderNotasList();
+}
+
+function exportarNotas() {
+  var blob = new Blob([JSON.stringify(NOTAS,null,2)], {type:'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'notas-jurispath-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(url);}, 1000);
+}
+
+function importarNotas() {
+  var inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = '.json';
+  inp.onchange = function(e){
+    var f = e.target.files[0]; if(!f) return;
+    var rd = new FileReader();
+    rd.onload = function(){
+      try {
+        var dados = JSON.parse(rd.result);
+        if(!Array.isArray(dados)) throw new Error('Formato inválido');
+        if(confirm('Importar '+dados.length+' nota(s)?\n\nSubstituir = OK / Mesclar = Cancelar')) {
+          NOTAS = dados;
+        } else {
+          NOTAS = NOTAS.concat(dados);
+        }
+        salvarNotasStorage(); renderNotasList();
+        alert('✅ Notas importadas com sucesso!');
+      } catch(err) { alert('❌ Arquivo inválido: '+err.message); }
+    };
+    rd.readAsText(f);
+  };
+  inp.click();
+}
+
+// Aba completa de notas
+function renderNotasTab() {
+  var c = document.getElementById('content');
+  var html = '<h2 class="section-title">📝 Bloco de Notas Universal</h2>';
+  html += '<div class="welcome-banner" style="margin-bottom:1rem"><h2>📝 Suas Anotações</h2>';
+  html += '<p>Bloco de notas <strong>universal e interligado</strong>, disponível em todas as páginas pelo botão flutuante 📝 no canto inferior direito. Cada nota guarda automaticamente o contexto (de qual página foi criada), e você pode criar links entre notas usando <code>[[Título da Outra Nota]]</code>. Tudo é salvo no seu navegador (localStorage).</p>';
+  html += '<p style="margin-top:0.5rem">⚡ Atalhos: <strong>Crie</strong> com + nova nota, <strong>favorite</strong> com ⭐, <strong>filtre</strong> por contexto/tags/busca, <strong>exporte</strong> em JSON para backup.</p></div>';
+
+  // Stats
+  var fav = NOTAS.filter(function(n){return n.favorita;}).length;
+  var ctxs = {};
+  NOTAS.forEach(function(n){ ctxs[n.contexto||'Geral'] = (ctxs[n.contexto||'Geral']||0)+1; });
+  var totalTags = {}; NOTAS.forEach(function(n){(n.tags||[]).forEach(function(t){totalTags[t]=(totalTags[t]||0)+1;});});
+  html += '<div class="dash-card-secondary" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-bottom:1rem">';
+  html += '<div class="dash-card-mini"><div class="dash-mini-num">'+NOTAS.length+'</div><div class="dash-mini-label">Total de notas</div></div>';
+  html += '<div class="dash-card-mini"><div class="dash-mini-num">'+fav+'</div><div class="dash-mini-label">Favoritas</div></div>';
+  html += '<div class="dash-card-mini"><div class="dash-mini-num">'+Object.keys(ctxs).length+'</div><div class="dash-mini-label">Contextos</div></div>';
+  html += '<div class="dash-card-mini"><div class="dash-mini-num">'+Object.keys(totalTags).length+'</div><div class="dash-mini-label">Tags únicas</div></div>';
+  html += '</div>';
+
+  html += '<div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1rem">';
+  html += '<button class="btn" onclick="abrirNotas();setTimeout(novaNota,200)">＋ Nova nota</button>';
+  html += '<button class="btn btn-outline" onclick="abrirNotas()">📂 Abrir gerenciador</button>';
+  html += '<button class="btn btn-outline" onclick="exportarNotas()">⬇ Exportar (JSON)</button>';
+  html += '<button class="btn btn-outline" onclick="importarNotas()">⬆ Importar (JSON)</button>';
+  html += '</div>';
+
+  if(NOTAS.length===0) {
+    html += '<div style="text-align:center;padding:2.5rem 1rem;color:var(--muted)"><div style="font-size:3rem;opacity:0.4;margin-bottom:0.5rem">📝</div><p>Nenhuma nota criada ainda. Comece a anotar suas ideias, resumos e insights jurídicos!</p></div>';
+  } else {
+    // Lista todas as notas em grid
+    html += '<div class="card-grid">';
+    NOTAS.slice().sort(function(a,b){return (b.atualizadaEm||'').localeCompare(a.atualizadaEm||'');}).forEach(function(n){
+      var prev = (n.conteudo||'').substring(0,180).replace(/\[\[([^\]]+)\]\]/g,'🔗 $1');
+      var data = n.atualizadaEm ? new Date(n.atualizadaEm).toLocaleString('pt-BR') : '';
+      var fav = n.favorita ? '⭐ ' : '';
+      var tags = (n.tags||[]).map(function(t){return '<span class="tag pratica" style="background:rgba(201,168,108,0.1);color:var(--gold-light);font-size:0.6rem;margin-right:3px">'+t+'</span>';}).join('');
+      html += '<div class="card" onclick="abrirNotas();setTimeout(function(){editarNota(\''+n.id+'\')},200)" style="cursor:pointer">';
+      html += '<h3>'+fav+(n.titulo||'(sem título)')+'</h3>';
+      html += '<div style="font-size:0.78rem;color:#cbd5e1;line-height:1.5;margin-top:0.4rem;max-height:5em;overflow:hidden">'+prev+'</div>';
+      html += '<div style="margin-top:0.5rem;display:flex;flex-wrap:wrap;align-items:center;gap:0.3rem">';
+      html += '<span class="tag pratica" style="background:rgba(168,85,247,0.1);color:#c084fc;border:1px solid rgba(168,85,247,0.15)">📍 '+(n.contexto||'Geral')+'</span>';
+      html += tags;
+      html += '<span style="font-size:0.65rem;color:var(--muted);margin-left:auto">'+data+'</span>';
+      html += '</div></div>';
+    });
+    html += '</div>';
+  }
+  c.innerHTML = html;
+}
+
+// Manter badge atualizado e atalho Ctrl+N para nova nota
+window.addEventListener('keydown', function(e){
+  if((e.ctrlKey||e.metaKey) && e.key==='n' && !e.target.matches('input,textarea,select')) { e.preventDefault(); novaNota(); }
+  if(e.key==='Escape' && document.getElementById('notas-side').classList.contains('open')) { fecharNotas(); }
+});
+// Atualizar badge inicial
+setTimeout(function(){
+  var b = document.getElementById('notas-badge');
+  if(b) { b.textContent = NOTAS.length; b.style.display = NOTAS.length>0?'':'none'; }
+}, 500);
+
+// ===================================================================
+// ATUALIZACAO AUTOMATICA (GitHub - lucbruna/JurisPath)
+// ===================================================================
+var GITHUB_OWNER = 'lucbruna';
+var GITHUB_REPO = 'JurisPath';
+var GITHUB_BRANCH = 'main';
+var GITHUB_RAW = 'https://raw.githubusercontent.com/'+GITHUB_OWNER+'/'+GITHUB_REPO+'/'+GITHUB_BRANCH;
+
+function compararVersao(v1, v2) {
+  var p1=(v1||'0.0.0').split('.').map(Number), p2=(v2||'0.0.0').split('.').map(Number);
+  for(var i=0;i<Math.max(p1.length,p2.length);i++){var a=p1[i]||0,b=p2[i]||0;if(a>b)return 1;if(a<b)return -1;}
+  return 0;
+}
+
+function checarAtualizacaoSilenciosa() {
+  fetch(GITHUB_RAW+'/version.json?_='+Date.now()).then(r=>r.json()).then(remoto=>{
+    var local = localStorage.getItem('jurispath_version') || '1.0.0';
+    if(compararVersao(remoto.version, local) > 0) {
+      var badge = document.createElement('span');
+      badge.id = 'update-badge';
+      badge.style.cssText = 'position:absolute;top:-4px;right:-4px;background:#ef4444;color:white;font-size:0.55rem;padding:1px 4px;border-radius:8px;font-weight:700;animation:pulse 2s infinite';
+      badge.textContent = 'NOVO';
+      var btn = document.querySelector('button[onclick="verificarAtualizacao()"]');
+      if(btn && !document.getElementById('update-badge')) { btn.style.position='relative'; btn.appendChild(badge); }
+      window._novaVersao = remoto;
+    }
+  }).catch(()=>{});
+}
+
+function verificarAtualizacao() {
+  var btn = event && event.target;
+  if(btn) { btn.disabled = true; btn.textContent = '⏳'; }
+  fetch(GITHUB_RAW+'/version.json?_='+Date.now()).then(r=>r.json()).then(remoto=>{
+    var local = localStorage.getItem('jurispath_version') || '1.0.0';
+    var cmp = compararVersao(remoto.version, local);
+    if(btn) { btn.disabled = false; btn.textContent = '🔄'; }
+    if(cmp <= 0) {
+      alert('✅ JurisPath está atualizado!\n\nVersão local: v'+local+'\nVersão remota: v'+remoto.version);
+      return;
+    }
+    var changes = (remoto.changes||[]).slice(0,8).map(c=>'• '+c).join('\n');
+    var msg = '🎉 NOVA VERSÃO DISPONÍVEL!\n\n'+
+      'Local: v'+local+'\nRemota: v'+remoto.version+'\nLançada: '+(remoto.releaseDate||'')+'\n\n'+
+      (remoto.description||'')+'\n\nNovidades:\n'+changes+'\n\n'+
+      'Deseja atualizar agora?\n'+
+      '(O navegador irá baixar os novos arquivos e recarregar)';
+    if(!confirm(msg)) return;
+    baixarAtualizacao(remoto);
+  }).catch(err=>{
+    if(btn) { btn.disabled = false; btn.textContent = '🔄'; }
+    if(confirm('⚠ Não foi possível verificar online.\n\nDeseja executar o atualizador local (atualizar.ps1)?')) {
+      try {
+        var shell = new ActiveXObject('WScript.Shell');
+        shell.Run('powershell.exe -NoProfile -ExecutionPolicy Bypass -File "'+window.location.pathname.replace(/JurisPath\.html$/i, '').replace(/^\//,'')+'atualizar.ps1"', 1, false);
+      } catch(e) { alert('Não foi possível abrir o atualizador.\nExecute manualmente o arquivo "atualizar.ps1".'); }
+    }
+  });
+}
+
+function baixarAtualizacao(remoto) {
+  // Estratégia 1 (preferida): abrir o atualizador PowerShell que baixa tudo do GitHub
+  try {
+    var shell = new ActiveXObject('WScript.Shell');
+    var dir = window.location.pathname.replace(/JurisPath\.html$/i, '').replace(/^\//,'').replace(/\//g,'\\');
+    shell.Run('powershell.exe -NoProfile -ExecutionPolicy Bypass -File "'+dir+'atualizar.ps1"', 1, false);
+    setTimeout(()=>{ if(confirm('Atualizador iniciado.\n\nApós a conclusão, recarregar a página?')) location.reload(); }, 2000);
+    return;
+  } catch(e) {}
+  // Estratégia 2 (navegador puro): baixar JurisPath.html novo e oferecer download
+  fetch(GITHUB_RAW+'/JurisPath.html?_='+Date.now()).then(r=>r.text()).then(html=>{
+    var blob = new Blob([html], {type:'text/html'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'JurisPath.html';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(()=>URL.revokeObjectURL(url), 1000);
+    alert('✅ Novo JurisPath.html baixado!\n\nSubstitua o arquivo antigo pelo novo na pasta de instalação e recarregue a página.');
+    localStorage.setItem('jurispath_version', remoto.version);
+  }).catch(err=>{
+    alert('❌ Falha ao baixar atualização.\n\nAbra manualmente: '+GITHUB_RAW+'/JurisPath.html');
+  });
+}
+
 function salvarVersao() {
-  fetch('version.json')
-    .then(r => r.json())
-    .then(d => { localStorage.setItem('jurispath_version', d.version); })
-    .catch(() => {});
+  fetch('version.json').then(r => r.json()).then(d => {
+    localStorage.setItem('jurispath_version', d.version);
+    // checar atualização silenciosa 3 segundos após abrir (não atrapalha o boot)
+    setTimeout(checarAtualizacaoSilenciosa, 3000);
+  }).catch(() => { setTimeout(checarAtualizacaoSilenciosa, 3000); });
 }
 salvarVersao();
 

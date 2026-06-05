@@ -8,70 +8,102 @@
     "Português Jurídico",
     "Direito Civil I (Parte Geral)",
     "Metodologia Jurídica",
-    "Direito Romano"
+    "Direito Romano",
+    "História do Direito Brasileiro",
+    "Antropologia Jurídica"
   ],
   "semester2": [
     "Direito Constitucional II",
-    "Direito Civil II",
-    "Direito Penal I",
-    "Processo Civil I",
+    "Direito Civil II (Obrigações)",
+    "Direito Penal I (Parte Geral)",
+    "Processo Civil I (Teoria Geral)",
     "Direito Administrativo I",
-    "História do Direito"
+    "História do Direito Universal",
+    "Hermenêutica Jurídica",
+    "Lógica Jurídica"
   ],
   "semester3": [
-    "Direito Civil III",
-    "Direito Penal II",
-    "Processo Civil II",
+    "Direito Civil III (Contratos)",
+    "Direito Penal II (Parte Especial - Crimes contra a Pessoa)",
+    "Processo Civil II (Procedimento Comum)",
     "Direito do Trabalho I",
     "Direito Tributário I",
-    "Direito Constitucional III",
+    "Direito Constitucional III (Org. Estado e Poderes)",
     "Redação Jurídica",
-    "Economia"
+    "Economia",
+    "Teoria Geral do Estado"
   ],
   "semester4": [
-    "Direito do Trabalho II",
-    "Processo Penal",
-    "Direito Empresarial",
+    "Direito do Trabalho II (Contrato e Jornada)",
+    "Processo Penal (Inquérito e Ação)",
+    "Direito Empresarial I (Empresário e Sociedades)",
     "Direito do Consumidor",
-    "Direito Constitucional IV",
-    "Direito Administrativo II"
+    "Direito Constitucional IV (Direitos Fundamentais)",
+    "Direito Administrativo II (Atos e Contratos)",
+    "Direito Civil IV (Responsabilidade Civil)",
+    "Direito Penal III (Crimes contra o Patrimônio)"
   ],
   "semester5": [
-    "Direito Civil IV (Família e Sucessões)",
+    "Direito Civil V (Família)",
+    "Direito Civil VI (Sucessões)",
     "Direitos Humanos",
-    "Direito Constitucional V",
-    "Direito Penal III",
-    "Direito do Trabalho III",
-    "Direito Administrativo III",
-    "Direito Tributário II",
-    "Processo Civil III"
+    "Direito Constitucional V (Controle de Constitucionalidade)",
+    "Direito Penal IV (Crimes contra Adm. Pública)",
+    "Direito do Trabalho III (Sindical e Coletivo)",
+    "Direito Administrativo III (Servidores e Bens)",
+    "Direito Tributário II (Impostos)",
+    "Processo Civil III (Recursos)",
+    "Processo Penal II (Procedimentos)"
   ],
   "semester6": [
     "Processo do Trabalho",
     "Direito Internacional Público",
+    "Direito Internacional Privado",
     "Direito Previdenciário",
-    "Direito Tributário III",
-    "Direito Notarial e Registral"
+    "Direito Tributário III (Processo Tributário)",
+    "Direito Notarial e Registral",
+    "Direito Empresarial II (Títulos de Crédito e Falência)",
+    "Direito Ambiental",
+    "Direito Agrário",
+    "Mediação, Conciliação e Arbitragem"
   ],
   "semester7": [
     "Prática Jurídica Cível",
-    "Mediação e Conciliação",
-    "Direito Falimentar"
+    "Prática Jurídica Constitucional",
+    "Mediação e Conciliação Avançada",
+    "Direito Falimentar e Recuperacional",
+    "Direito Digital e LGPD",
+    "Direito Médico e da Saúde",
+    "Bioética e Biodireito"
   ],
   "semester8": [
     "Prática Jurídica Penal",
     "Prática Jurídica Trabalhista",
-    "Direito Ambiental",
+    "Direito Ambiental Avançado",
     "Direito Eleitoral",
-    "Direito do Comércio Internacional"
+    "Direito do Comércio Internacional",
+    "Compliance e Governança",
+    "Direito Desportivo",
+    "ESG e Direito Sustentável"
   ],
   "semester9": [
-    "Prática Avançada",
+    "Prática Avançada (Cível, Penal, Trabalhista, Tributária)",
     "TCC - Desenvolvimento",
-    "Ética Profissional"
+    "Ética Profissional (EOAB e CED)",
+    "Direito da Concorrência (CADE)",
+    "Direito Marítimo",
+    "Direito Aeronáutico",
+    "Direito Espacial",
+    "Direitos Autorais e Propriedade Intelectual"
   ],
   "semester10": [
-    "Preparação Intensiva OAB",
-    "Estágio Supervisionado"
+    "Preparação Intensiva OAB (1ª e 2ª fase)",
+    "Estágio Supervisionado",
+    "Prática Forense Integrada",
+    "Direito Penal Econômico",
+    "Direito Penal Militar",
+    "Direito Penal Internacional",
+    "Direito Constitucional Aplicado",
+    "Tópicos Avançados em Direito"
   ]
 }

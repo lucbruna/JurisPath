@@ -1,15 +1,17 @@
 [Setup]
 AppName=JurisPath PRO - Vade Mecum
-AppVersion=2.0
+AppVersion=2.1
 DefaultDirName={autopf}\JurisPath PRO
 OutputDir=Output
 OutputBaseFilename=JurisPath_PRO_Setup
 AppPublisher=JurisPath
-AppPublisherURL=https://github.com/SEU_USUARIO/jurispath-vade-mecum
+AppPublisherURL=https://github.com/lucbruna/JurisPath
 SetupIconFile=icon.ico
 Compression=lzma2/fast
 DiskSpanning=yes
 DiskSliceSize=max
+PrivilegesRequired=admin
+WizardStyle=modern
 
 [Files]
 Source: "JurisPath.html"; DestDir: "{app}"; Flags: ignoreversion
@@ -27,10 +29,15 @@ Source: "icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dados\*"; DestDir: "{app}\dados"; Flags: ignoreversion recursesubdirs
 
 [Icons]
-Name: "{commondesktop}\JurisPath PRO"; Filename: "{app}\JurisPath.html"; IconFilename: "{app}\icon.ico"
-Name: "{commondesktop}\JurisPath PRO (Atualizar)"; Filename: "powershell.exe"; Parameters: "-NoProfile -ExecutionPolicy Bypass -File ""{app}\atualizar.ps1"""; WorkingDir: "{app}"
+Name: "{commondesktop}\JurisPath PRO"; Filename: "{app}\JurisPath.html"; IconFilename: "{app}\icon.ico"; Comment: "Abrir JurisPath PRO no navegador"
+Name: "{commondesktop}\JurisPath PRO (Atualizar)"; Filename: "powershell.exe"; Parameters: "-NoProfile -ExecutionPolicy Bypass -File ""{app}\atualizar.ps1"""; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"; Comment: "Verificar e instalar atualizacoes do GitHub"
 Name: "{group}\JurisPath PRO"; Filename: "{app}\JurisPath.html"; IconFilename: "{app}\icon.ico"
 Name: "{group}\Atualizar JurisPath"; Filename: "powershell.exe"; Parameters: "-NoProfile -ExecutionPolicy Bypass -File ""{app}\atualizar.ps1"""; WorkingDir: "{app}"
+Name: "{group}\Reinstalar / Repararar"; Filename: "powershell.exe"; Parameters: "-NoProfile -ExecutionPolicy Bypass -File ""{app}\instalar.ps1"""; WorkingDir: "{app}"
 
 [Run]
+Filename: "powershell.exe"; Parameters: "-NoProfile -ExecutionPolicy Bypass -File ""{app}\atualizar.ps1"""; WorkingDir: "{app}"; Description: "Buscar atualizacoes (recomendado)"; Flags: postinstall nowait runhidden skipifsilent unchecked
 Filename: "{app}\JurisPath.html"; Description: "Abrir JurisPath PRO"; Flags: postinstall nowait shellexec
+
+[UninstallDelete]
+Type: filesandordirs; Name: "{app}\backups"

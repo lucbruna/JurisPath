@@ -1,11 +1,11 @@
 # ============================================================
 # Atualizador Automático - JurisPath PRO / Vade Mecum
 # ============================================================
-# CONFIGURACOES - Edite antes de usar!
+# CONFIGURACOES (repositorio oficial)
 # ============================================================
-$REPO_OWNER = "SEU_USUARIO"          # Ex: "joaosilva"
-$REPO_NAME  = "jurispath-vade-mecum"  # Ex: "jurispath-vade-mecum"
-$REPO_BRANCH = "main"                 # Branch com os arquivos atualizados
+$REPO_OWNER = "lucbruna"
+$REPO_NAME  = "JurisPath"
+$REPO_BRANCH = "main"
 $GITHUB_RAW = "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/$REPO_BRANCH"
 
 $PROJECT_DIR = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -21,7 +21,11 @@ $FILES_TO_UPDATE = @(
     "dados/videos.js",
     "dados/documentos.js",
     "dados/jurisprudencia.js",
-    "dados/questoes.js"
+    "dados/questoes.js",
+    "atualizar.ps1",
+    "instalar.ps1",
+    "jurispath.bat",
+    "EstudiosDireitoInstaller.iss"
 )
 
 $ErrorActionPreference = "Stop"
