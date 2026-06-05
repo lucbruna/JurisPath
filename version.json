@@ -1,7 +1,7 @@
 {
-  "version": "2.1.0",
+  "version": "2.2.0",
   "releaseDate": "2026-06-05",
-  "description": "CF/88 atalho + Agenda Profissional + Bloco de Notas universal + auto-update",
+  "description": "Mapa Mental interativo + Sistema de Lembretes de eventos",
   "files": [
     "JurisPath.html",
     "vade.js",
@@ -18,13 +18,19 @@
     "EstudiosDireitoInstaller.iss"
   ],
   "changes": [
-    "Atalho direto CF/88 (Constituicao Federal completa) na barra",
-    "Agenda Profissional completa com calendario mensal, dia, hora, categorias e lembretes",
-    "Bloco de Notas universal flutuante em todas as paginas (interligado por backlinks)",
-    "Atalhos rapidos na barra: Vade Mecum, Livros, Videos, PDFs, Flash, OAB",
-    "Auto-atualizacao via GitHub (repo lucbruna/JurisPath) com verificacao silenciosa",
-    "Materias ampliadas: 1o-10o semestres + disciplinas complementares (Bioetica, Direito Digital, Compliance, LGPD, ESG, Direito Desportivo, Medico, Sucessoes, Internacional Privado)",
-    "Estrategia anti-perda: notas/agenda salvas em localStorage e exportaveis (JSON)",
-    "Botao 'verificar atualizacoes' agora baixa automaticamente do GitHub"
+    "Mapa Mental interativo: SVG com nos arrastaveis, conexoes pai/filho, zoom, pan, multi-mapa",
+    "Editor lateral de nos: cor, texto, notas, conexoes",
+    "Exportar/Importar mapas em JSON, exportar PNG do mapa atual",
+    "Duplicar e excluir mapas; mapa de exemplo 'Direito Penal - Crimes'",
+    "Atalho IA para gerar mapa mental estruturado a partir de materia",
+    "Sistema de Lembretes: notificacoes nativas do navegador + banner no app + som",
+    "Botao flutuante 🔔 para abrir painel de configuracao de lembretes",
+    "Badge mostra quantos eventos tem notificacao hoje",
+    "Por evento: antecedencia configuravel (0/5/10/15/30 min, 1/2h, 1 dia)",
+    "Adiar lembrete em 10 minutos; auto-fechamento de banners em 60s",
+    "Checagem automatica a cada 30 segundos; persistencia de configuracao em localStorage",
+    "Classificacao automatica de urgencia: urgente (≤5min), alerta (1 dia), info (≥1h), normal",
+    "Cards no Dashboard para acesso rapido a Mapa Mental e Lembretes",
+    "Compatibilidade: agenda antiga (sem campo lembrete) continua funcionando"
   ]
 }

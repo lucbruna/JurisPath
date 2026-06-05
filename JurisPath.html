@@ -288,6 +288,108 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 .notas-fab{position:fixed;bottom:5rem;right:5rem;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#10b981,#059669);border:none;color:white;font-size:1.4rem;cursor:pointer;box-shadow:0 4px 20px rgba(16,185,129,0.3);z-index:150;transition:0.3s;display:flex;align-items:center;justify-content:center}
 .notas-fab:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(16,185,129,0.4)}
 .notas-fab .badge{position:absolute;top:-3px;right:-3px;background:var(--gold);color:#0a0a0f;font-size:0.55rem;padding:1px 5px;border-radius:9px;font-weight:700;min-width:16px;text-align:center}
+
+/* ============================================================ */
+/* MAPA MENTAL - canvas SVG interativo                          */
+/* ============================================================ */
+.mapa-container{position:relative;width:100%;height:calc(100vh - 280px);min-height:500px;background:radial-gradient(circle at center,rgba(99,102,241,0.04) 0%,rgba(10,10,15,0.95) 70%);border:1px solid rgba(99,102,241,0.2);border-radius:12px;overflow:hidden;cursor:grab;user-select:none}
+.mapa-container.panning{cursor:grabbing}
+.mapa-container.connecting{cursor:crosshair}
+.mapa-svg{width:100%;height:100%;display:block}
+.mapa-svg .grid{stroke:rgba(99,102,241,0.06);stroke-width:1}
+.mapa-svg .conn{stroke:rgba(167,139,250,0.5);stroke-width:2;fill:none;transition:stroke 0.2s}
+.mapa-svg .conn:hover{stroke:rgba(167,139,250,0.9);stroke-width:3}
+.mapa-svg .node-rect{transition:all 0.2s;cursor:move;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.3))}
+.mapa-svg .node-rect:hover{filter:drop-shadow(0 4px 12px rgba(99,102,241,0.4))}
+.mapa-svg .node-rect.selected{stroke:#fbbf24;stroke-width:3}
+.mapa-svg .node-text{fill:#fff;font-family:Inter,sans-serif;font-size:13px;pointer-events:none;text-anchor:middle;dominant-baseline:middle;font-weight:500}
+.mapa-svg .node-text.root{font-size:15px;font-weight:700}
+.mapa-svg .node-circle{cursor:pointer;transition:all 0.2s}
+.mapa-svg .node-circle:hover{r:8}
+.mapa-toolbar{position:absolute;top:0.8rem;left:0.8rem;display:flex;gap:0.4rem;background:rgba(10,10,15,0.85);padding:0.5rem 0.7rem;border-radius:10px;backdrop-filter:blur(10px);border:1px solid rgba(99,102,241,0.2);z-index:5;flex-wrap:wrap;max-width:calc(100% - 1.6rem)}
+.mapa-toolbar button,.mapa-toolbar select{background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);color:#e5e7eb;padding:0.4rem 0.7rem;border-radius:7px;cursor:pointer;font-size:0.78rem;transition:0.2s;display:inline-flex;align-items:center;gap:0.3rem}
+.mapa-toolbar button:hover,.mapa-toolbar select:hover{background:rgba(99,102,241,0.3);border-color:rgba(99,102,241,0.5)}
+.mapa-toolbar button.danger{background:rgba(239,68,68,0.15);border-color:rgba(239,68,68,0.3)}
+.mapa-toolbar button.danger:hover{background:rgba(239,68,68,0.3)}
+.mapa-toolbar button.primary{background:linear-gradient(135deg,#10b981,#059669);border-color:transparent;color:#fff;font-weight:600}
+.mapa-toolbar button.primary:hover{background:linear-gradient(135deg,#34d399,#10b981)}
+.mapa-toolbar select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#a78bfa 50%),linear-gradient(135deg,#a78bfa 50%,transparent 50%);background-position:calc(100% - 12px) center,calc(100% - 7px) center;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:1.6rem}
+.mapa-info{position:absolute;bottom:0.8rem;left:0.8rem;background:rgba(10,10,15,0.85);padding:0.4rem 0.7rem;border-radius:7px;font-size:0.72rem;color:var(--muted);backdrop-filter:blur(10px);border:1px solid rgba(99,102,241,0.15);z-index:5}
+.mapa-legend{position:absolute;top:0.8rem;right:0.8rem;background:rgba(10,10,15,0.85);padding:0.6rem 0.8rem;border-radius:10px;backdrop-filter:blur(10px);border:1px solid rgba(99,102,241,0.2);z-index:5;font-size:0.72rem;color:var(--muted);max-width:200px}
+.mapa-legend strong{color:#a78bfa;display:block;margin-bottom:0.3rem}
+.mapa-legend div{padding:0.15rem 0}
+.mapa-sidebar{position:absolute;right:0.8rem;top:4.5rem;width:240px;background:rgba(10,10,15,0.95);border:1px solid rgba(99,102,241,0.3);border-radius:10px;padding:0.8rem;backdrop-filter:blur(10px);z-index:6;display:none;max-height:60vh;overflow-y:auto}
+.mapa-sidebar.show{display:block}
+.mapa-sidebar h4{margin:0 0 0.6rem;font-size:0.9rem;color:#a78bfa}
+.mapa-sidebar label{display:block;font-size:0.72rem;color:var(--muted);margin-bottom:0.3rem}
+.mapa-sidebar input,.mapa-sidebar textarea,.mapa-sidebar select{width:100%;padding:0.4rem 0.5rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;color:#e5e7eb;font-size:0.78rem;margin-bottom:0.5rem;font-family:inherit}
+.mapa-sidebar textarea{min-height:60px;resize:vertical}
+.mapa-sidebar .color-picker{display:grid;grid-template-columns:repeat(6,1fr);gap:0.3rem;margin-bottom:0.5rem}
+.mapa-sidebar .color-picker div{width:100%;aspect-ratio:1;border-radius:5px;cursor:pointer;border:2px solid transparent;transition:0.2s}
+.mapa-sidebar .color-picker div:hover{transform:scale(1.15)}
+.mapa-sidebar .color-picker div.selected{border-color:#fbbf24;box-shadow:0 0 0 2px rgba(251,191,36,0.3)}
+.mapa-sidebar button{width:100%;padding:0.5rem;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;border:none;border-radius:6px;cursor:pointer;font-size:0.78rem;font-weight:600;margin-top:0.3rem;transition:0.2s}
+.mapa-sidebar button:hover{background:linear-gradient(135deg,#818cf8,#a78bfa)}
+.mapa-sidebar button.danger{background:linear-gradient(135deg,#ef4444,#dc2626)}
+.mapa-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.7rem;margin-bottom:1rem}
+.mapa-list-item{background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.2);padding:0.7rem 0.8rem;border-radius:8px;cursor:pointer;transition:0.2s;display:flex;flex-direction:column;gap:0.3rem}
+.mapa-list-item:hover{background:rgba(99,102,241,0.12);border-color:rgba(99,102,241,0.4);transform:translateY(-1px)}
+.mapa-list-item.active{background:linear-gradient(135deg,rgba(99,102,241,0.2),rgba(139,92,246,0.15));border-color:#a78bfa}
+.mapa-list-item h4{margin:0;font-size:0.88rem;color:#e5e7eb;display:flex;align-items:center;gap:0.4rem}
+.mapa-list-item .meta{font-size:0.7rem;color:var(--muted);display:flex;gap:0.6rem}
+.mapa-list-item .meta span::before{content:'●';margin-right:0.2rem;opacity:0.6}
+.mapa-list-item .actions{display:flex;gap:0.3rem;margin-top:0.3rem}
+.mapa-list-item .actions button{background:transparent;border:1px solid rgba(255,255,255,0.1);color:var(--muted);padding:0.2rem 0.5rem;font-size:0.7rem;border-radius:5px;cursor:pointer;transition:0.2s}
+.mapa-list-item .actions button:hover{background:rgba(255,255,255,0.06);color:white}
+
+/* ============================================================ */
+/* LEMBRETES - sistema de notificacoes de eventos da agenda     */
+/* ============================================================ */
+.lembrete-banner{position:fixed;top:1rem;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#dc2626,#b91c1c);color:white;padding:1rem 1.4rem;border-radius:12px;box-shadow:0 8px 32px rgba(220,38,38,0.4);z-index:10000;display:flex;align-items:center;gap:1rem;max-width:500px;animation:slideDown 0.4s ease-out;border:2px solid rgba(255,255,255,0.2)}
+.lembrete-banner.normal{background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 8px 32px rgba(245,158,11,0.4)}
+.lembrete-banner.info{background:linear-gradient(135deg,#3b82f6,#2563eb);box-shadow:0 8px 32px rgba(59,130,246,0.4)}
+.lembrete-banner .ico{font-size:2.2rem;animation:pulse 1.5s infinite}
+.lembrete-banner .content{flex:1}
+.lembrete-banner .content h3{margin:0 0 0.2rem;font-size:1rem}
+.lembrete-banner .content p{margin:0;font-size:0.85rem;opacity:0.95}
+.lembrete-banner .actions{display:flex;flex-direction:column;gap:0.3rem}
+.lembrete-banner .actions button{background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.3);padding:0.4rem 0.8rem;border-radius:7px;cursor:pointer;font-size:0.78rem;font-weight:600;transition:0.2s;white-space:nowrap}
+.lembrete-banner .actions button:hover{background:rgba(255,255,255,0.3)}
+.lembrete-banner .actions button.primary{background:white;color:#dc2626}
+.lembrete-banner .actions button.primary.normal{color:#f59e0b}
+.lembrete-banner .actions button.primary.info{color:#3b82f6}
+@keyframes slideDown{from{transform:translate(-50%,-100%);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.lembrete-stack{position:fixed;top:1rem;right:1rem;display:flex;flex-direction:column;gap:0.5rem;z-index:9999;pointer-events:none}
+.lembrete-stack .toast{background:rgba(10,10,15,0.95);border:1px solid rgba(99,102,241,0.3);border-left:4px solid #a78bfa;padding:0.6rem 0.9rem;border-radius:8px;backdrop-filter:blur(10px);color:#e5e7eb;font-size:0.8rem;max-width:320px;box-shadow:0 4px 20px rgba(0,0,0,0.4);animation:slideIn 0.3s;pointer-events:auto;cursor:pointer}
+.lembrete-stack .toast.urgente{border-left-color:#ef4444}
+.lembrete-stack .toast.alerta{border-left-color:#f59e0b}
+.lembrete-stack .toast.normal{border-left-color:#3b82f6}
+.lembrete-stack .toast strong{display:block;margin-bottom:0.2rem;font-size:0.85rem}
+.lembrete-stack .toast .meta{font-size:0.7rem;color:var(--muted);margin-top:0.2rem}
+@keyframes slideIn{from{transform:translateX(120%);opacity:0}to{transform:translateX(0);opacity:1}}
+.lembrete-btn-notif{position:fixed;bottom:5rem;left:5rem;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#f59e0b,#d97706);border:none;color:white;font-size:1.2rem;cursor:pointer;box-shadow:0 4px 20px rgba(245,158,11,0.3);z-index:150;transition:0.3s;display:flex;align-items:center;justify-content:center;position:relative}
+.lembrete-btn-notif:hover{transform:scale(1.1)}
+.lembrete-btn-notif.muted{background:linear-gradient(135deg,#6b7280,#4b5563);box-shadow:0 4px 20px rgba(107,114,128,0.2)}
+.lembrete-btn-notif .badge{position:absolute;top:-3px;right:-3px;background:#ef4444;color:white;font-size:0.55rem;padding:1px 5px;border-radius:9px;font-weight:700;min-width:18px;text-align:center;animation:pulse 2s infinite}
+.lembrete-panel{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#0a0a0f;border:1px solid rgba(99,102,241,0.3);border-radius:14px;padding:1.5rem;width:min(480px,92vw);max-height:80vh;overflow-y:auto;z-index:10001;box-shadow:0 20px 60px rgba(0,0,0,0.6);display:none}
+.lembrete-panel.show{display:block;animation:slideIn 0.3s}
+.lembrete-panel h3{margin:0 0 1rem;font-size:1.1rem;color:#a78bfa;display:flex;align-items:center;gap:0.5rem}
+.lembrete-panel .row{display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.4rem;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.85rem}
+.lembrete-panel .row:last-child{border-bottom:none}
+.lembrete-panel .row label{cursor:pointer;flex:1}
+.lembrete-panel .switch{position:relative;width:42px;height:22px;background:rgba(255,255,255,0.1);border-radius:11px;cursor:pointer;transition:0.3s;flex-shrink:0}
+.lembrete-panel .switch::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;background:white;border-radius:50%;transition:0.3s}
+.lembrete-panel .switch.on{background:linear-gradient(135deg,#10b981,#059669)}
+.lembrete-panel .switch.on::after{left:22px}
+.lembrete-panel .close{position:absolute;top:0.7rem;right:0.9rem;background:transparent;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;padding:0;line-height:1}
+.lembrete-panel .close:hover{color:white}
+.lembrete-panel .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:1rem}
+.lembrete-panel .stat-grid div{background:rgba(99,102,241,0.06);padding:0.6rem;border-radius:8px;text-align:center;border:1px solid rgba(99,102,241,0.15)}
+.lembrete-panel .stat-grid strong{display:block;font-size:1.4rem;color:#a78bfa}
+.lembrete-panel .stat-grid span{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
+.lembrete-panel .select-wrap{position:relative;width:100%}
+.lembrete-panel select{width:100%;padding:0.5rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;color:#e5e7eb;font-size:0.85rem;appearance:none;cursor:pointer}
 .notas-side{position:fixed;top:0;right:-420px;width:420px;height:100vh;background:var(--card);border-left:1px solid rgba(201,168,108,0.1);z-index:170;display:flex;flex-direction:column;transition:right 0.35s cubic-bezier(0.22,1,0.36,1);box-shadow:-20px 0 40px rgba(0,0,0,0.4)}
 .notas-side.open{right:0}
 @media(max-width:500px){.notas-side{width:100%;right:-100%}}
@@ -484,6 +586,10 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 
 <!-- BOTAO FLUTUANTE BLOCO DE NOTAS (universal, todas as paginas) -->
 <button class="notas-fab" id="notas-fab" onclick="abrirNotas()" title="Bloco de Notas (interligado)">📝<span class="badge" id="notas-badge" style="display:none">0</span></button>
+
+<!-- BOTAO FLUTUANTE LEMBRETES (toggle de notificacoes) -->
+<button class="lembrete-btn-notif" id="lembrete-btn-notif" onclick="abrirPainelLembretes()" title="Lembretes e notificacoes">🔔<span class="badge" id="lembrete-badge" style="display:none">0</span></button>
+<div class="lembrete-stack" id="lembrete-stack"></div>
 
 <!-- PAINEL LATERAL DE NOTAS (interligado, todas as paginas) -->
 <div class="notas-side" id="notas-side">
@@ -11935,6 +12041,12 @@ function renderTabs() {
   cf.textContent = '📜 CF/88';
   cf.onclick = () => switchTab('cf88');
   c.appendChild(cf);
+  // Mapa Mental (novo)
+  const mp = document.createElement('div');
+  mp.className = `tab ${STATE.currentTab==='mapa'?'active':''}`;
+  mp.textContent = '🧠 Mapa';
+  mp.onclick = () => switchTab('mapa');
+  c.appendChild(mp);
   for(let i=1;i<=10;i++) {
     const t = document.createElement('div');
     t.className = `tab ${i===Number(STATE.currentTab)?'active':''}`;
@@ -11987,7 +12099,8 @@ function renderAtalhoBar() {
     '<a class="atalho" onclick="switchTab(\'documentos\')">📄 PDFs jurídicos</a>' +
     '<a class="atalho" onclick="switchTab(\'livros\')">📚 Livros</a>' +
     '<a class="atalho" onclick="abrirNotas()">📝 Minhas notas</a>' +
-    '<a class="atalho" onclick="switchTab(\'agenda\')">📅 Minha agenda</a>';
+    '<a class="atalho" onclick="switchTab(\'agenda\')">📅 Minha agenda</a>' +
+    '<a class="atalho" onclick="switchTab(\'mapa\')">🧠 Mapa Mental</a>';
 }
 
 function irLei(ramoId, leiSigla) {
@@ -12022,10 +12135,14 @@ function irLei(ramoId, leiSigla) {
 function switchTab(key) {
   STATE.currentTab = key;
   renderTabs(); renderContent(); updateStats();
-  if(key!=='dash') document.getElementById('sem-count').textContent = key==='oab1'?'🎯':key==='vade'?'📕':key==='flash'?'🃏':key==='livros'?'📚':key==='videos'?'🎬':key==='documentos'?'📄':key==='cf88'?'📜':key==='agenda'?'📅':key==='notas'?'📝':`${key}º`;
+  if(key!=='dash') document.getElementById('sem-count').textContent = key==='oab1'?'🎯':key==='vade'?'📕':key==='flash'?'🃏':key==='livros'?'📚':key==='videos'?'🎬':key==='documentos'?'📄':key==='cf88'?'📜':key==='agenda'?'📅':key==='notas'?'📝':key==='mapa'?'🧠':`${key}º`;
   // Mostrar FAB apenas nas abas com importacao
   var fab = document.getElementById('fab-import');
   if(fab) fab.className = 'fab-import' + (key==='videos'||key==='documentos'||key==='livros'||(!isNaN(key)&&key>=1&&key<=10)?' show':'');
+  // Re-renderizar mapa mental se for a aba ativa (atualizar canvas apos layout)
+  if(key==='mapa' && typeof MAPA_STATE!=='undefined' && MAPA_STATE.atual) {
+    setTimeout(function(){ if(typeof renderMapaCanvas==='function') renderMapaCanvas(); }, 50);
+  }
 }
 
 function renderContent() {
@@ -12040,6 +12157,7 @@ function renderContent() {
   if(STATE.currentTab==='cf88') return renderCF88();
   if(STATE.currentTab==='agenda') return renderAgenda();
   if(STATE.currentTab==='notas') return renderNotasTab();
+  if(STATE.currentTab==='mapa') return renderMapaMental();
   const sem = DATA.semestres[STATE.currentTab];
   if(!sem) return;
   let html = `<h2 class="section-title">${sem.titulo}</h2>
@@ -12560,6 +12678,15 @@ function renderDashboard() {
 
   // Recomendações
   html += `<h2 class="section-title">💡 Recomendações</h2><div class="rec-grid">`;
+  // Atalho para Mapa Mental
+  html += `<div class="rec-card" onclick="switchTab('mapa')"><span class="rec-icon">🧠</span><div class="rec-title">Mapa Mental</div><div class="rec-desc">Visualize e conecte conceitos de qualquer matéria. Crie mapas ilimitados.</div></div>`;
+  // Atalho para Lembretes
+  var proxLembretes = (typeof AGENDA!=='undefined') ? AGENDA.filter(function(e){
+    if(e.lembrete===false) return false;
+    var dt = new Date(e.data+'T'+(e.hora||'00:00')+':00');
+    return dt.getTime() > Date.now();
+  }).length : 0;
+  html += `<div class="rec-card" onclick="abrirPainelLembretes()"><span class="rec-icon">🔔</span><div class="rec-title">Lembretes Ativos</div><div class="rec-desc">${proxLembretes} evento(s) com notificação. Configure sons e alertas do navegador.</div></div>`;
   const recs = gerarRecomendacoes(pctGeral, unicas, qTotal, aulasHist);
   recs.forEach(r=>{
     html += `<div class="rec-card" onclick="${r.acao}"><span class="rec-icon">${r.icone}</span><div class="rec-title">${r.titulo}</div><div class="rec-desc">${r.desc}</div></div>`;
@@ -13344,6 +13471,7 @@ function renderAgenda() {
   html += '<select id="ag-cat"><option value="lemb" style="background:#1a1410">🔔 Lembrete</option><option value="audi" style="background:#1a1410">⚖️ Audiência</option><option value="prazo" style="background:#1a1410">⏰ Prazo</option><option value="reun" style="background:#1a1410">👥 Reunião</option><option value="est" style="background:#1a1410">📚 Estudo</option></select>';
   html += '<input type="text" id="ag-local" placeholder="Local / Fórum / Link (opcional)">';
   html += '<textarea id="ag-desc" rows="3" placeholder="Descrição, parte, número do processo..." style="background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,108,0.1);border-radius:6px;padding:0.4rem 0.55rem;color:var(--text);font-size:0.78rem;outline:none;width:100%;font-family:inherit;resize:vertical;margin-bottom:0.4rem"></textarea>';
+  html += '<div class="ag-row" style="align-items:center;gap:0.5rem"><label style="font-size:0.72rem;color:var(--muted);display:flex;align-items:center;gap:0.3rem;cursor:pointer"><input type="checkbox" id="ag-lembrete" checked>🔔 Notificar antes</label><select id="ag-antecedencia" style="flex:1;font-size:0.72rem;padding:0.3rem;background:rgba(0,0,0,0.3);border:1px solid rgba(201,168,108,0.15);border-radius:5px;color:var(--text)"><option value="0">No horário</option><option value="5">5 min antes</option><option value="10">10 min antes</option><option value="15" selected>15 min antes</option><option value="30">30 min antes</option><option value="60">1 hora antes</option><option value="120">2 horas antes</option><option value="1440">1 dia antes</option></select></div>';
   html += '<div style="display:flex;gap:0.3rem;justify-content:flex-end"><button class="btn btn-sm btn-outline" onclick="agToggleForm()" style="font-size:0.72rem">Cancelar</button><button class="btn btn-sm" onclick="agSalvar()" style="font-size:0.72rem">💾 Salvar</button></div>';
   html += '</div>';
   // Listar eventos do dia
@@ -13438,12 +13566,15 @@ function agSalvar() {
   var cat = document.getElementById('ag-cat').value;
   var local = document.getElementById('ag-local').value.trim();
   var desc = document.getElementById('ag-desc').value.trim();
+  var lembrete = document.getElementById('ag-lembrete') ? document.getElementById('ag-lembrete').checked : true;
+  var antecedencia = document.getElementById('ag-antecedencia') ? parseInt(document.getElementById('ag-antecedencia').value) : 15;
   if(!tit) { alert('Informe o título do compromisso.'); return; }
   if(!data) { alert('Informe a data.'); return; }
-  var ev = { id:'ev_'+Date.now()+'_'+Math.random().toString(36).slice(2,7), titulo:tit, data:data, hora:hora, cat:cat, local:local, desc:desc, criadoEm:new Date().toISOString() };
+  var ev = { id:'ev_'+Date.now()+'_'+Math.random().toString(36).slice(2,7), titulo:tit, data:data, hora:hora, cat:cat, local:local, desc:desc, lembrete:lembrete, antecedencia:antecedencia, criadoEm:new Date().toISOString() };
   AGENDA.push(ev);
   salvarAgenda();
   renderAgenda();
+  atualizarBadgeLembretes();
 }
 function agExcluir(id) {
   if(!confirm('Excluir este compromisso?')) return;
@@ -14010,7 +14141,985 @@ PERFIL.registrarAcesso();
 atualizarSaudacao();
 renderTabs();
 if(PERFIL.totalAcessos>1) switchTab('dash'); else switchTab('1');
+
+// ============================================================
+// SISTEMA DE MAPA MENTAL
+// Armazenamento: localStorage jurispath_mapas
+// Cada mapa: {id, titulo, materia, cor, criado, atualizado, nos:[{id,texto,x,y,cor,parent,tipo}]}
+// ============================================================
+var MAPAS = [];
+var MAPA_STATE = {
+  atual: null,         // id do mapa atual
+  zoom: 1,
+  pan: {x:0, y:0},
+  arrastandoNo: null,
+  arrastandoPan: null,
+  conectando: null,    // id do no origem
+  selecionado: null,
+  editandoNo: null
+};
+
+function carregarMapas() {
+  try {
+    var raw = localStorage.getItem('jurispath_mapas');
+    MAPAS = raw ? JSON.parse(raw) : [];
+  } catch(e) { MAPAS = []; }
+  if(MAPAS.length === 0) {
+    // mapa de exemplo
+    var exemplo = {
+      id: 'mapa_' + Date.now(),
+      titulo: 'Direito Penal - Crimes',
+      materia: 'penal',
+      cor: '#ef4444',
+      criado: new Date().toISOString(),
+      atualizado: new Date().toISOString(),
+      nos: [
+        {id:'n1', texto:'Crimes', x:0, y:0, cor:'#ef4444', parent:null, tipo:'root'},
+        {id:'n2', texto:'Contra a pessoa', x:-220, y:-110, cor:'#dc2626', parent:'n1', tipo:'child'},
+        {id:'n3', texto:'Homicídio (CP 121)', x:-380, y:-200, cor:'#b91c1c', parent:'n2', tipo:'leaf'},
+        {id:'n4', texto:'Lesão corporal (CP 129)', x:-380, y:-110, cor:'#b91c1c', parent:'n2', tipo:'leaf'},
+        {id:'n5', texto:'Contra o patrimônio', x:-220, y:0, cor:'#dc2626', parent:'n1', tipo:'child'},
+        {id:'n6', texto:'Furto (CP 155)', x:-380, y:60, cor:'#b91c1c', parent:'n5', tipo:'leaf'},
+        {id:'n7', texto:'Roubo (CP 157)', x:-380, y:150, cor:'#b91c1c', parent:'n5', tipo:'leaf'},
+        {id:'n8', texto:'Estelionato (CP 171)', x:-380, y:240, cor:'#b91c1c', parent:'n5', tipo:'leaf'},
+        {id:'n9', texto:'Contra a dignidade sexual', x:0, y:-110, cor:'#dc2626', parent:'n1', tipo:'child'},
+        {id:'n10', texto:'Estupro (CP 213)', x:160, y:-150, cor:'#b91c1c', parent:'n9', tipo:'leaf'},
+        {id:'n11', texto:'Importação sexual (CP 215)', x:160, y:-50, cor:'#b91c1c', parent:'n9', tipo:'leaf'}
+      ]
+    };
+    MAPAS.push(exemplo);
+    salvarMapas();
+  }
+  if(!MAPA_STATE.atual && MAPAS.length > 0) MAPA_STATE.atual = MAPAS[0].id;
+}
+
+function salvarMapas() {
+  try {
+    localStorage.setItem('jurispath_mapas', JSON.stringify(MAPAS));
+  } catch(e) { console.warn('Erro ao salvar mapas:', e); }
+}
+
+function getMapaAtual() {
+  if(!MAPA_STATE.atual) return null;
+  return MAPAS.find(function(m){ return m.id === MAPA_STATE.atual; });
+}
+
+function renderMapaMental() {
+  carregarMapas();
+  var c = document.getElementById('content');
+  if(!c) return;
+  var html = '';
+  html += '<h2 class="section-title">🧠 Mapa Mental</h2>';
+  html += '<p style="color:var(--muted);font-size:0.88rem;margin-bottom:1rem">Visualize, conecte e expanda conceitos. Arraste nós, conecte pais e filhos, duplo-clique para editar.</p>';
+  // Lista de mapas existentes
+  html += '<div class="mapa-list">';
+  MAPAS.forEach(function(m){
+    var ativo = m.id === MAPA_STATE.atual;
+    html += '<div class="mapa-list-item '+(ativo?'active':'')+'" onclick="selecionarMapa(\''+m.id+'\')">';
+    html += '<h4><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:'+m.cor+';margin-right:0.3rem"></span>'+m.titulo+'</h4>';
+    html += '<div class="meta"><span>'+(m.materia||'Geral')+'</span><span>'+m.nos.length+' nós</span></div>';
+    html += '<div class="actions">';
+    html += '<button onclick="event.stopPropagation();duplicarMapa(\''+m.id+'\')">📋 Duplicar</button>';
+    html += '<button onclick="event.stopPropagation();exportarMapa(\''+m.id+'\')">⬇ JSON</button>';
+    if(MAPAS.length>1) html += '<button onclick="event.stopPropagation();excluirMapa(\''+m.id+'\')">🗑</button>';
+    html += '</div></div>';
+  });
+  html += '</div>';
+  // Toolbar + canvas
+  html += '<div class="mapa-container" id="mapa-container">';
+  html += '<div class="mapa-toolbar">';
+  html += '<button onclick="novoMapa()" title="Criar novo mapa">＋ Novo</button>';
+  html += '<select id="mapa-materia" onchange="mudarMateriaMapa(this.value)" title="Filtrar por matéria">';
+  html += '<option value="">Todas matérias</option>';
+  ['constitucional','civil','penal','trabalho','tributario','consumidor','administrativo','previdenciario','processo_civil','processo_penal','empresarial','ambiental','familia','internacional','penal_militar','eleitoral','financeiro','agrario'].forEach(function(mat){
+    html += '<option value="'+mat+'">'+mat.replace(/_/g,' ').replace(/\b\w/g,function(l){return l.toUpperCase()})+'</option>';
+  });
+  html += '</select>';
+  html += '<button onclick="adicionarNoRaiz()" title="Adicionar nó central">🎯 Nó Raiz</button>';
+  html += '<button onclick="toggleModoConexao()" id="btn-modo-conexao" title="Clique em um nó e depois em outro para conectar">🔗 Conectar</button>';
+  html += '<button onclick="abrirEditorNo()" title="Editar nó selecionado">✏️ Editar</button>';
+  html += '<button class="danger" onclick="excluirNo()" title="Excluir nó">🗑 Excluir</button>';
+  html += '<button onclick="abrirIAparaMapa()" title="Gerar mapa com IA">🤖 IA</button>';
+  html += '<button onclick="exportarMapaPNG()" title="Exportar imagem">🖼 PNG</button>';
+  html += '<button onclick="importarMapa()" title="Importar JSON">⬆ Importar</button>';
+  html += '<button onclick="zoomMapa(1.2)" title="Aproximar">＋</button>';
+  html += '<button onclick="zoomMapa(0.83)" title="Afastar">−</button>';
+  html += '<button onclick="centralizarMapa()" title="Centralizar">⌂</button>';
+  html += '</div>';
+  html += '<div class="mapa-legend">';
+  html += '<strong>Atalhos</strong>';
+  html += '<div>🖱 Arrastar nó: mover</div>';
+  html += '<div>🖱 Scroll: zoom</div>';
+  html += '<div>🖱 Centro+arrastar: pan</div>';
+  html += '<div>🖱 Duplo-clique: editar</div>';
+  html += '<div>⌨ Ctrl+Enter: novo filho</div>';
+  html += '<div>🗑 Delete: remover</div>';
+  html += '</div>';
+  html += '<div class="mapa-sidebar" id="mapa-sidebar"></div>';
+  html += '<svg class="mapa-svg" id="mapa-svg" xmlns="http://www.w3.org/2000/svg"></svg>';
+  html += '<div class="mapa-info" id="mapa-info">Use scroll para zoom, arraste para mover</div>';
+  html += '</div>';
+  c.innerHTML = html;
+  // Inicializar canvas
+  setTimeout(function(){ renderMapaCanvas(); bindMapaEventos(); }, 50);
+}
+
+function renderMapaCanvas() {
+  var svg = document.getElementById('mapa-svg');
+  if(!svg) return;
+  var mapa = getMapaAtual();
+  if(!mapa) { svg.innerHTML = ''; return; }
+  // Calcular viewbox
+  var container = document.getElementById('mapa-container');
+  if(!container) return;
+  var w = container.clientWidth, h = container.clientHeight;
+  var cx = w/2 + MAPA_STATE.pan.x;
+  var cy = h/2 + MAPA_STATE.pan.y;
+  var vbW = w / MAPA_STATE.zoom;
+  var vbH = h / MAPA_STATE.zoom;
+  var vbX = cx - vbW/2;
+  var vbY = cy - vbH/2;
+  svg.setAttribute('viewBox', vbX+' '+vbY+' '+vbW+' '+vbH);
+  // Construir SVG
+  var parts = [];
+  // Grid pattern
+  var gridSize = 40 / MAPA_STATE.zoom;
+  parts.push('<defs><pattern id="grid" width="'+gridSize+'" height="'+gridSize+'" patternUnits="userSpaceOnUse"><path d="M '+gridSize+' 0 L 0 0 0 '+gridSize+'" class="grid"/></pattern></defs>');
+  parts.push('<rect x="'+vbX+'" y="'+vbY+'" width="'+vbW+'" height="'+vbH+'" fill="url(#grid)"/>');
+  // Conexões
+  mapa.nos.forEach(function(n){
+    if(!n.parent) return;
+    var pai = mapa.nos.find(function(p){ return p.id === n.parent; });
+    if(!pai) return;
+    var midX = (pai.x + n.x) / 2;
+    var midY = (pai.y + n.y) / 2 - 30;
+    parts.push('<path class="conn" d="M '+pai.x+' '+pai.y+' Q '+midX+' '+midY+' '+n.x+' '+n.y+'"/>');
+  });
+  // Nós
+  mapa.nos.forEach(function(n){
+    var selected = MAPA_STATE.selecionado === n.id;
+    var w = Math.max(80, (n.texto.length * 7.5) + 30);
+    var h2 = 36;
+    var corEscura = n.cor;
+    var corClara = lightenColor(n.cor, 0.3);
+    parts.push('<g class="node" data-id="'+n.id+'" transform="translate('+n.x+','+n.y+')">');
+    parts.push('<rect class="node-rect'+(selected?' selected':'')+'" x="'+(-w/2)+'" y="'+(-h2/2)+'" width="'+w+'" height="'+h2+'" rx="'+(n.tipo==='root'?18:14)+'" fill="url(#g_'+n.id+')" stroke="'+corEscura+'" stroke-width="2"/>');
+    parts.push('<defs><linearGradient id="g_'+n.id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+corClara+'"/><stop offset="100%" stop-color="'+corEscura+'"/></linearGradient></defs>');
+    parts.push('<text class="node-text'+(n.tipo==='root'?' root':'')+'" x="0" y="0">'+escapeHtmlMapa(n.texto)+'</text>');
+    if(n.tipo !== 'root') {
+      parts.push('<circle class="node-circle" cx="0" cy="'+(h2/2)+'" r="6" fill="#10b981" stroke="white" stroke-width="2"><title>+ filho</title></circle>');
+    }
+    parts.push('</g>');
+  });
+  svg.innerHTML = parts.join('');
+  atualizarInfoMapa();
+}
+
+function lightenColor(hex, amount) {
+  try {
+    var c = hex.replace('#','');
+    var r = parseInt(c.substring(0,2),16);
+    var g = parseInt(c.substring(2,4),16);
+    var b = parseInt(c.substring(4,6),16);
+    r = Math.min(255, Math.round(r + (255-r)*amount));
+    g = Math.min(255, Math.round(g + (255-g)*amount));
+    b = Math.min(255, Math.round(b + (255-b)*amount));
+    return '#' + [r,g,b].map(function(x){return x.toString(16).padStart(2,'0');}).join('');
+  } catch(e) { return hex; }
+}
+
+function escapeHtmlMapa(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function atualizarInfoMapa() {
+  var info = document.getElementById('mapa-info');
+  if(!info) return;
+  var mapa = getMapaAtual();
+  if(!mapa) return;
+  info.innerHTML = '🧠 '+mapa.titulo+' · '+mapa.nos.length+' nós · zoom '+(MAPA_STATE.zoom*100).toFixed(0)+'%';
+}
+
+function bindMapaEventos() {
+  var svg = document.getElementById('mapa-svg');
+  var container = document.getElementById('mapa-container');
+  if(!svg || !container) return;
+  var dragState = {tipo:null, target:null, offsetX:0, offsetY:0, startX:0, startY:0};
+  function getMousePos(evt) {
+    var pt = svg.createSVGPoint();
+    pt.x = evt.clientX; pt.y = evt.clientY;
+    return pt.matrixTransform(svg.getScreenCTM().inverse());
+  }
+  svg.addEventListener('mousedown', function(evt){
+    var target = evt.target;
+    if(target.classList.contains('node-circle')) {
+      // Adicionar filho
+      evt.preventDefault();
+      var parentG = target.closest('.node');
+      if(parentG) {
+        var pid = parentG.getAttribute('data-id');
+        adicionarNoFilho(pid);
+      }
+      return;
+    }
+    if(target.classList.contains('node-rect') || target.tagName === 'text' && target.parentNode) {
+      var g = target.closest('.node');
+      if(!g) return;
+      var id = g.getAttribute('data-id');
+      MAPA_STATE.selecionado = id;
+      if(MAPA_STATE.conectando && MAPA_STATE.conectando !== id) {
+        // Conectar
+        var mapa = getMapaAtual();
+        var no = mapa.nos.find(function(n){ return n.id === id; });
+        var origem = mapa.nos.find(function(n){ return n.id === MAPA_STATE.conectando; });
+        if(no && origem && confirmarAcao('Conectar "'+origem.texto+'" a "'+no.texto+'"?')) {
+          no.parent = MAPA_STATE.conectando;
+          mapa.atualizado = new Date().toISOString();
+          salvarMapas();
+          renderMapaCanvas();
+        }
+        MAPA_STATE.conectando = null;
+        container.classList.remove('connecting');
+        var btn = document.getElementById('btn-modo-conexao'); if(btn) btn.textContent = '🔗 Conectar';
+        return;
+      }
+      evt.preventDefault();
+      var pos = getMousePos(evt);
+      dragState.tipo = 'no';
+      dragState.target = id;
+      var no = getMapaAtual().nos.find(function(n){ return n.id === id; });
+      dragState.offsetX = pos.x - no.x;
+      dragState.offsetY = pos.y - no.y;
+      renderMapaCanvas();
+      return;
+    }
+    if(evt.button === 1 || evt.button === 2 || evt.shiftKey) {
+      evt.preventDefault();
+      dragState.tipo = 'pan';
+      dragState.startX = evt.clientX;
+      dragState.startY = evt.clientY;
+      container.classList.add('panning');
+    }
+  });
+  window.addEventListener('mousemove', function(evt){
+    if(!dragState.tipo) return;
+    if(dragState.tipo === 'no') {
+      var pos = getMousePos(evt);
+      var mapa = getMapaAtual();
+      var no = mapa.nos.find(function(n){ return n.id === dragState.target; });
+      if(no) {
+        no.x = pos.x - dragState.offsetX;
+        no.y = pos.y - dragState.offsetY;
+        renderMapaCanvas();
+      }
+    } else if(dragState.tipo === 'pan') {
+      var dx = (evt.clientX - dragState.startX) / MAPA_STATE.zoom;
+      var dy = (evt.clientY - dragState.startY) / MAPA_STATE.zoom;
+      MAPA_STATE.pan.x += dx;
+      MAPA_STATE.pan.y += dy;
+      dragState.startX = evt.clientX;
+      dragState.startY = evt.clientY;
+      renderMapaCanvas();
+    }
+  });
+  window.addEventListener('mouseup', function(){
+    if(dragState.tipo === 'no' && dragState.target) {
+      // Salvar ao soltar
+      getMapaAtual().atualizado = new Date().toISOString();
+      salvarMapas();
+    }
+    dragState.tipo = null; dragState.target = null;
+    container.classList.remove('panning');
+  });
+  svg.addEventListener('dblclick', function(evt){
+    var g = evt.target.closest('.node');
+    if(g) {
+      MAPA_STATE.selecionado = g.getAttribute('data-id');
+      abrirEditorNo();
+    }
+  });
+  svg.addEventListener('contextmenu', function(evt){
+    evt.preventDefault();
+    var g = evt.target.closest('.node');
+    if(g) {
+      MAPA_STATE.selecionado = g.getAttribute('data-id');
+      abrirEditorNo();
+    } else {
+      // background: pan
+      dragState.tipo = 'pan';
+      dragState.startX = evt.clientX; dragState.startY = evt.clientY;
+      container.classList.add('panning');
+    }
+  });
+  container.addEventListener('wheel', function(evt){
+    evt.preventDefault();
+    var delta = evt.deltaY > 0 ? 0.9 : 1.1;
+    MAPA_STATE.zoom = Math.max(0.3, Math.min(3, MAPA_STATE.zoom * delta));
+    renderMapaCanvas();
+  });
+  // Teclado
+  document.onkeydown = function(evt){
+    if(STATE.currentTab !== 'mapa') return;
+    if(evt.key === 'Delete' || evt.key === 'Backspace') {
+      if(MAPA_STATE.selecionado && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+        evt.preventDefault();
+        excluirNo();
+      }
+    } else if(evt.ctrlKey && evt.key === 'Enter') {
+      evt.preventDefault();
+      if(MAPA_STATE.selecionado) adicionarNoFilho(MAPA_STATE.selecionado);
+      else adicionarNoRaiz();
+    } else if(evt.key === 'Escape') {
+      MAPA_STATE.selecionado = null;
+      MAPA_STATE.conectando = null;
+      container.classList.remove('connecting');
+      var btn = document.getElementById('btn-modo-conexao'); if(btn) btn.textContent = '🔗 Conectar';
+      renderMapaCanvas();
+    }
+  };
+}
+
+function selecionarMapa(id) {
+  MAPA_STATE.atual = id;
+  MAPA_STATE.zoom = 1;
+  MAPA_STATE.pan = {x:0, y:0};
+  MAPA_STATE.selecionado = null;
+  renderMapaMental();
+}
+
+function novoMapa() {
+  var titulo = prompt('Título do novo mapa:', 'Novo Mapa Mental');
+  if(!titulo) return;
+  var materia = prompt('Matéria (opcional): constitucional, civil, penal, trabalho, tributario, etc', '');
+  var cor = '#6366f1';
+  var novo = {
+    id: 'mapa_' + Date.now(),
+    titulo: titulo,
+    materia: materia || 'Geral',
+    cor: cor,
+    criado: new Date().toISOString(),
+    atualizado: new Date().toISOString(),
+    nos: [
+      {id:'n1', texto: titulo, x:0, y:0, cor:cor, parent:null, tipo:'root'}
+    ]
+  };
+  MAPAS.push(novo);
+  MAPA_STATE.atual = novo.id;
+  MAPA_STATE.zoom = 1; MAPA_STATE.pan = {x:0,y:0};
+  salvarMapas();
+  renderMapaMental();
+}
+
+function duplicarMapa(id) {
+  var m = MAPAS.find(function(x){ return x.id === id; });
+  if(!m) return;
+  var copia = JSON.parse(JSON.stringify(m));
+  copia.id = 'mapa_' + Date.now();
+  copia.titulo = m.titulo + ' (cópia)';
+  copia.criado = new Date().toISOString();
+  copia.atualizado = new Date().toISOString();
+  // Renumerar IDs dos nos
+  var idMap = {};
+  copia.nos.forEach(function(n){
+    var novoId = 'n_' + Math.random().toString(36).substr(2,9);
+    idMap[n.id] = novoId;
+    n.id = novoId;
+  });
+  copia.nos.forEach(function(n){
+    if(n.parent && idMap[n.parent]) n.parent = idMap[n.parent];
+  });
+  MAPAS.push(copia);
+  salvarMapas();
+  renderMapaMental();
+  mostrarToast('✅ Mapa duplicado');
+}
+
+function excluirMapa(id) {
+  if(MAPAS.length <= 1) { alert('Você deve ter pelo menos um mapa.'); return; }
+  if(!confirmarAcao('Excluir este mapa? Esta ação não pode ser desfeita.')) return;
+  MAPAS = MAPAS.filter(function(m){ return m.id !== id; });
+  if(MAPA_STATE.atual === id) MAPA_STATE.atual = MAPAS[0].id;
+  salvarMapas();
+  renderMapaMental();
+  mostrarToast('🗑 Mapa excluído');
+}
+
+function mudarMateriaMapa(mat) {
+  // Não filtra a lista mas muda o mapa atual
+  var m = getMapaAtual();
+  if(m) {
+    m.materia = mat || 'Geral';
+    salvarMapas();
+  }
+}
+
+function adicionarNoRaiz() {
+  var mapa = getMapaAtual();
+  if(!mapa) return;
+  // Não criamos várias raízes - criamos um filho do root
+  var root = mapa.nos.find(function(n){ return n.tipo === 'root' && !n.parent; });
+  if(!root) {
+    // criar root
+    var titulo = prompt('Título do nó raiz:', mapa.titulo);
+    if(!titulo) return;
+    var novo = {id:'n_'+Math.random().toString(36).substr(2,9), texto:titulo, x:0, y:0, cor:'#6366f1', parent:null, tipo:'root'};
+    mapa.nos.push(novo);
+  } else {
+    adicionarNoFilho(root.id);
+    return;
+  }
+  mapa.atualizado = new Date().toISOString();
+  salvarMapas();
+  renderMapaCanvas();
+}
+
+function adicionarNoFilho(parentId) {
+  var mapa = getMapaAtual();
+  if(!mapa || !parentId) return;
+  var pai = mapa.nos.find(function(n){ return n.id === parentId; });
+  if(!pai) return;
+  var texto = prompt('Texto do novo nó:', 'Novo conceito');
+  if(!texto) return;
+  var angulo = Math.random() * Math.PI * 2;
+  var dist = 150 + Math.random() * 80;
+  var novo = {
+    id: 'n_' + Math.random().toString(36).substr(2,9),
+    texto: texto,
+    x: pai.x + Math.cos(angulo) * dist,
+    y: pai.y + Math.sin(angulo) * dist,
+    cor: lightenColor(pai.cor, 0.2),
+    parent: parentId,
+    tipo: 'leaf'
+  };
+  mapa.nos.push(novo);
+  mapa.atualizado = new Date().toISOString();
+  MAPA_STATE.selecionado = novo.id;
+  salvarMapas();
+  renderMapaCanvas();
+  // abrir editor imediatamente
+  setTimeout(abrirEditorNo, 100);
+}
+
+function abrirEditorNo() {
+  if(!MAPA_STATE.selecionado) { alert('Selecione um nó primeiro.'); return; }
+  var mapa = getMapaAtual();
+  var no = mapa.nos.find(function(n){ return n.id === MAPA_STATE.selecionado; });
+  if(!no) return;
+  var sb = document.getElementById('mapa-sidebar');
+  if(!sb) return;
+  var cores = ['#ef4444','#dc2626','#f59e0b','#eab308','#10b981','#059669','#06b6d4','#3b82f6','#6366f1','#8b5cf6','#a78bfa','#ec4899'];
+  var html = '<h4>✏️ Editar Nó</h4>';
+  html += '<label>Título</label><input type="text" id="ed-no-texto" value="'+escapeHtmlMapa(no.texto)+'">';
+  html += '<label>Cor</label><div class="color-picker">';
+  cores.forEach(function(c){
+    html += '<div style="background:'+c+'" class="'+(c===no.cor?'selected':'')+'" data-cor="'+c+'" onclick="document.querySelectorAll(\'.color-picker div\').forEach(function(d){d.classList.remove(\'selected\');});this.classList.add(\'selected\');"></div>';
+  });
+  html += '</div>';
+  html += '<label>Nota (opcional)</label><textarea id="ed-no-nota" placeholder="Anotações, artigos de lei...">'+(no.nota||'')+'</textarea>';
+  if(no.parent) {
+    var pai = mapa.nos.find(function(n){ return n.id === no.parent; });
+    html += '<label>Pai: <strong style="color:#a78bfa">'+(pai?pai.texto:'—')+'</strong></label>';
+  } else {
+    html += '<label><strong style="color:#fbbf24">Nó raiz</strong></label>';
+  }
+  html += '<button onclick="salvarEdicaoNo()">💾 Salvar</button>';
+  html += '<button class="danger" onclick="fecharEditorNo()" style="margin-top:0.3rem">Fechar</button>';
+  sb.innerHTML = html;
+  sb.classList.add('show');
+}
+
+function salvarEdicaoNo() {
+  var mapa = getMapaAtual();
+  var no = mapa.nos.find(function(n){ return n.id === MAPA_STATE.selecionado; });
+  if(!no) return;
+  var novoTexto = document.getElementById('ed-no-texto').value.trim();
+  var novaNota = document.getElementById('ed-no-nota').value;
+  var corEl = document.querySelector('.color-picker div.selected');
+  if(novoTexto) no.texto = novoTexto;
+  no.nota = novaNota;
+  if(corEl) no.cor = corEl.getAttribute('data-cor');
+  mapa.atualizado = new Date().toISOString();
+  salvarMapas();
+  renderMapaCanvas();
+  fecharEditorNo();
+  mostrarToast('✅ Nó atualizado');
+}
+
+function fecharEditorNo() {
+  var sb = document.getElementById('mapa-sidebar');
+  if(sb) sb.classList.remove('show');
+}
+
+function excluirNo() {
+  if(!MAPA_STATE.selecionado) { alert('Selecione um nó primeiro.'); return; }
+  var mapa = getMapaAtual();
+  var no = mapa.nos.find(function(n){ return n.id === MAPA_STATE.selecionado; });
+  if(!no) return;
+  if(no.tipo === 'root') { alert('Não é possível excluir o nó raiz. Exclua o mapa inteiro.'); return; }
+  if(!confirmarAcao('Excluir "'+no.texto+'" e todos os filhos?')) return;
+  // Coletar IDs a excluir (recursivo)
+  function coletar(id) {
+    var ids = [id];
+    mapa.nos.forEach(function(n){
+      if(n.parent === id) ids = ids.concat(coletar(n.id));
+    });
+    return ids;
+  }
+  var idsExcluir = coletar(no.id);
+  mapa.nos = mapa.nos.filter(function(n){ return idsExcluir.indexOf(n.id) < 0; });
+  MAPA_STATE.selecionado = null;
+  mapa.atualizado = new Date().toISOString();
+  salvarMapas();
+  renderMapaCanvas();
+  fecharEditorNo();
+  mostrarToast('🗑 Nó excluído');
+}
+
+function toggleModoConexao() {
+  var btn = document.getElementById('btn-modo-conexao');
+  var container = document.getElementById('mapa-container');
+  if(MAPA_STATE.conectando) {
+    MAPA_STATE.conectando = null;
+    container.classList.remove('connecting');
+    btn.textContent = '🔗 Conectar';
+  } else {
+    if(!MAPA_STATE.selecionado) { alert('Selecione um nó primeiro (clique no nó de origem).'); return; }
+    MAPA_STATE.conectando = MAPA_STATE.selecionado;
+    container.classList.add('connecting');
+    btn.textContent = '🎯 Clique no destino...';
+  }
+}
+
+function zoomMapa(fator) {
+  MAPA_STATE.zoom = Math.max(0.3, Math.min(3, MAPA_STATE.zoom * fator));
+  renderMapaCanvas();
+}
+
+function centralizarMapa() {
+  MAPA_STATE.zoom = 1;
+  MAPA_STATE.pan = {x:0, y:0};
+  renderMapaCanvas();
+}
+
+function exportarMapa(id) {
+  var m = MAPAS.find(function(x){ return x.id === id; });
+  if(!m) return;
+  var json = JSON.stringify(m, null, 2);
+  var blob = new Blob([json], {type:'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'mapa_'+m.titulo.replace(/[^\w]/g,'_')+'.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  mostrarToast('⬇ Mapa exportado');
+}
+
+function importarMapa() {
+  var inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = '.json,application/json';
+  inp.onchange = function(evt){
+    var f = evt.target.files[0]; if(!f) return;
+    var r = new FileReader();
+    r.onload = function(e){
+      try {
+        var obj = JSON.parse(e.target.result);
+        if(!obj.nos || !Array.isArray(obj.nos)) { alert('JSON inválido.'); return; }
+        obj.id = 'mapa_' + Date.now();
+        obj.atualizado = new Date().toISOString();
+        MAPAS.push(obj);
+        MAPA_STATE.atual = obj.id;
+        salvarMapas();
+        renderMapaMental();
+        mostrarToast('✅ Mapa importado: '+obj.titulo);
+      } catch(err) { alert('Erro: '+err.message); }
+    };
+    r.readAsText(f);
+  };
+  inp.click();
+}
+
+function exportarMapaPNG() {
+  var svg = document.getElementById('mapa-svg');
+  if(!svg) return;
+  var xml = new XMLSerializer().serializeToString(svg);
+  var canvas = document.createElement('canvas');
+  canvas.width = 1920; canvas.height = 1080;
+  var ctx = canvas.getContext('2d');
+  var img = new Image();
+  img.onload = function(){
+    ctx.fillStyle = '#0a0a0f';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    canvas.toBlob(function(blob){
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      var m = getMapaAtual();
+      a.href = url;
+      a.download = 'mapa_'+(m?m.titulo:'mental').replace(/[^\w]/g,'_')+'.png';
+      a.click();
+      URL.revokeObjectURL(url);
+      mostrarToast('🖼 Imagem exportada');
+    });
+  };
+  img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(xml)));
+}
+
+function abrirIAparaMapa() {
+  var m = getMapaAtual();
+  var materia = m ? (m.materia||'') : '';
+  var topico = m ? m.titulo : '';
+  var prompt = 'Crie um mapa mental estruturado sobre: '+topico+(materia?' (matéria: '+materia+')':'')+'. Retorne APENAS um JSON no formato: {"nos":[{"texto":"...","filhos":[...recursivo...]}]}. Use hierarquia de 3 níveis.';
+  if(typeof askAI === 'function') askAI(prompt);
+  else alert('Sistema de IA não disponível.');
+}
+
+function confirmarAcao(msg) { return confirm(msg); }
+function mostrarToast(msg) {
+  var stack = document.getElementById('lembrete-stack');
+  if(!stack) { alert(msg); return; }
+  var t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = '<strong>'+msg+'</strong>';
+  stack.appendChild(t);
+  setTimeout(function(){ if(t.parentNode) t.remove(); }, 3000);
+}
+
+// ============================================================
+// SISTEMA DE LEMBRETES DE EVENTOS
+// ============================================================
+var LEMBRETE_CFG = {
+  ativo: true,
+  nativo: false,
+  banner: true,
+  som: true,
+  antecedenciaMin: 15,
+  permissao: 'default',
+  ultimoCheck: 0
+};
+var LEMBRETES_DISPARADOS = {}; // chave = id_evento+timestamp, evita duplicar
+
+function carregarConfigLembretes() {
+  try {
+    var raw = localStorage.getItem('jurispath_lembretes_cfg');
+    if(raw) LEMBRETE_CFG = Object.assign(LEMBRETE_CFG, JSON.parse(raw));
+  } catch(e) {}
+  // checar permissao
+  if('Notification' in window) {
+    LEMBRETE_CFG.permissao = Notification.permission;
+    LEMBRETE_CFG.nativo = LEMBRETE_CFG.permissao === 'granted' && LEMBRETE_CFG.nativo;
+  } else {
+    LEMBRETE_CFG.nativo = false;
+  }
+  atualizarBadgeLembretes();
+}
+
+function salvarConfigLembretes() {
+  try { localStorage.setItem('jurispath_lembretes_cfg', JSON.stringify(LEMBRETE_CFG)); } catch(e) {}
+}
+
+function abrirPainelLembretes() {
+  carregarConfigLembretes();
+  atualizarPainelLembretes();
+  document.getElementById('lembrete-panel').classList.add('show');
+  document.getElementById('lembrete-overlay').style.display = 'block';
+}
+
+function fecharPainelLembretes() {
+  document.getElementById('lembrete-panel').classList.remove('show');
+  document.getElementById('lembrete-overlay').style.display = 'none';
+}
+
+function atualizarPainelLembretes() {
+  // switches
+  document.getElementById('sw-nativo').className = 'switch' + (LEMBRETE_CFG.nativo?' on':'');
+  document.getElementById('sw-banner').className = 'switch' + (LEMBRETE_CFG.banner?' on':'');
+  document.getElementById('sw-som').className = 'switch' + (LEMBRETE_CFG.som?' on':'');
+  document.getElementById('sel-antecedencia').value = String(LEMBRETE_CFG.antecedenciaMin);
+  // status
+  var status = '—';
+  if(!('Notification' in window)) status = '⚠ Notificações nativas não suportadas neste navegador';
+  else if(Notification.permission === 'granted') status = '✅ Permissão concedida para notificações do navegador';
+  else if(Notification.permission === 'denied') status = '❌ Permissão negada (use banner dentro do app)';
+  else status = '⏳ Permissão ainda não solicitada. Clique em "Testar agora" para pedir.';
+  document.getElementById('lbl-status-perm').textContent = status;
+  // contadores
+  var evs = (typeof AGENDA !== 'undefined') ? AGENDA : [];
+  var futuros = evs.filter(function(e){
+    var dt = new Date(e.data+'T'+(e.hora||'00:00')+':00');
+    return dt.getTime() > Date.now() - 24*60*60*1000;
+  });
+  var hoje = futuros.filter(function(e){
+    var dt = new Date(e.data+'T'+(e.hora||'00:00')+':00');
+    var hoje0 = new Date(); hoje0.setHours(0,0,0,0);
+    var amanha0 = new Date(hoje0); amanha0.setDate(hoje0.getDate()+1);
+    return dt >= hoje0 && dt < amanha0;
+  });
+  document.getElementById('lbl-total-eventos').textContent = futuros.length;
+  document.getElementById('lbl-lembretes-ativos').textContent = futuros.filter(function(e){ return e.lembrete !== false; }).length;
+  document.getElementById('lbl-lembretes-hoje').textContent = hoje.length;
+}
+
+function toggleLembrete(tipo) {
+  if(tipo === 'nativo') {
+    if(!('Notification' in window)) { alert('Seu navegador não suporta notificações.'); return; }
+    if(Notification.permission === 'default') {
+      Notification.requestPermission().then(function(p){
+        LEMBRETE_CFG.permissao = p;
+        LEMBRETE_CFG.nativo = p === 'granted';
+        salvarConfigLembretes();
+        atualizarPainelLembretes();
+        if(p === 'granted') {
+          new Notification('JurisPath PRO', {body:'Notificações ativadas! Você será avisado antes de audiências, prazos e eventos.', icon:'🔔'});
+        }
+      });
+      return;
+    } else if(Notification.permission === 'denied') {
+      alert('Permissão negada pelo navegador. Para ativar, vá nas configurações do navegador e permita notificações deste site.');
+      return;
+    } else {
+      LEMBRETE_CFG.nativo = !LEMBRETE_CFG.nativo;
+    }
+  } else if(tipo === 'banner') {
+    LEMBRETE_CFG.banner = !LEMBRETE_CFG.banner;
+  } else if(tipo === 'som') {
+    LEMBRETE_CFG.som = !LEMBRETE_CFG.som;
+  }
+  salvarConfigLembretes();
+  atualizarPainelLembretes();
+}
+
+function salvarAntecedencia(val) {
+  LEMBRETE_CFG.antecedenciaMin = parseInt(val);
+  salvarConfigLembretes();
+  mostrarToast('⏰ Antecedência: '+(val==='0'?'no horário':val+' min antes'));
+}
+
+function testarLembrete() {
+  if(LEMBRETE_CFG.nativo && 'Notification' in window && Notification.permission === 'granted') {
+    new Notification('🔔 Teste de Lembrete', {body:'Esta é uma notificação de teste. Os lembretes estão funcionando!', icon:'🔔'});
+  }
+  if(LEMBRETE_CFG.banner) {
+    mostrarBannerLembrete({
+      id:'teste', titulo:'Teste de Lembrete', data:new Date().toISOString().slice(0,10),
+      hora:new Date().toTimeString().slice(0,5), categoria:'teste', local:'', nota:''
+    }, 0, 'info');
+  }
+  if(LEMBRETE_CFG.som) tocarSomLembrete();
+  mostrarToast('🔔 Teste enviado');
+}
+
+function checarLembretes() {
+  if(typeof AGENDA === 'undefined' || !LEMBRETE_CFG.ativo) return;
+  var agora = Date.now();
+  // Limpar registros velhos
+  Object.keys(LEMBRETES_DISPARADOS).forEach(function(k){
+    if(k.indexOf('_')>0) {
+      var ts = parseInt(k.split('_').pop());
+      if(!isNaN(ts) && agora - ts > 24*60*60*1000) delete LEMBRETES_DISPARADOS[k];
+    }
+  });
+  AGENDA.forEach(function(ev){
+    if(ev.lembrete === false) return;
+    var dtStr = ev.data + 'T' + (ev.hora||'00:00') + ':00';
+    var dt = new Date(dtStr).getTime();
+    if(isNaN(dt)) return;
+    var antecedencia = (ev.antecedencia !== undefined) ? ev.antecedencia : LEMBRETE_CFG.antecedenciaMin;
+    antecedencia = parseInt(antecedencia);
+    if(isNaN(antecedencia)) antecedencia = 15;
+    var dtLembrete = dt - antecedencia * 60 * 1000;
+    var diff = dtLembrete - agora;
+    // Janela de disparo: 1 minuto
+    if(diff > -60000 && diff < 60000) {
+      var chave = ev.id + '_' + dtLembrete;
+      if(LEMBRETES_DISPARADOS[chave]) return;
+      LEMBRETES_DISPARADOS[chave] = true;
+      // Classificar urgencia
+      var tipo = 'normal';
+      if(antecedencia >= 1440) tipo = 'alerta';
+      else if(antecedencia >= 60) tipo = 'info';
+      else if(antecedencia <= 5) tipo = 'urgente';
+      // Disparar
+      if(LEMBRETE_CFG.nativo && 'Notification' in window && Notification.permission === 'granted') {
+        try {
+          var n = new Notification(emojiCat(ev.cat || ev.categoria)+' '+(ev.titulo||ev.titulo), {
+            body: 'Em '+antecedencia+' minutos'+(ev.local?' • '+ev.local:'')+((ev.desc||ev.observacoes)?'\n'+(ev.desc||ev.observacoes):''),
+            tag: 'jurispath_'+ev.id,
+            requireInteraction: antecedencia < 60
+          });
+          n.onclick = function(){ window.focus(); switchTab('agenda'); };
+        } catch(e) {}
+      }
+      if(LEMBRETE_CFG.banner) mostrarBannerLembrete(ev, antecedencia, tipo);
+      if(LEMBRETE_CFG.som) tocarSomLembrete();
+    }
+  });
+  atualizarBadgeLembretes();
+}
+
+function emojiCat(cat) {
+  var map = {
+    audiencia:'⚖️', audi:'⚖️',
+    prazo:'⏰',
+    reuniao:'🤝', reun:'🤝',
+    estudo:'📚', est:'📚',
+    pessoal:'👤',
+    trabalho:'💼',
+    compromisso:'📌',
+    lembrete:'🔔', lemb:'🔔',
+    tarefa:'✅',
+    audiencia_trabalhista:'⚖️',
+    audiencia_criminal:'🏛️',
+    sustentacao:'🎤',
+    audiencia_civil:'⚖️',
+    audiencia_federal:'🏛️',
+    reuniao_cliente:'🤝',
+    reuniao_escritorio:'💼',
+    casamento:'💒',
+    viagem:'✈️',
+    saude:'🏥',
+    pagamento:'💰'
+  };
+  return map[cat] || '📌';
+}
+
+function mostrarBannerLembrete(ev, antecedencia, tipo) {
+  // Evitar duplicar no DOM
+  if(document.getElementById('lb_'+ev.id)) return;
+  var banner = document.createElement('div');
+  banner.className = 'lembrete-banner ' + (tipo||'normal');
+  banner.id = 'lb_'+ev.id;
+  var horaFmt = ev.hora || '';
+  var localFmt = ev.local ? ' @ '+ev.local : '';
+  var msgAntec = antecedencia === 0 ? 'AGORA' : antecedencia === 1 ? 'em 1 minuto' : antecedencia < 60 ? 'em '+antecedencia+' min' : antecedencia === 60 ? 'em 1 hora' : 'em '+(antecedencia/60)+'h';
+  var tituloEv = ev.titulo || ev.titulo || '(sem título)';
+  var descEv = ev.desc || ev.observacoes || '';
+  banner.innerHTML =
+    '<div class="ico">'+emojiCat(ev.cat || ev.categoria)+'</div>' +
+    '<div class="content">' +
+      '<h3>'+escapeHtmlMapa(tituloEv)+'</h3>' +
+      '<p>⏰ '+msgAntec+' • '+horaFmt+localFmt+(descEv?' • '+escapeHtmlMapa(descEv).substring(0,80):'')+'</p>' +
+    '</div>' +
+    '<div class="actions">' +
+      '<button class="primary" onclick="switchTab(\'agenda\');document.querySelectorAll(\'.lembrete-banner\').forEach(function(b){b.remove();});">📅 Ver</button>' +
+      '<button onclick="document.getElementById(\'lb_'+ev.id+'\')?.remove();">✕ Fechar</button>' +
+      '<button onclick="adiarLembrete(\''+ev.id+'\',10)">💤 +10min</button>' +
+    '</div>';
+  document.body.appendChild(banner);
+  // Auto-fechar depois de 60s
+  setTimeout(function(){ if(banner.parentNode) banner.remove(); }, 60000);
+}
+
+function adiarLembrete(eventoId, minutos) {
+  // Marcar para re-disparar depois
+  var ev = (typeof AGENDA !== 'undefined') ? AGENDA.find(function(e){ return e.id === eventoId; }) : null;
+  if(!ev) return;
+  var dtStr = ev.data + 'T' + (ev.hora||'00:00') + ':00';
+  var dt = new Date(dtStr).getTime();
+  if(isNaN(dt)) return;
+  var novaAntec = Math.ceil((Date.now() - dt) / 60000) + minutos;
+  ev.antecedencia = Math.max(0, novaAntec);
+  ev.lembreteAdiado = new Date().toISOString();
+  if(typeof salvarAgenda === 'function') salvarAgenda();
+  mostrarToast('💤 Adiado por '+minutos+' min');
+  document.querySelectorAll('.lembrete-banner').forEach(function(b){b.remove();});
+}
+
+function tocarSomLembrete() {
+  try {
+    var ctx = new (window.AudioContext || window.webkitAudioContext)();
+    var o = ctx.createOscillator();
+    var g = ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.frequency.setValueAtTime(880, ctx.currentTime);
+    o.frequency.setValueAtTime(1100, ctx.currentTime + 0.1);
+    o.frequency.setValueAtTime(880, ctx.currentTime + 0.2);
+    g.gain.setValueAtTime(0.15, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+    o.start(ctx.currentTime);
+    o.stop(ctx.currentTime + 0.35);
+  } catch(e) {}
+}
+
+function atualizarBadgeLembretes() {
+  var badge = document.getElementById('lembrete-badge');
+  var btn = document.getElementById('lembrete-btn-notif');
+  if(!badge || !btn) return;
+  if(typeof AGENDA === 'undefined') return;
+  var hoje0 = new Date(); hoje0.setHours(0,0,0,0);
+  var amanha0 = new Date(hoje0); amanha0.setDate(hoje0.getDate()+1);
+  var count = AGENDA.filter(function(e){
+    if(e.lembrete === false) return false;
+    var dt = new Date(e.data+'T'+(e.hora||'00:00')+':00');
+    return dt >= hoje0 && dt < amanha0;
+  }).length;
+  if(count > 0) {
+    badge.textContent = String(count);
+    badge.style.display = 'inline';
+  } else {
+    badge.style.display = 'none';
+  }
+  btn.className = 'lembrete-btn-notif' + (LEMBRETE_CFG.ativo ? '' : ' muted');
+}
+
+// Inicializar lembretes e checar a cada 30s
+function iniciarLembretes() {
+  carregarConfigLembretes();
+  checarLembretes();
+  atualizarBadgeLembretes();
+  setInterval(function(){
+    checarLembretes();
+  }, 30000);
+}
+setTimeout(iniciarLembretes, 1500);
+
 </script>
+<!-- PAINEL DE CONFIGURACAO DE LEMBRETES -->
+<div class="lembrete-panel" id="lembrete-panel">
+  <button class="close" onclick="fecharPainelLembretes()">✕</button>
+  <h3>🔔 Lembretes de Eventos</h3>
+  <div class="stat-grid">
+    <div><strong id="lbl-total-eventos">0</strong><span>Eventos</span></div>
+    <div><strong id="lbl-lembretes-ativos">0</strong><span>Ativos</span></div>
+    <div><strong id="lbl-lembretes-hoje">0</strong><span>Hoje</span></div>
+  </div>
+  <div class="row">
+    <label>Notificações do navegador (nativas)</label>
+    <div class="switch" id="sw-nativo" onclick="toggleLembrete('nativo')"></div>
+  </div>
+  <div class="row">
+    <label>Banner dentro do app</label>
+    <div class="switch" id="sw-banner" onclick="toggleLembrete('banner')"></div>
+  </div>
+  <div class="row">
+    <label>Som ao notificar</label>
+    <div class="switch" id="sw-som" onclick="toggleLembrete('som')"></div>
+  </div>
+  <div class="row" style="display:block;padding:0.7rem 0.4rem">
+    <label style="display:block;margin-bottom:0.4rem">Antecedência padrão (minutos antes)</label>
+    <div class="select-wrap">
+      <select id="sel-antecedencia" onchange="salvarAntecedencia(this.value)">
+        <option value="0">No horário exato</option>
+        <option value="5">5 minutos antes</option>
+        <option value="10">10 minutos antes</option>
+        <option value="15" selected>15 minutos antes</option>
+        <option value="30">30 minutos antes</option>
+        <option value="60">1 hora antes</option>
+        <option value="120">2 horas antes</option>
+        <option value="1440">1 dia antes</option>
+      </select>
+    </div>
+  </div>
+  <div class="row" style="display:block;padding:0.7rem 0.4rem">
+    <label style="display:block;margin-bottom:0.4rem">Status</label>
+    <div id="lbl-status-perm" style="font-size:0.78rem;color:var(--muted)">Verificando permissões...</div>
+  </div>
+  <div style="margin-top:1rem;display:flex;gap:0.5rem">
+    <button onclick="testarLembrete()" style="flex:1;padding:0.6rem;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;border:none;border-radius:7px;cursor:pointer;font-size:0.82rem;font-weight:600">🔔 Testar agora</button>
+  </div>
+</div>
+<div id="lembrete-overlay" onclick="fecharPainelLembretes()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:10000;backdrop-filter:blur(4px)"></div>
+
 </body>
 </html>
 
