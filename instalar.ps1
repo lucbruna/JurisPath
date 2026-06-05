@@ -1,5 +1,5 @@
 # ============================================================
-# Instalador JurisPath PRO v2.1
+# Instalador JurisPath PRO v3.0
 # ============================================================
 $ErrorActionPreference = "Stop"
 $projectDir = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -7,13 +7,13 @@ $desktop = [Environment]::GetFolderPath("Desktop")
 $htmlFile = Join-Path $projectDir "JurisPath.html"
 
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "  JurisPath PRO v2.1 - Instalador" -ForegroundColor Cyan
-Write-Host "  CF/88 + Agenda + Notas + Vade Mecum" -ForegroundColor Cyan
+Write-Host "  JurisPath PRO v3.0 - Instalador" -ForegroundColor Cyan
+Write-Host "  CF/88 + Agenda + Notas + Material 2026 + Sync Gist" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
 # 1. Verificar arquivos principais
-Write-Host "[1/5] Verificando arquivos..." -ForegroundColor Yellow
+Write-Host "[1/6] Verificando arquivos..." -ForegroundColor Yellow
 $required = @(
     "JurisPath.html",
     "vade.js",
@@ -45,7 +45,7 @@ if ($missing.Count -gt 0) {
 }
 
 # 2. Contar documentos
-Write-Host "[2/5] Indexando documentos..." -ForegroundColor Yellow
+Write-Host "[2/6] Indexando documentos..." -ForegroundColor Yellow
 $dadosPath = Join-Path $projectDir "dados"
 if (Test-Path -LiteralPath $dadosPath) {
     $totalDocs = (Get-ChildItem -LiteralPath $dadosPath -Include *.pdf,*.PDF,*.pptx,*.ppt,*.mobi -Recurse).Count
@@ -57,8 +57,8 @@ if (Test-Path -LiteralPath $dadosPath) {
 }
 
 # 3. Criar atalho no Desktop
-Write-Host "[3/5] Criando atalho no Desktop..." -ForegroundColor Yellow
-$shortcutPath = Join-Path $desktop "JurisPath PRO.url"
+Write-Host "[3/6] Criando atalho no Desktop..." -ForegroundColor Yellow
+$shortcutPath = Join-Path $desktop "JurisPath PRO v3.0.url"
 $shortcutContent = @"
 [InternetShortcut]
 URL=file:///$($htmlFile.Replace('\','/'))
@@ -73,16 +73,33 @@ try {
 }
 
 # 4. Criar script de abertura
-Write-Host "[4/5] Criando launcher..." -ForegroundColor Yellow
+Write-Host "[4/6] Criando launcher v3.0..." -ForegroundColor Yellow
 $launcherPath = Join-Path $projectDir "jurispath.bat"
 $batContent = @"
 @echo off
-title JurisPath PRO
+title JurisPath PRO v3.0
 cd /d "%~dp0"
 start "" "%~dp0JurisPath.html"
-echo JurisPath PRO foi aberto no seu navegador padrao.
+echo JurisPath PRO v3.0 foi aberto no seu navegador padrao.
 echo.
-echo Novidades v2.1: CF/88 atalho + Agenda Profissional + Bloco de Notas universal!
+echo ============================== NOVIDADES v3.0 ==============================
+echo  📜 Constituicao Federal completa e atualizada 2026 (200+ artigos)
+echo  📝 Notas coloridas (8 cores: amarelo, verde, azul, vermelho, roxo...)
+echo  📝 Anotacao rapida em qualquer pagina (botao lateral + Ctrl+Shift+N)
+echo  📋 Painel de notas e agenda no dashboard
+echo  📅 Agenda avancada (evento unico / em massa / recorrente / plano de estudo)
+echo  🎨 Lembretes com cores personalizadas
+echo  🎓 Material 2026 - 14 areas completas do Direito
+echo  🔄 Sincronizacao entre dispositivos via GitHub Gist
+echo  🧠 Mapa mental melhorado para estudantes de direito
+echo ===========================================================================
+echo.
+echo Atalhos: 0=Painel, 1-9=Semestres, V=Vade Mecum, A=Agenda, N=Notas, C=CF/88
+echo Botao flutuante 📝 (verde) abre o Bloco de Notas em qualquer pagina.
+echo Botao 📅+ (laranja) abre a Agenda Avancada em qualquer pagina.
+echo Botao 🔔 (amarelo) configura os lembretes.
+echo Botao 🔄 (roxo) sincroniza com GitHub Gist entre dispositivos.
+echo Botao 🔄 no topo verifica atualizacoes no GitHub.
 "@
 try {
     Set-Content -Path $launcherPath -Value $batContent -Encoding ASCII
@@ -92,7 +109,7 @@ try {
 }
 
 # 5. Tentar baixar atualizacoes
-Write-Host "[5/5] Verificando atualizacoes do GitHub..." -ForegroundColor Yellow
+Write-Host "[5/6] Verificando atualizacoes do GitHub..." -ForegroundColor Yellow
 try {
     $atualizarPs1 = Join-Path $projectDir "atualizar.ps1"
     if (Test-Path -LiteralPath $atualizarPs1) {
@@ -111,21 +128,34 @@ try {
     Write-Host "  Sem internet ou erro ao verificar: $_" -ForegroundColor Yellow
 }
 
+# 6. Verificar Gist sync config
+Write-Host "[6/6] Verificando configuracao de sincronizacao GitHub Gist..." -ForegroundColor Yellow
+Write-Host "  Para sincronizar notas/agenda entre dispositivos:" -ForegroundColor White
+Write-Host "  1. Crie um Personal Access Token em: https://github.com/settings/tokens/new" -ForegroundColor White
+Write-Host "  2. Selecione APENAS o escopo 'gist'" -ForegroundColor White
+Write-Host "  3. No JurisPath, clique no botao 🔄 (roxo) na lateral e cole o token" -ForegroundColor White
+Write-Host ""
+
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "  Instalacao concluida!" -ForegroundColor Cyan
+Write-Host "  Instalacao concluida! (v3.0)" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Para abrir o JurisPath:" -ForegroundColor White
-Write-Host "  1. Atalho no Desktop: JurisPath PRO" -ForegroundColor Green
+Write-Host "  1. Atalho no Desktop: JurisPath PRO v3.0" -ForegroundColor Green
 Write-Host "  2. Arquivo: jurispath.bat" -ForegroundColor Green
 Write-Host "  3. Direto: JurisPath.html" -ForegroundColor Green
 Write-Host ""
-Write-Host "Recursos da v2.1:" -ForegroundColor White
-Write-Host "  - Atalho direto CF/88 (Constituicao Federal completa)" -ForegroundColor Green
-Write-Host "  - Agenda Profissional (audiencias, prazos, reunioes, estudos)" -ForegroundColor Green
-Write-Host "  - Bloco de Notas universal (interligado, em todas as paginas)" -ForegroundColor Green
-Write-Host "  - Atualizacao automatica via GitHub" -ForegroundColor Green
+Write-Host "Novidades da v3.0:" -ForegroundColor White
+Write-Host "  - Constituicao Federal completa e atualizada 2026 (200+ artigos)" -ForegroundColor Green
+Write-Host "  - Notas coloridas (8 cores personalizadas)" -ForegroundColor Green
+Write-Host "  - Anotacao rapida em qualquer pagina (Ctrl+Shift+N)" -ForegroundColor Green
+Write-Host "  - Painel de notas e agenda no dashboard" -ForegroundColor Green
+Write-Host "  - Agenda avancada (unico / em massa / recorrente / plano de estudo)" -ForegroundColor Green
+Write-Host "  - Lembretes com cores personalizadas" -ForegroundColor Green
+Write-Host "  - Material 2026 - 14 areas completas do Direito" -ForegroundColor Green
+Write-Host "  - Sincronizacao entre dispositivos via GitHub Gist" -ForegroundColor Green
+Write-Host "  - Mapa mental melhorado para estudantes" -ForegroundColor Green
 Write-Host ""
 Write-Host "Para atualizar:" -ForegroundColor White
 Write-Host "  - Clique no botao 🔄 dentro do JurisPath" -ForegroundColor Green
