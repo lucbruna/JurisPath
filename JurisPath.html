@@ -453,6 +453,164 @@ header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filte
 .atalho-bar .atalho.cpc:hover{background:rgba(245,158,11,0.12);border-color:#fbbf24}
 .atalho-bar .atalho.clt{background:linear-gradient(135deg,rgba(168,85,247,0.06),rgba(147,51,234,0.03));border-color:rgba(168,85,247,0.15);color:#c4b5fd}
 .atalho-bar .atalho.clt:hover{background:rgba(168,85,247,0.12);border-color:#a78bfa}
+
+/* ============================================================ */
+/* v3.0 - NOTAS COLORIDAS + DESTAQUES PERSONALIZADOS             */
+/* ============================================================ */
+.nota-cor-picker{display:flex;gap:0.25rem;flex-wrap:wrap;padding:0.3rem;background:rgba(0,0,0,0.3);border-radius:6px;border:1px solid rgba(201,168,108,0.08)}
+.nota-cor-dot{width:22px;height:22px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:0.2s;position:relative}
+.nota-cor-dot:hover{transform:scale(1.15)}
+.nota-cor-dot.active{border-color:#fff;box-shadow:0 0 0 2px var(--gold)}
+.nota-cor-dot[data-cor="none"]{background:repeating-linear-gradient(45deg,#333,#333 4px,#555 4px,#555 8px)}
+.nota-cor-dot[data-cor="amarelo"]{background:linear-gradient(135deg,#fbbf24,#f59e0b)}
+.nota-cor-dot[data-cor="verde"]{background:linear-gradient(135deg,#10b981,#059669)}
+.nota-cor-dot[data-cor="azul"]{background:linear-gradient(135deg,#3b82f6,#2563eb)}
+.nota-cor-dot[data-cor="vermelho"]{background:linear-gradient(135deg,#ef4444,#dc2626)}
+.nota-cor-dot[data-cor="roxo"]{background:linear-gradient(135deg,#a78bfa,#7c3aed)}
+.nota-cor-dot[data-cor="rosa"]{background:linear-gradient(135deg,#ec4899,#db2777)}
+.nota-cor-dot[data-cor="laranja"]{background:linear-gradient(135deg,#fb923c,#ea580c)}
+.nota-cor-dot[data-cor="ciano"]{background:linear-gradient(135deg,#22d3ee,#0891b2)}
+
+.nota-item{border-left:4px solid transparent!important}
+.nota-item[data-cor="amarelo"]{border-left-color:#fbbf24!important;background:linear-gradient(90deg,rgba(251,191,36,0.08),rgba(0,0,0,0.25))!important}
+.nota-item[data-cor="verde"]{border-left-color:#10b981!important;background:linear-gradient(90deg,rgba(16,185,129,0.08),rgba(0,0,0,0.25))!important}
+.nota-item[data-cor="azul"]{border-left-color:#3b82f6!important;background:linear-gradient(90deg,rgba(59,130,246,0.08),rgba(0,0,0,0.25))!important}
+.nota-item[data-cor="vermelho"]{border-left-color:#ef4444!important;background:linear-gradient(90deg,rgba(239,68,68,0.08),rgba(0,0,0,0.25))!important}
+.nota-item[data-cor="roxo"]{border-left-color:#a78bfa!important;background:linear-gradient(90deg,rgba(167,139,250,0.08),rgba(0,0,0,0.25))!important}
+.nota-item[data-cor="rosa"]{border-left-color:#ec4899!important;background:linear-gradient(90deg,rgba(236,72,153,0.08),rgba(0,0,0,0.25))!important}
+.nota-item[data-cor="laranja"]{border-left-color:#fb923c!important;background:linear-gradient(90deg,rgba(251,146,60,0.08),rgba(0,0,0,0.25))!important}
+.nota-item[data-cor="ciano"]{border-left-color:#22d3ee!important;background:linear-gradient(90deg,rgba(34,211,238,0.08),rgba(0,0,0,0.25))!important}
+
+.nota-cor-label{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;padding:1px 6px;border-radius:8px;margin-left:4px}
+.nota-cor-label[data-cor="amarelo"]{background:rgba(251,191,36,0.18);color:#fbbf24}
+.nota-cor-label[data-cor="verde"]{background:rgba(16,185,129,0.18);color:#10b981}
+.nota-cor-label[data-cor="azul"]{background:rgba(59,130,246,0.18);color:#60a5fa}
+.nota-cor-label[data-cor="vermelho"]{background:rgba(239,68,68,0.18);color:#f87171}
+.nota-cor-label[data-cor="roxo"]{background:rgba(167,139,250,0.18);color:#c4b5fd}
+.nota-cor-label[data-cor="rosa"]{background:rgba(236,72,153,0.18);color:#f472b6}
+.nota-cor-label[data-cor="laranja"]{background:rgba(251,146,60,0.18);color:#fdba74}
+.nota-cor-label[data-cor="ciano"]{background:rgba(34,211,238,0.18);color:#67e8f9}
+
+/* AGENDA - cores personalizadas por evento */
+.ag-evento{position:relative;overflow:hidden}
+.ag-evento::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gold)}
+.ag-evento[data-cor="vermelho"]::before{background:#ef4444}
+.ag-evento[data-cor="amarelo"]::before{background:#fbbf24}
+.ag-evento[data-cor="verde"]::before{background:#10b981}
+.ag-evento[data-cor="azul"]::before{background:#3b82f6}
+.ag-evento[data-cor="roxo"]::before{background:#a78bfa}
+.ag-evento[data-cor="rosa"]::before{background:#ec4899}
+.ag-evento[data-cor="laranja"]::before{background:#fb923c}
+.ag-evento[data-cor="ciano"]::before{background:#22d3ee}
+
+.ag-cal-day[data-cor-marker]{position:relative}
+.ag-cal-day[data-cor-marker]::after{content:'';position:absolute;top:2px;right:2px;width:8px;height:8px;border-radius:50%;box-shadow:0 0 6px currentColor}
+
+/* QUICK NOTE - anotacao rapida em qualquer pagina */
+.quick-note-btn{position:fixed;top:50%;right:0.5rem;transform:translateY(-50%);background:linear-gradient(135deg,#10b981,#059669);color:white;border:none;padding:0.6rem 0.5rem;border-radius:8px 0 0 8px;cursor:pointer;font-size:0.7rem;font-weight:700;z-index:140;box-shadow:-2px 0 12px rgba(16,185,129,0.3);writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:1px;transition:0.3s;display:none}
+.quick-note-btn:hover{padding-right:0.8rem;box-shadow:-4px 0 18px rgba(16,185,129,0.5)}
+.quick-note-btn.show{display:block}
+
+.quick-note-popup{position:fixed;top:50%;right:4rem;transform:translateY(-50%);background:var(--card);border:1px solid rgba(16,185,129,0.3);border-radius:10px;padding:0.8rem;width:340px;max-width:92vw;z-index:160;box-shadow:0 10px 40px rgba(0,0,0,0.5);display:none}
+.quick-note-popup.show{display:block;animation:slideLeft 0.25s ease-out}
+.quick-note-popup h4{color:#10b981;margin-bottom:0.4rem;font-size:0.88rem;display:flex;align-items:center;gap:0.3rem;justify-content:space-between}
+.quick-note-popup h4 button{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:0 4px}
+.quick-note-popup input,.quick-note-popup textarea{width:100%;background:rgba(0,0,0,0.3);border:1px solid rgba(16,185,129,0.15);border-radius:6px;padding:0.4rem 0.5rem;color:var(--text);font-size:0.8rem;outline:none;margin-bottom:0.4rem;font-family:inherit}
+.quick-note-popup textarea{min-height:90px;resize:vertical}
+.quick-note-popup input:focus,.quick-note-popup textarea:focus{border-color:#10b981}
+.quick-note-popup .qn-cores{display:flex;gap:0.2rem;margin-bottom:0.4rem;flex-wrap:wrap}
+.quick-note-popup .qn-cores .nota-cor-dot{width:18px;height:18px}
+.quick-note-popup .qn-actions{display:flex;gap:0.3rem;justify-content:flex-end}
+.quick-note-popup .qn-actions button{padding:0.35rem 0.7rem;font-size:0.75rem}
+.quick-note-popup .qn-ctx{font-size:0.65rem;color:var(--muted);margin-bottom:0.3rem}
+@keyframes slideLeft{from{opacity:0;transform:translate(20px,-50%)}to{opacity:1;transform:translate(0,-50%)}}
+
+/* AGENDA - formulario sempre aberto (expandido) */
+.ag-form-expanded{display:block!important;max-height:none!important;opacity:1!important;visibility:visible!important}
+.ag-form .ag-row-multi{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.4rem;margin-bottom:0.4rem}
+.ag-form .ag-row-multi2{display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;margin-bottom:0.4rem}
+.ag-form input,.ag-form select,.ag-form textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,108,0.1);border-radius:6px;padding:0.4rem 0.55rem;color:var(--text);font-size:0.78rem;outline:none;margin-bottom:0.4rem}
+.ag-form input:focus,.ag-form select:focus,.ag-form textarea:focus{border-color:var(--accent);background:rgba(255,255,255,0.06)}
+.ag-form label{display:block;font-size:0.7rem;color:var(--muted);margin-bottom:0.15rem;font-weight:600}
+.ag-form-section{background:rgba(0,0,0,0.2);border-radius:7px;padding:0.6rem;margin-bottom:0.5rem;border:1px solid rgba(201,168,108,0.05)}
+.ag-form-section h5{font-size:0.72rem;color:var(--gold-light);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;display:flex;align-items:center;gap:0.3rem}
+.ag-form-bulk textarea{min-height:60px;font-family:monospace;font-size:0.75rem}
+.ag-form-bulk-hint{font-size:0.65rem;color:var(--muted);margin-top:-0.2rem;margin-bottom:0.4rem;font-style:italic}
+.ag-form-toggle{font-size:0.7rem;color:var(--gold-light);cursor:pointer;display:inline-flex;align-items:center;gap:0.2rem;margin-bottom:0.4rem;user-select:none}
+.ag-form-toggle:hover{color:#fff}
+
+/* DASHBOARD - widget de notas recentes */
+.dash-notas-widget{background:linear-gradient(135deg,rgba(16,185,129,0.05),rgba(5,150,105,0.02));border:1px solid rgba(16,185,129,0.15);border-radius:10px;padding:0.9rem;margin-bottom:0.8rem;grid-column:span 2}
+.dash-notas-widget h3{color:#10b981;font-size:0.95rem;margin-bottom:0.5rem;display:flex;align-items:center;justify-content:space-between}
+.dash-notas-widget h3 .btn{font-size:0.7rem;padding:3px 8px}
+.dash-notas-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.4rem}
+.dash-nota-mini{background:rgba(0,0,0,0.3);border-left:3px solid var(--gold);padding:0.5rem 0.6rem;border-radius:0 6px 6px 0;cursor:pointer;transition:0.2s;font-size:0.75rem}
+.dash-nota-mini:hover{background:rgba(16,185,129,0.08);transform:translateX(2px)}
+.dash-nota-mini[data-cor="amarelo"]{border-left-color:#fbbf24}
+.dash-nota-mini[data-cor="verde"]{border-left-color:#10b981}
+.dash-nota-mini[data-cor="azul"]{border-left-color:#3b82f6}
+.dash-nota-mini[data-cor="vermelho"]{border-left-color:#ef4444}
+.dash-nota-mini[data-cor="roxo"]{border-left-color:#a78bfa}
+.dash-nota-mini[data-cor="rosa"]{border-left-color:#ec4899}
+.dash-nota-mini[data-cor="laranja"]{border-left-color:#fb923c}
+.dash-nota-mini[data-cor="ciano"]{border-left-color:#22d3ee}
+.dash-nota-mini strong{color:#10b981;display:block;font-size:0.78rem;margin-bottom:0.2rem}
+.dash-nota-mini .prev{color:#cbd5e1;line-height:1.4;max-height:2.6em;overflow:hidden}
+.dash-nota-mini .meta{color:var(--muted);font-size:0.62rem;margin-top:0.3rem;display:flex;justify-content:space-between}
+
+/* MAPA MENTAL - melhorias */
+.mapa-presets{display:flex;gap:0.3rem;flex-wrap:wrap;margin-bottom:0.5rem}
+.mapa-preset-btn{background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);color:#c7d2fe;padding:0.3rem 0.6rem;border-radius:6px;cursor:pointer;font-size:0.7rem;transition:0.2s}
+.mapa-preset-btn:hover{background:rgba(99,102,241,0.25);color:#fff}
+.mapa-search{background:rgba(10,10,15,0.85);padding:0.4rem 0.7rem;border-radius:8px;backdrop-filter:blur(10px);border:1px solid rgba(99,102,241,0.2);font-size:0.78rem;color:var(--text);outline:none;width:100%;max-width:200px}
+
+/* LEMBRETE cores customizadas */
+.lembrete-toast-custom{position:fixed;top:1rem;right:1rem;padding:0.7rem 1rem;border-radius:10px;color:white;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,0.5);animation:slideIn 0.3s;max-width:340px;font-size:0.82rem;cursor:pointer;border-left:5px solid var(--gold);background:rgba(10,10,15,0.95)}
+.lembrete-toast-custom h4{margin:0 0 0.2rem;font-size:0.9rem}
+.lembrete-toast-custom p{margin:0;font-size:0.78rem;opacity:0.9}
+.lembrete-toast-custom .l-meta{font-size:0.68rem;opacity:0.7;margin-top:0.3rem}
+
+/* DASHBOARD widget agenda */
+.dash-agenda-widget{background:linear-gradient(135deg,rgba(245,158,11,0.05),rgba(217,119,6,0.02));border:1px solid rgba(245,158,11,0.15);border-radius:10px;padding:0.9rem;margin-bottom:0.8rem}
+.dash-agenda-widget h3{color:#fbbf24;font-size:0.95rem;margin-bottom:0.5rem;display:flex;align-items:center;justify-content:space-between}
+.dash-agenda-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.4rem}
+.dash-ev-mini{background:rgba(0,0,0,0.3);border-left:3px solid var(--gold);padding:0.5rem 0.6rem;border-radius:0 6px 6px 0;cursor:pointer;transition:0.2s;font-size:0.75rem;position:relative}
+.dash-ev-mini:hover{background:rgba(245,158,11,0.08);transform:translateX(2px)}
+.dash-ev-mini[data-cor="vermelho"]{border-left-color:#ef4444}
+.dash-ev-mini[data-cor="amarelo"]{border-left-color:#fbbf24}
+.dash-ev-mini[data-cor="verde"]{border-left-color:#10b981}
+.dash-ev-mini[data-cor="azul"]{border-left-color:#3b82f6}
+.dash-ev-mini[data-cor="roxo"]{border-left-color:#a78bfa}
+.dash-ev-mini[data-cor="rosa"]{border-left-color:#ec4899}
+.dash-ev-mini[data-cor="laranja"]{border-left-color:#fb923c}
+.dash-ev-mini[data-cor="ciano"]{border-left-color:#22d3ee}
+.dash-ev-mini strong{color:#fbbf24;display:block;font-size:0.78rem;margin-bottom:0.2rem}
+.dash-ev-mini .ev-time{color:#cbd5e1;font-size:0.7rem}
+.dash-ev-mini .ev-meta{color:var(--muted);font-size:0.62rem;margin-top:0.3rem}
+
+/* ABA MATERIAL 2026 */
+.material-2026-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.7rem}
+.material-2026-card{background:linear-gradient(135deg,rgba(99,102,241,0.05),rgba(67,56,202,0.02));border:1px solid rgba(99,102,241,0.18);border-radius:10px;padding:0.9rem;transition:0.3s;position:relative;overflow:hidden}
+.material-2026-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#a78bfa,#7c3aed,#a78bfa)}
+.material-2026-card:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(99,102,241,0.2);border-color:rgba(99,102,241,0.35)}
+.material-2026-card h4{color:#a78bfa;font-size:0.9rem;margin-bottom:0.3rem;display:flex;align-items:center;gap:0.3rem}
+.material-2026-card p{color:#cbd5e1;font-size:0.75rem;line-height:1.5;margin-bottom:0.4rem}
+.material-2026-card ul{padding-left:1.2rem;margin:0}
+.material-2026-card li{color:#94a3b8;font-size:0.72rem;line-height:1.5;margin-bottom:0.15rem}
+.material-2026-card .badge-novo{position:absolute;top:0.5rem;right:0.5rem;background:linear-gradient(135deg,#10b981,#059669);color:white;font-size:0.6rem;padding:2px 7px;border-radius:8px;font-weight:700}
+
+/* CF/88 contador melhorado */
+.cf-progress{position:sticky;top:0;background:rgba(10,10,15,0.95);backdrop-filter:blur(10px);padding:0.4rem 0.7rem;border-radius:8px;margin-bottom:0.5rem;border:1px solid rgba(201,168,108,0.1);z-index:10;display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;font-size:0.7rem;color:var(--muted)}
+.cf-progress .stat{background:rgba(201,168,108,0.06);padding:3px 8px;border-radius:5px;font-weight:600}
+.cf-progress .stat strong{color:var(--gold-light)}
+
+/* ANOTACOES RAPIDAS inline - aparece em qualquer conteudo */
+.quick-annot-inline{position:relative;display:inline-block;cursor:pointer;padding:0 2px;border-radius:3px;background:rgba(245,158,11,0.15);color:#fbbf24;border-bottom:1px dashed #fbbf24;font-size:0.85em;transition:0.2s}
+.quick-annot-inline:hover{background:rgba(245,158,11,0.3)}
+.quick-annot-inline[data-cor="verde"]{background:rgba(16,185,129,0.15);color:#10b981;border-color:#10b981}
+.quick-annot-inline[data-cor="azul"]{background:rgba(59,130,246,0.15);color:#60a5fa;border-color:#3b82f6}
+.quick-annot-inline[data-cor="vermelho"]{background:rgba(239,68,68,0.15);color:#f87171;border-color:#ef4444}
+.quick-annot-inline[data-cor="roxo"]{background:rgba(167,139,250,0.15);color:#c4b5fd;border-color:#a78bfa}
 </style>
 </head>
 <body>
@@ -15073,6 +15231,931 @@ function iniciarLembretes() {
 }
 setTimeout(iniciarLembretes, 1500);
 
+// ===================================================================
+// v3.0 - SISTEMA DE NOTAS COLORIDAS + DESTAQUES
+// ===================================================================
+var NOTA_CORES = ['none','amarelo','verde','azul','vermelho','roxo','rosa','laranja','ciano'];
+var NOTA_COR_ATUAL = 'none';
+
+function setNotaCor(cor) {
+  NOTA_COR_ATUAL = cor;
+  document.querySelectorAll('#notas-editor .nota-cor-dot, #qn-cores .nota-cor-dot, #aa-cores .nota-cor-dot, #ar-cores .nota-cor-dot').forEach(function(d){
+    d.classList.toggle('active', d.getAttribute('data-cor')===cor);
+  });
+  // Salvar cor na nota atual
+  if(NOTAS_STATE.editando) {
+    var n = NOTAS.find(function(x){return x.id===NOTAS_STATE.editando;});
+    if(n) {
+      n.cor = cor==='none'?'':cor;
+      n.atualizadaEm = new Date().toISOString();
+      salvarNotasStorage();
+      renderNotasList();
+    }
+  }
+}
+
+function aplicarCorNota(id, cor) {
+  var n = NOTAS.find(function(x){return x.id===id;});
+  if(!n) return;
+  n.cor = cor==='none'?'':cor;
+  n.atualizadaEm = new Date().toISOString();
+  salvarNotasStorage();
+  renderNotasList();
+  renderEditor();
+}
+
+// Color picker no editor
+function injetarCorPicker() {
+  // Adicionar picker de cor no editor de notas
+  var acoes = document.querySelector('#notas-editor .ed-meta');
+  if(acoes && !document.getElementById('nota-cor-section')) {
+    var sec = document.createElement('div');
+    sec.id = 'nota-cor-section';
+    sec.style.cssText = 'display:flex;gap:0.2rem;align-items:center;flex-wrap:wrap;margin-top:0.3rem';
+    sec.innerHTML = '<label style="font-size:0.65rem;color:var(--muted);margin-right:0.3rem">🎨 Cor:</label>' +
+      NOTA_CORES.map(function(c){
+        return '<div class="nota-cor-dot '+(c==='none'?'active':'')+'" data-cor="'+c+'" onclick="setNotaCor(\''+c+'\')" title="'+c+'"></div>';
+      }).join('');
+    acoes.parentNode.insertBefore(sec, acoes.nextSibling);
+  }
+}
+
+// ===================================================================
+// v3.0 - ANOTACAO RAPIDA (QUICK NOTE) EM QUALQUER PAGINA
+// ===================================================================
+function toggleQuickNote() {
+  var p = document.getElementById('quick-note-popup');
+  if(!p) return;
+  if(p.classList.contains('show')) {
+    fecharQuickNote();
+  } else {
+    abrirQuickNote();
+  }
+}
+function abrirQuickNote() {
+  var p = document.getElementById('quick-note-popup');
+  if(!p) return;
+  p.classList.add('show');
+  var ctx = contextoAtual();
+  var ctxEl = document.getElementById('qn-contexto');
+  if(ctxEl) ctxEl.textContent = '📍 Contexto: ' + ctx;
+  // Limpar campos
+  var t = document.getElementById('qn-titulo'); if(t) t.value='';
+  var c = document.getElementById('qn-conteudo'); if(c) c.value='';
+  var tg = document.getElementById('qn-tags'); if(tg) tg.value='';
+  NOTA_COR_ATUAL = 'none';
+  document.querySelectorAll('#qn-cores .nota-cor-dot').forEach(function(d){
+    d.classList.toggle('active', d.getAttribute('data-cor')==='none');
+  });
+  setTimeout(function(){ var t=document.getElementById('qn-titulo'); if(t) t.focus(); }, 100);
+}
+function fecharQuickNote() {
+  var p = document.getElementById('quick-note-popup');
+  if(p) p.classList.remove('show');
+}
+function salvarQuickNote() {
+  var tit = (document.getElementById('qn-titulo').value||'').trim();
+  var cont = document.getElementById('qn-conteudo').value||'';
+  var tags = (document.getElementById('qn-tags').value||'').split(',').map(function(t){return t.trim();}).filter(function(t){return t;});
+  if(!tit && !cont) { alert('Preencha pelo menos o titulo ou conteudo.'); return; }
+  var n = {
+    id:'n_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),
+    titulo:tit||'(sem titulo)',
+    conteudo:cont,
+    tags:tags,
+    contexto:contextoAtual(),
+    favorita:false,
+    cor:NOTA_COR_ATUAL==='none'?'':NOTA_COR_ATUAL,
+    criadaEm:new Date().toISOString(),
+    atualizadaEm:new Date().toISOString()
+  };
+  NOTAS.unshift(n);
+  salvarNotasStorage();
+  fecharQuickNote();
+  // Feedback visual
+  showToast('✅ Nota "'+n.titulo+'" salva!', 'verde');
+  // Atualizar UI
+  renderNotasList();
+  if(typeof renderNotasTab==='function') renderNotasTab();
+  if(typeof renderDash==='function') renderDash();
+}
+
+// Atalho Ctrl+Shift+N para nota rapida
+window.addEventListener('keydown', function(e){
+  if((e.ctrlKey||e.metaKey) && e.shiftKey && e.key==='N') {
+    e.preventDefault();
+    toggleQuickNote();
+  }
+});
+
+// ===================================================================
+// v3.0 - AGENDA AVANCADA (unico + bulk + recorrencia + plano estudo)
+// ===================================================================
+function abrirAgendaAvancada() {
+  var modal = document.getElementById('modal-agenda-avancada');
+  if(modal) {
+    modal.classList.add('active');
+    // Pre-fill data
+    var d = document.getElementById('aa-data');
+    if(d && !d.value) d.value = AG_STATE.diaSel || chavData(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+    var di = document.getElementById('ae-data');
+    if(di && !di.value) di.value = chavData(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+    var dri = document.getElementById('ar-data-ini');
+    if(dri && !dri.value) dri.value = chavData(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+    abrirAbaAgenda('unico');
+  }
+}
+
+function abrirAbaAgenda(qual) {
+  ['unico','bulk','recorrencia','estudos'].forEach(function(k){
+    var div = document.getElementById('agenda-'+k);
+    var btn = document.getElementById('aba-agenda-'+k);
+    if(div) div.style.display = k===qual?'block':'none';
+    if(btn) {
+      btn.classList.remove('btn-outline');
+      btn.classList.toggle('btn', k===qual);
+      btn.classList.toggle('btn-outline', k!==qual);
+    }
+  });
+}
+
+function getCorSelecionada(prefix) {
+  var p = document.getElementById(prefix);
+  if(!p) return '';
+  var ativo = p.querySelector('.nota-cor-dot.active');
+  return ativo ? (ativo.getAttribute('data-cor')||'') : '';
+}
+
+function salvarAgendaAvancada() {
+  var tit = (document.getElementById('aa-tit').value||'').trim();
+  if(!tit) { alert('Informe o titulo.'); return; }
+  var data = document.getElementById('aa-data').value;
+  if(!data) { alert('Informe a data.'); return; }
+  var ev = {
+    id:'ev_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),
+    titulo:tit,
+    data:data,
+    hora:document.getElementById('aa-hora').value||'',
+    cat:document.getElementById('aa-cat').value,
+    local:document.getElementById('aa-local').value||'',
+    link:document.getElementById('aa-link').value||'',
+    com:document.getElementById('aa-com').value||'',
+    proc:document.getElementById('aa-proc').value||'',
+    cliente:document.getElementById('aa-cliente').value||'',
+    vara:document.getElementById('aa-vara').value||'',
+    duracao:parseInt(document.getElementById('aa-duracao').value)||0,
+    desc:document.getElementById('aa-desc').value||'',
+    lembrete:document.getElementById('aa-lembrete').checked,
+    antecedencia:parseInt(document.getElementById('aa-antec').value)||15,
+    repetir:parseInt(document.getElementById('aa-rep').value)||0,
+    cor:getCorSelecionada('aa-cores'),
+    criadoEm:new Date().toISOString()
+  };
+  AGENDA.push(ev);
+  salvarAgenda();
+  fecharModal('modal-agenda-avancada');
+  renderAgenda();
+  atualizarBadgeLembretes();
+  showToast('✅ Evento "'+tit+'" salvo na agenda!', 'verde');
+  // Limpar form
+  ['aa-tit','aa-local','aa-link','aa-com','aa-proc','aa-cliente','aa-vara','aa-desc','aa-duracao'].forEach(function(id){var el=document.getElementById(id); if(el) el.value='';});
+}
+
+function salvarAgendaBulk() {
+  var texto = document.getElementById('aa-bulk-texto').value||'';
+  if(!texto.trim()) { alert('Cole pelo menos um evento.'); return; }
+  var notif = document.getElementById('aa-bulk-lembrete').checked;
+  var linhas = texto.split('\n');
+  var ok = 0, erro = 0;
+  linhas.forEach(function(linha){
+    linha = linha.trim();
+    if(!linha || linha.startsWith('#')) return;
+    var p = linha.split('|').map(function(s){return s.trim();});
+    if(p.length<3) { erro++; return; }
+    var data = p[0], hora = p[1]||'', tit = p[2]||'', cat = p[3]||'lemb', local = p[4]||'', desc = p[5]||'';
+    if(!data.match(/^\d{4}-\d{2}-\d{2}$/)) { erro++; return; }
+    var ev = {
+      id:'ev_'+Date.now()+'_'+Math.random().toString(36).slice(2,7)+'_'+ok,
+      titulo:tit, data:data, hora:hora, cat:cat, local:local, desc:desc,
+      lembrete:notif, antecedencia:15, criadoEm:new Date().toISOString()
+    };
+    AGENDA.push(ev);
+    ok++;
+  });
+  salvarAgenda();
+  fecharModal('modal-agenda-avancada');
+  renderAgenda();
+  atualizarBadgeLembretes();
+  showToast('✅ '+ok+' evento(s) importado(s)'+(erro>0?' ('+erro+' com erro)':'')+'!', ok>0?'verde':'vermelho');
+  document.getElementById('aa-bulk-texto').value='';
+}
+
+function salvarAgendaRecorrencia() {
+  var tit = (document.getElementById('ar-tit').value||'').trim();
+  if(!tit) { alert('Informe o titulo.'); return; }
+  var di = document.getElementById('ar-data-ini').value;
+  if(!di) { alert('Informe a data de inicio.'); return; }
+  var df = document.getElementById('ar-data-fim').value;
+  var hora = document.getElementById('ar-hora').value||'';
+  var cat = document.getElementById('ar-cat').value;
+  var local = document.getElementById('ar-local').value||'';
+  var freq = parseInt(document.getElementById('ar-freq').value)||7;
+  var dows = Array.from(document.querySelectorAll('.ar-dow:checked')).map(function(c){return parseInt(c.value);});
+  var cor = getCorSelecionada('ar-cores');
+  var dt = new Date(di+'T00:00:00');
+  var fim = df ? new Date(df+'T00:00:00') : new Date(dt.getTime() + 90*86400000); // 90 dias padrao
+  var count = 0;
+  while(dt <= fim && count < 200) {
+    if(dows.length===0 || dows.indexOf(dt.getDay())>=0) {
+      var dStr = chavData(dt.getFullYear(), dt.getMonth(), dt.getDate());
+      AGENDA.push({
+        id:'ev_'+Date.now()+'_'+Math.random().toString(36).slice(2,7)+'_'+count,
+        titulo:tit, data:dStr, hora:hora, cat:cat, local:local, desc:'',
+        lembrete:true, antecedencia:15, cor:cor, recorrente:true,
+        criadoEm:new Date().toISOString()
+      });
+      count++;
+    }
+    dt = new Date(dt.getTime() + 86400000);
+    if(freq>1) dt = new Date(dt.getTime() + (freq-1)*86400000);
+  }
+  salvarAgenda();
+  fecharModal('modal-agenda-avancada');
+  renderAgenda();
+  atualizarBadgeLembretes();
+  showToast('🔁 '+count+' eventos recorrentes criados!', 'verde');
+  document.getElementById('ar-tit').value='';
+  document.getElementById('ar-local').value='';
+}
+
+function salvarPlanoEstudo() {
+  var materia = (document.getElementById('ae-materia').value||'').trim()||'Estudo';
+  var topicos = parseInt(document.getElementById('ae-topicos').value)||10;
+  var minutos = parseInt(document.getElementById('ae-min').value)||60;
+  var di = document.getElementById('ae-data').value;
+  var hora = document.getElementById('ae-hora').value||'19:00';
+  var dows = Array.from(document.querySelectorAll('.ae-dow:checked')).map(function(c){return parseInt(c.value);});
+  if(dows.length===0) { alert('Selecione ao menos um dia da semana.'); return; }
+  if(!di) { alert('Informe a data de inicio.'); return; }
+  var dt = new Date(di+'T00:00:00');
+  var count = 0;
+  var topicoAtual = 1;
+  while(count < topicos && count < 100) {
+    if(dows.indexOf(dt.getDay())>=0) {
+      var dStr = chavData(dt.getFullYear(), dt.getMonth(), dt.getDate());
+      AGENDA.push({
+        id:'ev_'+Date.now()+'_'+Math.random().toString(36).slice(2,7)+'_'+count,
+        titulo:'📚 '+materia+' - Topico '+topicoAtual+'/'+topicos,
+        data:dStr, hora:hora, cat:'est', local:'', desc:'Sessao de estudo de '+minutos+' minutos. Topico '+topicoAtual+' de '+topicos+'.',
+        lembrete:true, antecedencia:15, cor:'azul', planoEstudo:true,
+        criadoEm:new Date().toISOString()
+      });
+      topicoAtual++;
+      count++;
+    }
+    dt = new Date(dt.getTime() + 86400000);
+  }
+  salvarAgenda();
+  fecharModal('modal-agenda-avancada');
+  renderAgenda();
+  atualizarBadgeLembretes();
+  showToast('📚 Plano de estudo de '+materia+' gerado: '+count+' sessoes!', 'verde');
+  document.getElementById('ae-materia').value='';
+}
+
+// ===================================================================
+// v3.0 - CORES PERSONALIZADAS NOS EVENTOS DA AGENDA
+// ===================================================================
+function corLembrete(id) {
+  var e = AGENDA.find(function(x){return x.id===id;});
+  if(!e) return;
+  document.getElementById('lembrete-cor-id').value = id;
+  // Marcar cor atual
+  document.querySelectorAll('#lembrete-cores-popup .nota-cor-dot').forEach(function(d){
+    d.classList.toggle('active', d.getAttribute('data-cor')===(e.cor||'none'));
+  });
+  abrirModal('modal-cor-lembrete');
+}
+
+function aplicarCorLembrete() {
+  var id = document.getElementById('lembrete-cor-id').value;
+  var ativo = document.querySelector('#lembrete-cores-popup .nota-cor-dot.active');
+  var cor = ativo ? ativo.getAttribute('data-cor') : 'none';
+  var e = AGENDA.find(function(x){return x.id===id;});
+  if(e) {
+    e.cor = cor==='none'?'':cor;
+    salvarAgenda();
+    renderAgenda();
+    showToast('🎨 Cor aplicada ao evento "'+e.titulo+'".', 'verde');
+  }
+  fecharModal('modal-cor-lembrete');
+}
+
+// Hook no agAbrir para adicionar botao de cor
+var _agAbrirOriginal = agAbrir;
+function agAbrir(id) {
+  _agAbrirOriginal(id);
+  // Adicionar botao cor
+  var body = document.getElementById('evento-body');
+  if(body && !body.querySelector('.btn-cor-evento')) {
+    var btnCor = document.createElement('button');
+    btnCor.className = 'btn btn-sm btn-cor-evento';
+    btnCor.style.cssText = 'background:linear-gradient(135deg,#ec4899,#db2777);color:white;border:none';
+    btnCor.innerHTML = '🎨 Cor';
+    btnCor.onclick = function(){ corLembrete(id); };
+    var row = body.querySelector('div[style*="display:flex;gap:0.4rem;margin-top:1rem"]');
+    if(row) row.insertBefore(btnCor, row.firstChild);
+  }
+}
+
+// Hook no agSalvar para incluir cor
+var _agSalvarOriginal = agSalvar;
+function agSalvar() {
+  // Adicionar cor do picker se existir
+  var c = getCorSelecionada('ag-cores');
+  if(c) window._ultimaCorAgenda = c;
+  _agSalvarOriginal();
+  if(window._ultimaCorAgenda && AGENDA.length>0) {
+    AGENDA[AGENDA.length-1].cor = window._ultimaCorAgenda==='none'?'':window._ultimaCorAgenda;
+    salvarAgenda();
+    renderAgenda();
+    window._ultimaCorAgenda = null;
+  }
+}
+
+// ===================================================================
+// v3.0 - TOASTS / NOTIFICACOES EM TELA
+// ===================================================================
+function showToast(msg, cor) {
+  cor = cor || 'verde';
+  var cores = {
+    verde:'linear-gradient(135deg,#10b981,#059669)',
+    vermelho:'linear-gradient(135deg,#ef4444,#dc2626)',
+    azul:'linear-gradient(135deg,#3b82f6,#2563eb)',
+    amarelo:'linear-gradient(135deg,#f59e0b,#d97706)',
+    roxo:'linear-gradient(135deg,#a78bfa,#7c3aed)',
+    rosa:'linear-gradient(135deg,#ec4899,#db2777)',
+    info:'linear-gradient(135deg,#3b82f6,#2563eb)'
+  };
+  var bg = cores[cor] || cores.verde;
+  var t = document.createElement('div');
+  t.className = 'lembrete-toast-custom';
+  t.style.background = bg;
+  t.innerHTML = '<strong>'+msg+'</strong>';
+  t.onclick = function(){ t.remove(); };
+  document.body.appendChild(t);
+  setTimeout(function(){ if(t.parentNode) t.remove(); }, 4000);
+}
+
+// ===================================================================
+// v3.0 - CONSTITUICAO FEDERAL COMPLETA E ATUALIZADA
+// ===================================================================
+// Adiciona titulos faltantes (Direitos Politicos, Organizacao do Estado,
+// Tributacao, Ordem Economica, etc) ao objeto VADE
+(function expandirCF88() {
+  if(typeof VADE==='undefined') return;
+  var ramo = VADE.ramos.find(function(r){return r.id==='constitucional';});
+  if(!ramo) return;
+  var cf = ramo.leis.find(function(l){return l.sigla==='CF/88';});
+  if(!cf) return;
+
+  // Verifica se ja foi expandido
+  if(cf._expandido) return;
+  cf._expandido = true;
+
+  // Adicionar topicos faltantes (a partir de onde parou)
+  var novosTopicos = [
+    {titulo:'TITULO III - DA ORGANIZACAO DO ESTADO',artigos:[
+      {num:'Art. 40',texto:'Aos servidores titulares de cargos efetivos da Uniao, dos Estados, do Distrito Federal e dos Municipios, incluidas suas autarquias e fundacoes, e assegurado regime de previdencia de carater contributivo e solidario, mediante contribuicao do respectivo ente publico, dos servidores ativos e inativos e dos pensionistas, observados criterios que preservem o equilibrio financeiro e atuarial. (Redacao dada pela EC 41/2003) O regime proprio de previdencia social dos servidores publicos sera objeto de lei complementar. Requisitos para aposentadoria voluntaria: 65 anos idade / 60 mulher; 10 anos efetivo exercicio no servico publico; 5 anos no cargo efetivo em que se der a aposentadoria. Proventos integrais: regras de transicao.',keywords:['servidor','aposentadoria','previdencia']},
+      {num:'Art. 41',texto:'A lei dispora sobre as condicoes para a aposentaria compulsoria por idade, aos 75 anos. Os servidores publicos serao aposentados: I - por invalidez permanente; II - compulsoriamente, aos 75 anos de idade; III - voluntariamente, desde que cumprido o tempo minimo de 10 anos de efetivo exercicio no servico publico e 5 anos no cargo em que se dara a aposentadoria. Aposentadoria e pensao serao concedidas e mantidas pelo regime proprio ou pelo Regime Geral de Previdencia Social - RGPS.',keywords:['servidor','aposentadoria','previdencia']}
+    ]},
+    {titulo:'TITULO IV - DA ORGANIZACAO DOS PODERES',artigos:[
+      {num:'Art. 44',texto:'O Poder Legislativo e exercido pelo Congresso Nacional, com a Camara dos Deputados e o Senado Federal. A Camara dos Deputados compoe-se de representantes do povo, eleitos, pelo sistema proporcional, em cada Estado, em cada Territorio e no Distrito Federal. O numero total de Deputados sera de 513, sendo 8 para cada Estado, 8 para o DF, 3 para cada Territorio (Art. 45). O Senado Federal compoe-se de 3 Senadores por Estado e 3 para o DF, eleitos por maioria simples, mandato de 8 anos, renovando-se em 1/3 e 2/3 alternadamente.',keywords:['legislativo','parlamentar']},
+      {num:'Art. 46',texto:'O Senado Federal compoe-se de representantes dos Estados e do Distrito Federal, eleitos segundo o principio majoritario. Cada Estado e o Distrito Federal elegerao tres Senadores, com mandato de oito anos. A representacao de cada Estado e do Distrito Federal sera renovada de quatro em quatro anos, alternadamente, por um e dois tercos.',keywords:['senado','parlamentar']},
+      {num:'Art. 48',texto:'Cabe ao Congresso Nacional, com a sancao do Presidente da Republica, dispor sobre todas as materias de competencia da Uniao, especialmente sobre: I - sistema tributario, arrecadacao e distribuicao de rendas; II - plano plurianual, diretrizes orcamentarias, orcamento; III - fixacao e modificacao do efetivo das Forcas Armadas; IV - planos e programas nacionais, regionais e setoriais de desenvolvimento; V - limites do territorio nacional, espaco aereo e martimo e bens do dominio da Uniao; VI - incorporacao, subdivisao ou desmembramento de areas de Territorios ou Estados, ouvidas as respectivas Assembleias Legislativas; VII - transferencia temporaria da sede do Governo; VIII - concessao de amnistia; IX - organizacao administrativa, judiciaria, do Ministerio Publico e da Defensoria Publica da Uniao e dos Territorios; X - criacao, transformacao e extincao de cargos, empregos e funcoes publicas; XI - criacao e extincao de Ministerios e orgaos da administracao publica; XII - telecomunicacoes e radiodifusao; XIII - materia financeira, cambial e monetaria, instituicoes financeiras e suas operacoes; XIV - moeda, seus limites de emissao, e montante da divida movel federal.',keywords:['legislativo','congresso']},
+      {num:'Art. 51',texto:'E da competencia exclusiva da Camara dos Deputados: I - autorizar, por dois tercos de seus membros, a instauracao de processo contra o Presidente e o Vice-Presidente da Republica e os Ministros de Estado; II - proceder a tomada de contas do Presidente da Republica, quando nao apresentadas ao Congresso Nacional dentro de 60 dias apos a abertura da sessao legislativa; III - elaborar seu regimento interno; IV - dispor sobre sua organizacao, funcionamento, policia, criacao, transformacao ou extincao dos cargos, empregos e funcoes de seus servicos, e a fixacao da respectiva remuneracao, observados os parametros estabelecidos na lei de diretrizes orcamentarias; V - eleger membros do Conselho da Republica, nos termos do art. 89, VII.',keywords:['camara','deputados']},
+      {num:'Art. 52',texto:'Compete privativamente ao Senado Federal: I - processar e julgar o Presidente e o Vice-Presidente da Republica nos crimes de responsabilidade, bem como os Ministros de Estado e os Comandantes da Marinha, do Exercito e da Aeronautica nos crimes da mesma natureza conexos com aqueles; II - processar e julgar os Ministros do STF, os membros do Conselho Nacional de Justica e do Ministerio Publico, o Advogado-Geral da Uniao e o Procurador-Geral da Republica nos crimes de responsabilidade; III - aprovar previamente, por voto secreto, apos arguição publica, a escolha de: a) magistrados, em caso de indicacao pelo Presidente da Republica; b) membros do Conselho do Tribunal de Contas da Uniao indicados pelo Presidente da Republica; c) Governador de Territorio; d) presidente e diretores do Banco Central; e) Procurador-Geral da Republica; IV - aprovar previamente, por voto secreto, a escolha dos chefes de missao diplomatica de carater permanente; V - autorizar operacoes externas de natureza financeira, de interesse da Uniao, dos Estados, do DF, dos Territorios e dos Municipios; VI - fixar, por proposta do Presidente da Republica, limites globais para o montante da divida consolidada da Uniao, dos Estados, do DF e dos Municipios; VII - dispor sobre limites globais e condicoes para as operacoes de credito externo e interno da Uniao, dos Estados, do DF e dos Municipios, de suas autarquias e demais entidades controladas pelo Poder Publico federal, estadual, distrital ou municipal; VIII - dispor sobre limites e condicoes para a concessao de garantia da Uniao em operacoes de credito externo e interno; IX - fixar limites globais e condicoes para o montante da divida movel dos Estados, do DF e dos Municipios; X - autorizar, ressalvadas as hipoteses do art. 49, V e VI, operacoes externas de natureza financeira de interesse da Uniao, Estados, DF e Territorios; XI - examinar, anualmente, as contas prestadas pelo Presidente da Republica e sobre elas deliberar; XII - elaborar seu regimento interno.',keywords:['senado','congresso']},
+      {num:'Art. 60',texto:'A Constituicao podera ser emendada mediante proposta: I - de um terco, no minimo, dos membros da Camara dos Deputados ou do Senado Federal; II - do Presidente da Republica; III - de mais da metade das Assembleias Legislativas das unidades da Federacao, manifestando-se, cada uma delas, pela maioria relativa de seus membros; IV - iniciativa popular (subscreveram-na pelo menos 1% do eleitorado nacional, distribuidos por pelo menos 5 Estados, com nao menos de 0,3% dos eleitores de cada um deles). A Constituicao nao podera ser emendada na vigencia de: I - intervencao federal; II - estado de defesa; III - estado de sitio. A emenda sera discutida e votada em cada Casa do Congresso Nacional, em dois turnos, considerando-se aprovada se obtiver, em ambos, tres quintos dos votos dos respectivos membros. As emendas aprovadas serao promulgadas pelas Mesas da Camara dos Deputados e do Senado Federal, com o respectivo numero de ordem.',keywords:['emenda','constitucional','reforma']},
+      {num:'Art. 61',texto:'A iniciativa das leis complementares e ordinarias cabe a qualquer membro ou Comissao da Camara dos Deputados, do Senado Federal ou do Congresso Nacional, ao Presidente da Republica, ao Superior Tribunal de Justica, aos Tribunais Superiores, ao Procurador-Geral da Republica e aos cidadaos (iniciativa popular). Sao de iniciativa privativa do Presidente da Republica as leis que: I - fixem ou modifiquem os efetivos das Forcas Armadas; II - disponham sobre: a) criacao de cargos, funcoes ou empregos publicos na administracao direta e autarquica ou aumento de sua remuneracao; b) organizacao administrativa e judiciaria, materia tributaria e orcamentaria, servicos publicos e pessoal da administracao dos Territorios; c) servidores publicos da Uniao e Territorios, seu regime juridico, provimento de cargos, estabilidade e aposentadoria; d) organizacao do Ministerio Publico e da Defensoria Publica da Uniao, bem como normas gerais para a organizacao do Ministerio Publico e da Defensoria Publica dos Estados, do DF e dos Territorios; e) criacao, estruturacao e atribuicoes dos Ministerios e orgaos da administracao publica.',keywords:['lei','iniciativa','legislacao']},
+      {num:'Art. 68',texto:'As leis delegadas serao elaboradas pelo Presidente da Republica, que devera solicitar a delegacao ao Congresso Nacional. Nao serao objeto de delegacao os atos de competencia exclusiva do Congresso Nacional, os de competencia privativa da Camara dos Deputados ou do Senado Federal, a materia reservada a lei complementar, nem a legislacao sobre: I - organizacao do Poder Judiciario e do Ministerio Publico, a carreira e a garantia de seus membros; II - nacionalidade, cidadania, direitos individuais, politicos e eleitorais; III - planos plurianuais, diretrizes orcamentarias e orcamentos.',keywords:['lei delegada','legislacao']},
+      {num:'Art. 84',texto:'Compete privativamente ao Presidente da Republica: I - nomear e exonerar os Ministros de Estado; II - exercer, com o auxlio dos Ministros de Estado, a direcao superior da administracao federal; III - iniciar o processo legislativo, na forma e nos casos previstos nesta Constituicao; IV - sancionar, promulgar e fazer publicar as leis, bem como expedir decretos e regulamentos para a sua fiel execucao; V - vetar projetos de lei, total ou parcialmente; VI - dispor sobre a organizacao e o funcionamento da administracao federal na forma da lei; VII - manter relacoes com Estados estrangeiros e acreditar seus representantes diplomaticos; VIII - celebrar tratados, convencoes e atos internacionais, sujeitos a referendum do Congresso Nacional; IX - decretar o estado de defesa, o estado de sitio e a intervencao federal; X - conferir condecoracoes e honrarias; XI - permitir, nos casos previstos em lei complementar, que forcas estrangeiras transitem pelo territorio nacional ou nele permaneçam temporariamente; XII - enviar ao Congresso Nacional o plano plurianual, o projeto de lei de diretrizes orcamentarias e as propostas de orcamento previstos nesta Constituicao; XIII - prestar, anualmente, ao Congresso Nacional, dentro de 60 dias apos a abertura da sessao legislativa, as contas referentes ao exercicio anterior; XIV - prover e extinguir os cargos publicos federais, na forma da lei; XV - editar medidas provisorias, com forca de lei, nos termos do art. 62; XVI - demais atribuicoes que lhe forem conferidas nesta Constituicao.',keywords:['presidente','republica']},
+      {num:'Art. 102',texto:'Compete ao Supremo Tribunal Federal, precipuamente, a guarda da Constituicao, cabendo-lhe: I - processar e julgar, originariamente: a) a acao direta de inconstitucionalidade de lei ou ato normativo federal ou estadual e a acao declaratoria de constitucionalidade de lei ou ato normativo federal; b) nas infracoes penais comuns, o Presidente da Republica, o Vice-Presidente, os membros do Congresso Nacional, seus proprios Ministros, o Procurador-Geral da Republica; c) nas infracoes penais comuns e nos crimes de responsabilidade, os Ministros de Estado e os Comandantes da Marinha, do Exercito e da Aeronautica; d) o "habeas-corpus", sendo paciente qualquer das pessoas referidas nas alineas anteriores; o mandado de seguranca e o "habeas-data" contra atos do Presidente da Republica, das Mesas da Camara dos Deputados e do Senado Federal, do Tribunal de Contas da Uniao, do Procurador-Geral da Republica e do proprio STF; e) nas infracoes penais comuns e nos crimes de responsabilidade, os embaixadores e ministros diplomaticos, o Governador de Estado, o Vice-Governador, o Secretario de Estado, os membros do Tribunal de Contas da Uniao, os Juizes dos Tribunais Superiores, os do Tribunal Maritimo, o Procurador-Geral da Republica, os membros do Conselho Nacional de Justica e do CNMP; II - julgar, em recurso ordinario: a) o "habeas-corpus", o mandado de seguranca, o "habeas-data" e o mandado de injuncao decididos em unica ou ultima instancia pelos Tribunais Superiores, se denegatoria a decisao; b) o crime politico; III - julgar, em recurso extraordinario, as causas decididas em unica ou ultima instancia, quando a decisao recorrida: a) contrariar dispositivo desta Constituicao; b) declarar a inconstitucionalidade de tratado ou lei federal; c) julgar valida lei ou ato de governo local contestado em face desta Constituicao; d) julgar valida lei local contestada em face de lei federal.',keywords:['stf','judiciario']},
+      {num:'Art. 105',texto:'Compete ao Superior Tribunal de Justica: I - processar e julgar, originariamente: a) nos crimes comuns, os Governadores dos Estados e do DF, e, nestes e nos de responsabilidade, os Desembargadores dos Tribunais de Justica, os membros dos Tribunais de Contas dos Estados e do DF, os dos Tribunais Regionais Federais, dos Tribunais Regionais Eleitorais e do Trabalho, os membros dos Conselhos ou Tribunais de Contas dos Municipios, os Juizes de Direito e os membros do Ministerio Publico da Uniao e dos Estados, da Defensoria Publica da Uniao e dos Estados; b) os mandados de seguranca e os "habeas-data" contra ato de Ministro de Estado, dos Comandantes da Marinha, do Exercito e da Aeronautica ou do proprio Tribunal; c) os "habeas-corpus", quando o coator ou paciente for qualquer das pessoas mencionadas na alinea "a", ou quando coator for Tribunal sujeito a sua jurisdicao, Ministro de Estado ou Comandante da Marinha, do Exercito ou da Aeronautica, ressalvada a competencia do STF; II - julgar, em recurso ordinario: a) os "habeas-corpus" decididos em unica ou ultima instancia pelos Tribunais Regionais Federais ou pelos tribunais dos Estados, do DF e Territorios, quando a decisao for denegatoria; b) os mandados de seguranca decididos em unica instancia pelos Tribunais Regionais Federais ou pelos tribunais dos Estados, do DF e Territorios, quando denegatoria a decisao; c) as causas em que forem partes Estado estrangeiro ou organismo internacional, de um lado, e, do outro, Municipio ou pessoa residente ou domiciliada no Pais; III - julgar, em recurso especial, as causas decididas, em unica ou ultima instancia, pelos Tribunais Regionais Federais ou pelos tribunais dos Estados, do DF e Territorios, quando a decisao recorrida: a) contrariar tratado ou lei federal, ou negar-lhes vigencia; b) julgar valido ato de governo local contestado em face de lei federal; c) der a lei federal interpretacao divergente da que lhe haja atribuido outro tribunal.',keywords:['stj','judiciario']}
+    ]},
+    {titulo:'TITULO VI - DA TRIBUTACAO E ORCAMENTO',artigos:[
+      {num:'Art. 145',texto:'A Uniao, os Estados, o Distrito Federal e os Municipios poderao instituir os seguintes tributos: I - impostos; II - taxas, em razao do exercicio do poder de policia ou pela utilizacao, efetiva ou potencial, de servicos publicos especificos e divisiveis, prestados ao contribuinte ou postos a sua disposicao; III - contribuicao de melhoria, pela realizacao de obras publicas. As taxas nao poderao ter base de calculo propria de impostos. Caracterizam-se como impostos os tributos cuja obrigacao tem por fato gerador uma situacao independente de qualquer atividade estatal especifica, relativa ao contribuinte.',keywords:['tributario','imposto','taxa']},
+      {num:'Art. 146',texto:'A lei complementar dispora sobre: I - conflito de competencia, em materia tributaria, entre a Uniao, os Estados, o DF e os Municipios; II - regulamentacao das limitações constitucionais ao poder de tributar; III - definicao de tributos e suas especies, bem como, em relacao aos impostos discriminados nesta Constituicao, a dos respectivos fatos geradores, bases de calculo e contribuintes; IV - obrigacao, lancamento, credito, prescricao e decadencia tributarios; V - administracao tributaria: d) obrigacao de prestar informacoes e de oferecer condicoes de acesso aos dados; VI - definicao de tratamento diferenciado e favorecido para as microempresas e para as empresas de pequeno porte, inclusive regimes especiais ou simplificados no caso do imposto de que trata o art. 156, I e II (ISS e ICMS).',keywords:['lei complementar','tributario']},
+      {num:'Art. 148',texto:'A Uniao, mediante lei complementar, podera instituir emprestimos compulsorios: I - para atender a despesas extraordinarias, decorrentes de calamidade publica, de guerra externa ou sua iminencia; II - no caso de investimento publico de urgencia e de relevante interesse nacional, observados os preceitos do art. 150, I, "a", e III, "a". E facultado ao CTN (Lei 5.172/66) regular a materia.',keywords:['emprestimo','tributario']},
+      {num:'Art. 150',texto:'Sem prejuizo de outras garantias asseguradas ao contribuinte, e vedado a Uniao, aos Estados, ao DF e aos Municipios: I - exigir ou aumentar tributo sem lei que o estabeleca; II - instituir tratamento desigual entre contribuintes que se encontrem em situacao equivalente, proibida qualquer distincao em razao de ocupacao profissional ou funcao por eles exercida, independentemente da denominacao juridica dos rendimentos, titulos ou direitos; III - cobrar tributos: a) em relacao a fatos geradores ocorridos antes do inicio da vigencia da lei que os houver instituido ou aumentado; b) no mesmo exercicio financeiro em que haja sido publicada a lei que os instituiu ou aumentou; c) antes de decorridos noventa dias da data em que haja sido publicada a lei que os instituiu ou aumentou, observado o disposto na alinea "b" do inciso IV deste artigo; IV - utilizar tributo com efeito de confiscacao; V - estabelecer limitacoes ao trafego de pessoas ou bens, por meio de tributos interestaduais ou intermunicipais, ressalvada a cobranca de pedagio pela utilizacao de vias conservadas pelo Poder Publico; VI - instituir impostos sobre: a) patrimonio, renda ou servicos, uns dos outros (Uniao, Estados, DF e Municipios); b) templos de qualquer culto; c) patrimonio, renda ou servicos dos partidos politicos, inclusive suas fundações, das entidades sindicais dos trabalhadores e das instituções de assistencia social e educacional, sem fins lucrativos, atendidos os requisitos da lei; d) livros, jornais, periodicos e o papel destinado a sua impressao; e) fonogramas e videofonogramas musicais produzidos no Brasil, com repertorio de artistas brasileiros, em pelo menos 2/3 de sua composicao; VII - instituir isencoes de tributos da competencia dos Estados, DF ou Municipios, na esfera de sua competencia.',keywords:['imunidade','tributario','principios']},
+      {num:'Art. 153',texto:'Compete a Uniao instituir impostos sobre: I - importacao de produtos estrangeiros; II - exportacao, para o exterior, de produtos nacionais ou nacionalizados; III - renda e proventos de qualquer natureza; IV - produtos industrializados; V - operacoes de credito, cambio e seguro, ou relativas a titulos ou valores mobiliarios; VI - propriedade territorial rural; VII - grandes fortunas, nos termos de lei complementar. E facultado ao Poder Executivo, atendidas as condicoes e os limites estabelecidos em lei, alterar as alíquotas dos impostos enumerados nos incisos I, II, IV e V. A alíquota do imposto de importacao (II) pode ser reduzida ou zerada para atender a acordos internacionais ou para garantir competitividade.',keywords:['impostos','uniao']},
+      {num:'Art. 156',texto:'Compete aos Municipios instituir impostos sobre: I - propriedade predial e territorial urbana (IPTU); II - transmissao "inter vivos", a qualquer titulo, por ato oneroso, de bens imoveis, por natureza ou acessao fisica, e de direitos reais sobre imoveis, exceto os de garantia, bem como cessao de direitos a sua aquisicao (ITBI); III - servicos de qualquer natureza, nao compreendidos no art. 155, II (ISS), definidos em lei complementar. O ISS tem como fato gerador a prestacao de servicos previstos na LC 116/2003. Alíquota minima 2%, maxima 5%. Sempre que possivel, os impostos terao base de calculo na capacidade economica do contribuinte.',keywords:['iss','iptu','municipio']}
+    ]},
+    {titulo:'TITULO VIII - DA ORDEM SOCIAL',artigos:[
+      {num:'Art. 193',texto:'A ordem social tem como base o primado do trabalho, e como objetivo o bem-estar e a justica sociais.',keywords:['social','constitucional']},
+      {num:'Art. 196',texto:'A saude e direito de todos e dever do Estado, garantido mediante politicas sociais e economicas que visem a reducao do risco de doenca e de outros agravos e ao acesso universal e igualitario as acoes e servicos para sua promocao, protecao e recuperacao.',keywords:['saude','sus']},
+      {num:'Art. 198',texto:'As acoes e servicos publicos de saude integram uma rede regionalizada e hierarquizada e constituem um sistema unico (SUS), organizado de acordo com as seguintes diretrizes: I - descentralizacao, com direcao unica em cada esfera de governo; II - atendimento integral, com prioridade para as atividades preventivas, sem prejuzo dos servicos assistenciais; III - participacao da comunidade. A Uniao, os Estados, o DF e os Municipios aplicarao, anualmente, em acoes e servicos publicos de saude recursos minimos derivados da aplicacao de percentuais calculados sobre a receita de impostos. Emenda Constitucional 86/2015: Uniao 15% da receita corrente liquida. Emenda Constitucional 95/2016 (EC do Teto): congelamento das despesas primarias por 20 anos.',keywords:['saude','sus','publico']},
+      {num:'Art. 205',texto:'A educacao, direito de todos e dever do Estado e da familia, sera promovida e incentivada com a colaboracao da sociedade, visando ao pleno desenvolvimento da pessoa, seu preparo para o exercicio da cidadania e sua qualificacao para o trabalho.',keywords:['educacao','direito']},
+      {num:'Art. 208',texto:'O dever do Estado com a educacao sera efetivado mediante a garantia de: I - educacao basica obrigatoria e gratuita dos 4 (quatro) aos 17 (dezessete) anos de idade; II - educacao infantil, em creche e pre-escola, as criancas ate 5 (cinco) anos de idade; III - atendimento educacional especializado aos portadores de deficiencia, preferencialmente na rede regular de ensino; IV - educacao infantil e fundamental gratuita para todos, inclusive para os que a ela nao tiveram acesso na idade propria; V - acesso aos niveis mais elevados do ensino, da pesquisa e da criacao artistica, segundo a capacidade de cada um; VI - oferta de ensino noturno regular, adequado as condicoes do educando; VII - atendimento ao educando, em todas as etapas da educacao basica, por meio de programas suplementares de material didatico-escolar, transporte, alimentacao e assistencia a saude. O nao-oferecimento do ensino obrigatorio pelo Poder Publico, ou sua oferta irregular, importa responsabilidade da autoridade competente. O acesso ao ensino obrigatorio e gratuito e direito subjetivo publico, podendo qualquer cidadao, qualquer entidade civil ou o Ministerio Publico acionar o Poder Publico para exigi-lo.',keywords:['educacao','escola']},
+      {num:'Art. 225',texto:'Todos tem direito ao meio ambiente ecologicamente equilibrado, bem de uso comum do povo e essencial a sadia qualidade de vida, impondo-se ao Poder Publico e a coletividade o dever de defende-lo e preserva-lo para as presentes e futuras geracoes. Para assegurar a efetividade desse direito, incumbe ao Poder Publico: I - preservar e restaurar os processos ecologicos essenciais e prover o manejo ecologico das especies e ecossistemas; II - preservar a diversidade e a integridade do patrimonio genetico do Pais e fiscalizar as entidades dedicadas a pesquisa e manipulacao de material genetico; III - definir, em todas as unidades da Federacao, espacos territoriais e seus componentes a serem especialmente protegidos, sendo a alteracao e a supressao permitidas somente atraves de lei, vedada qualquer utilizacao que comprometa a integridade dos atributos que justifiquem sua protecao; IV - exigir, na forma da lei, para instalacao de obra ou atividade potencialmente causadora de significante degradacao do meio ambiente, estudo previo de impacto ambiental, a que se dara publicidade; V - controlar a producao, a comercializacao e o emprego de tecnicas, metodos e substancias que comportem risco para a vida, a qualidade de vida e o meio ambiente; VI - promover a educacao ambiental em todos os niveis de ensino e a conscientizacao publica para a preservacao do meio ambiente; VII - proteger a fauna e a flora, sendo vedadas, na forma da lei, as praticas que coloquem em risco sua funcao ecologica, provoquem a extincao de especies ou submetam os animais a crueldade. As conductas e atividades consideradas lesivas ao meio ambiente sujeitarao os infratores, pessoas fisicas ou juridicas, a sancoes penais e administrativas, independentemente da obrigacao de reparar os danos causados. A Floresta Amazonica brasileira, a Mata Atlantica, a Serra do Mar, o Pantanal Mato-Grossense e a Zona Costeira sao patrimonio nacional, e sua utilizacao far-se-a, na forma da lei, dentro de condicoes que assegurem a preservacao do meio ambiente, inclusive quanto ao uso dos recursos naturais. As terras devolutas ou arrecadadas pelos Estados, por forca de acao discriminatoria, necessaria e suficiente para a defesa dos ecossistemas naturais, sao bens indispensiveis do dominio publico estadual, inalienaveis, imprescritiveis e impenhoraveis.',keywords:['meio ambiente','ecologia']}
+    ]},
+    {titulo:'TITULO IX - DAS DISPOSICOES CONSTITUCIONAIS GERAIS',artigos:[
+      {num:'Art. 227',texto:'E dever da familia, da sociedade e do Estado assegurar a crianca, ao adolescente e ao jovem, com absoluta prioridade, o direito a vida, a saude, a alimentacao, a educacao, ao lazer, a profissionalizacao, a cultura, a dignidade, ao respeito, a liberdade e a convivencia familiar e comunitaria, alem de coloca-los a salvo de toda forma de negligencia, discriminacao, exploracao, violencia, crueldade e opressao. A lei dispora sobre o Estatuto da Crianca e do Adolescente (Lei 8.069/90 - ECA), estabelecendo: a) idade minima de 12 anos para trabalho infantil; b) idade minima de 14 anos para aprendizagem; c) protecao integral. A lei dispora sobre o Estatuto da Juventude (Lei 12.852/2013) para pessoas de 15 a 29 anos. A familia, a sociedade e o Estado tem o dever de amparar as pessoas idosas, assegurando sua participacao na comunidade, defendendo sua dignidade e bem-estar e garantindo-lhes o direito a vida (Estatuto do Idoso - Lei 10.741/2003). Os programas de assistencia integral a saude da crianca, do adolescente e do jovem, inclusive mediante assistencia psicologica, serao promovidos pelo Estado.',keywords:['crianca','adolescente','estatuto']},
+      {num:'Art. 228',texto:'Sao penalmente inimputaveis os menores de dezoito anos, sujeitos as normas da legislacao especial (ECA - Lei 8.069/90).',keywords:['imputabilidade','penal','menor']},
+      {num:'Art. 229',texto:'Os pais tem o dever de assistir, criar e educar os filhos menores, e os filhos maiores tem o dever de ajudar e amparar os pais na velhice, carencia ou enfermidade.',keywords:['familia','pais']},
+      {num:'Art. 230',texto:'A familia, a sociedade e o Estado tem o dever de amparar as pessoas idosas, assegurando sua participacao na comunidade, defendendo sua dignidade e bem-estar e garantindo-lhes o direito a vida, a saude, a alimentacao, a educacao, a cultura, o esporte, o lazer, o trabalho, a cidadania, a liberdade, a dignidade, o respeito e a convivencia familiar e comunitaria. A lei dispora sobre o Estatuto do Idoso (Lei 10.741/2003), garantindo ao idoso com 60 anos ou mais: prioridade no atendimento; acesso a aposentadoria (LOPS); gratuidade no transporte publico; prioridade na tramitacao processual. A violencia contra o idoso e crime (Lei 12.461/2011).',keywords:['idoso','estatuto']},
+      {num:'Art. 231',texto:'Sao reconhecidos aos indios sua organizacao social, costumes, linguas, crencas e tradicoes, e os direitos originarios sobre as terras que tradicionalmente ocupam, competindo a Uniao demarcá-las, proteger e fazer respeitar todos os seus bens. Sao terras tradicionalmente ocupadas pelos indios as por eles habitadas em carater permanente, as utilizadas para suas atividades produtivas, as imprescindiveis a preservacao dos recursos ambientais necessarios a seu bem-estar e as necessarias a sua reproducao fisica e cultural, segundo seus usos, costumes e tradicoes. O aproveitamento dos recursos hidricos, incluidos os potenciais energeticos, a pesquisa e a lavra das riquezas minerais em terras indigenas so podem ser efetivados com autorizacao do Congresso Nacional, ouvidas as comunidades afetadas, ficando-lhes assegurada participacao nos resultados da lavra, na forma da lei. As terras indigenas sao inalienaveis e indisponiveis, e os direitos sobre elas imprescritiveis. As terras tradicionalmente ocupadas pelos indios destinam-se a sua posse permanente, cabendo-lhes o usufruto exclusivo das riquezas do solo, dos rios e dos lagos nelas existentes.',keywords:['indio','indigena','terra']},
+      {num:'Art. 232',texto:'Os indios, suas comunidades e organizacoes sao partes legitimas para ingressar em juizo para defesa de seus direitos e interesses, intervindo o Ministerio Publico em todos os atos do processo.',keywords:['indio','judiciario']}
+    ]},
+    {titulo:'ATO DAS DISPOSICOES CONSTITUCIONAIS TRANSITORIAS (ADCT)',artigos:[
+      {num:'Art. 1º ADCT',texto:'O Municipio de Boa Vista do Ramos (AM) passa a denominar-se "Boa Vista" e o de Campo Grande (RN) passa a denominar-se "Jucurutu".',keywords:['adct','municipio']},
+      {num:'Art. 2º ADCT',texto:'No dia 7 de setembro de 1993 o eleitorado brasileiro definira, atraves de plebiscito, a forma (reppublica ou monarquia constitucional) e o sistema de governo (parlamentarismo ou presidencialismo) que deverao vigorar no Pais. (Vide EC 2/1992 que adiou o plebiscito).',keywords:['plebiscito','adct']},
+      {num:'Art. 5º ADCT',texto:'A PEC da Transicao (EC 126/2022) ampliou para R$ 1.320,00 o valor do salario-minimo, e manteve em R$ 400,00 o acrescimo por dependente para fins de imposto de renda. As regras sobre transicao previdenciaria, teto de gastos (EC 95/2016 - "EC do Teto") e outras materias economicas estao detalhadas nos arts. 2º a 13 do ADCT.',keywords:['adct','salario']},
+      {num:'Art. 60 ADCT',texto:'Ate que seja editada a lei complementar a que se refere o art. 163, I, da CF/88, as materias de que trata o mesmo artigo serao reguladas, no que for aplicavel, pelas leis vigentes em 5 de outubro de 1988 (LC 101/2000 - LRF; LC 105/2001 - sigilo bancario).',keywords:['adct','orcamento']}
+    ]}
+  ];
+
+  // Adicionar ao final do array de topicos
+  novosTopicos.forEach(function(t){
+    cf.topicos.push(t);
+  });
+
+  // Atualizar contador na interface
+  var totalArt = 0;
+  cf.topicos.forEach(function(t){ totalArt += (t.artigos||[]).length; });
+  if(typeof console!=='undefined') console.log('[CF88] Expandida para '+totalArt+' artigos em '+cf.topicos.length+' topicos');
+})();
+
+// ===================================================================
+// v3.0 - DASHBOARD WIDGETS (notas recentes + agenda proxima)
+// ===================================================================
+function renderDashWidgets() {
+  var dash = document.querySelector('.dash-notas-widget');
+  if(dash) return; // ja renderizou
+  var dashContent = document.getElementById('content');
+  if(!dashContent) return;
+  // Inserir widgets no inicio
+  var html = '';
+  // WIDGET NOTAS
+  var notasRecentes = NOTAS.slice().sort(function(a,b){return (b.atualizadaEm||'').localeCompare(a.atualizadaEm||'');}).slice(0,8);
+  html += '<div class="dash-notas-widget">';
+  html += '<h3>📝 Minhas Anotações Recentes <button class="btn btn-outline" onclick="abrirNotas()">Abrir Bloco</button></h3>';
+  if(notasRecentes.length===0) {
+    html += '<div style="text-align:center;padding:1.5rem 1rem;color:var(--muted);font-size:0.8rem">Nenhuma nota ainda. Use o botão <strong>📝 NOTA</strong> na lateral direita para criar uma rapido!</div>';
+  } else {
+    html += '<div class="dash-notas-list">';
+    notasRecentes.forEach(function(n){
+      var cor = n.cor||'';
+      var prev = (n.conteudo||'').substring(0,90).replace(/\[\[([^\]]+)\]\]/g,'🔗 $1');
+      var data = n.atualizadaEm ? new Date(n.atualizadaEm).toLocaleDateString('pt-BR') : '';
+      var fav = n.favorita?'⭐ ':'';
+      html += '<div class="dash-nota-mini" data-cor="'+cor+'" onclick="abrirNotas();setTimeout(function(){editarNota(\''+n.id+'\')},200)">';
+      html += '<strong>'+fav+(n.titulo||'(sem titulo)')+'</strong>';
+      if(prev) html += '<div class="prev">'+prev+'</div>';
+      html += '<div class="meta"><span>📍 '+(n.contexto||'Geral')+'</span><span>'+data+'</span></div>';
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+
+  // WIDGET AGENDA
+  var hoje = new Date(); var hojeKey = chavData(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+  var proximos = AGENDA.filter(function(e){
+    var dt = new Date(e.data); var diff = (dt-hoje)/(1000*60*60*24); return diff>=0 && diff<=14;
+  }).sort(function(a,b){return a.data===b.data ? (a.hora||'').localeCompare(b.hora||'') : a.data.localeCompare(b.data);}).slice(0,8);
+  html += '<div class="dash-agenda-widget">';
+  html += '<h3>📅 Próximos Compromissos <button class="btn btn-outline" onclick="switchTab(\'agenda\')">Ver Agenda</button></h3>';
+  if(proximos.length===0) {
+    html += '<div style="text-align:center;padding:1.5rem 1rem;color:var(--muted);font-size:0.8rem">Nenhum compromisso proximo. <button class="btn btn-sm" onclick="abrirAgendaAvancada()" style="margin-left:0.4rem">+ Adicionar</button></div>';
+  } else {
+    html += '<div class="dash-agenda-list">';
+    proximos.forEach(function(e){
+      var cor = e.cor||'';
+      var dt = new Date(e.data+'T00:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'short'});
+      var catIco = {audi:'⚖️',prazo:'⏰',reun:'👥',est:'📚',lemb:'🔔',aula:'🎓',prova:'📝',trab:'💼',pessoal:'👤'}[e.cat]||'📌';
+      html += '<div class="dash-ev-mini" data-cor="'+cor+'" onclick="switchTab(\'agenda\');agSelecionar(\''+e.data+'\')">';
+      html += '<strong>'+catIco+' '+(e.titulo||'(sem titulo)')+'</strong>';
+      html += '<div class="ev-time">📆 '+dt+(e.hora?' as '+e.hora:'')+'</div>';
+      if(e.local) html += '<div class="ev-meta">📍 '+e.local+'</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+
+  // Inserir no inicio do content
+  var primeiroFilho = dashContent.firstChild;
+  if(primeiroFilho) {
+    var div = document.createElement('div');
+    div.innerHTML = html;
+    while(div.firstChild) dashContent.insertBefore(div.firstChild, primeiroFilho);
+  } else {
+    dashContent.innerHTML = html;
+  }
+}
+
+// Hook no renderDash para adicionar widgets
+var _renderDashOriginal = null;
+function hookRenderDash() {
+  if(typeof renderDash==='function' && !_renderDashOriginal) {
+    _renderDashOriginal = renderDash;
+    renderDash = function(){
+      _renderDashOriginal();
+      setTimeout(renderDashWidgets, 100);
+    };
+  }
+}
+
+// ===================================================================
+// v3.0 - ABA MATERIAL 2026 (MATERIAS DE AULA COMPLETO)
+// ===================================================================
+var MATERIAS_2026 = [
+  {nome:'Direito Constitucional',emoji:'📜',cor:'#a78bfa',topicos:['Principios Fundamentais (arts. 1-4)','Direitos e Garantias Fundamentais (art. 5)','Direitos Sociais (arts. 6-11)','Nacionalidade (arts. 12-13)','Direitos Politicos (arts. 14-16)','Partidos Politicos (art. 17)','Organizacao do Estado (arts. 18-43)','Poder Legislativo (arts. 44-75)','Poder Executivo (arts. 76-91)','Poder Judiciario (arts. 92-126)','Ministerio Publico (arts. 127-130)','Tribunal de Contas (arts. 71-75)','Sistema Tributario (arts. 145-162)','Ordem Economica (arts. 170-181)','Ordem Social (arts. 193-232)','Remedios Constitucionais (HC, HD, MS, MI, AP)','Controle de Constitucionalidade','Reforma da Previdencia (EC 103/2019)','Reforma Tributaria (EC 132/2023)']},
+  {nome:'Direito Administrativo',emoji:'🏛️',cor:'#60a5fa',topicos:['Principios da Administracao Publica (LIMPE)','Poderes Administrativos','Atos Administrativos (atributos, classificacao, especies)','Organizacao Administrativa','Bens Publicos','Licitacao e Contratos (Lei 14.133/2021)','Servidores Publicos','Improbidade Administrativa (Lei 8.429/92)','Responsabilidade Civil do Estado','Controle da Administracao','Processo Administrativo Federal (Lei 9.784/99)','Agentes Publicos','Servicos Publicos','Intervencao do Estado na propriedade','Domínio Publico','Parcerias Publico-Privadas (Lei 11.079/2004)','Regime Juridico Unico (Lei 8.112/90)','Lei Anticorrupcao (Lei 12.846/2013)','LGPD aplicada a administracao']},
+  {nome:'Direito Civil',emoji:'⚖️',cor:'#34d399',topicos:['Lei de Introducao (LINDB)','Parte Geral (arts. 1-232)','Pessoas (naturais e juridicas)','Bens (classificacao)','Fatos e Atos Juridicos','Negocios Juridicos (vicios: erro, dolo, coacao, fraude)','Prescricao e Decadencia','Prova','Direito das Obrigacoes (Lei 10.406/02)','Modalidades das Obrigacoes','Transmissao das Obrigacoes','Extincao das Obrigacoes','Inadimplemento','Contratos em geral (CC 421-480)','Contratos em especie (compra e venda, locacao, emprestimo, mandato, etc)','Responsabilidade Civil (arts. 927-954)','Direito das Coisas (posse, propriedade, direitos reais)','Direito de Familia (casamento, divorcio, parentesco)','Alimentos, guarda, adocao','Direito das Sucessoes (testamento, inventario, partilha)','Lei 13.146/2015 (Estatuto da Pessoa com Deficiencia)']},
+  {nome:'Direito Penal',emoji:'🔪',cor:'#ef4444',topicos:['Principios do Direito Penal','Lei Penal no Tempo','Lei Penal no Espaco','Extraterritorialidade','Conflito aparente de normas','Teoria do Crime (tipicidade, ilicitude, culpabilidade)','Iter Criminis (fase interna e externa)','Tentativa e Desistencia','Concurso de Pessoas','Penas (sistema, especies, aplicacao)','Penas privativas de liberdade','Penas restritivas de direitos','Multa penal','Suspensao condicional da pena','Livramento condicional','Efeitos da condenacao','Reabilitacao','Medida de Seguranca','Extincao da punibilidade','Prescricao e Decadencia','Crimes contra a pessoa','Crimes contra o patrimonio','Crimes contra a dignidade sexual','Crimes contra a administracao publica','Crimes hediondos (Lei 8.072/90)','Lei de Drogas (Lei 11.343/2006)','Organizacao Criminosa (Lei 12.850/2013)','Maria da Penha (Lei 11.340/2006)','Abuso de autoridade (Lei 13.869/2019)','Lavagem de dinheiro (Lei 9.613/1998)','Estatuto do Desarmamento (Lei 10.826/2003)']},
+  {nome:'Direito Processual Civil',emoji:'📋',cor:'#fbbf24',topicos:['CPC 2015 - Principios e Inovacoes','Jurisdicao e Acao','Competencia (absoluta e relativa)','Sujeitos do Processo (parte, juiz, MP)','Litisconsorcio e Intervencao de Terceiros','Ministerio Publico e Defensoria','Atos Processuais','Tutela Provisoria (urgencia e evidencia)','Formacao, suspensao e extincao do processo','Peticao inicial','Contestacao e Reconvencao','Provas (onus, meios, producao)','Sentenca e Coisa Julgada','Cumprimento de Sentenca','Processo de Execucao','Embargos a Execucao','Teoria Geral dos Recursos','Recursos em Especie (apelacao, agravo, embargos, REsp, RE)','Acao Rescisoria','Reclamacao','Procedimentos Especiais','Juizados Especiais (Lei 9.099/95)','Mandado de Seguranca (Lei 12.016/2009)','Acao Popular (Lei 4.717/65)','Acao Civil Publica (Lei 7.347/85)']},
+  {nome:'Direito Processual Penal',emoji:'⚔️',cor:'#dc2626',topicos:['Principios do Processo Penal','Inquisitivo x Acusatorio','Sistemas Processuais','Fontes do Processo Penal','Lei Processual Penal no Tempo e no Espaco','Inquerito Policial','Acusacao e Denuncia','Jurisdicao e Competencia','Sujeitos Processuais','Atos Processuais','Coisas e Provas','Prova Ilícita','Busca e Apreensao','Prisoes Cautelares (flagrante, temporaria, preventiva)','Prisao Domiciliar','Medidas Cautelares Diversas','Liberdade Provisoria','Fiança','Citação, Intimacao e Notificacao','Resposta do Acusado','Procedimento Comum (ordinario, sumario, sumarissimo)','Procedimento do Juri','Sentenca e Coisa Julgada','Procedimentos Especiais','Recursos Penais (apelacao, RESE, RO, REsp, RE)','Habeas Corpus','Revisao Criminal','Nulidades','Lei Maria da Penha','Lei de Drogas (procedimento)','Execução Penal (LEP)','Medidas de Segurança','Indulto e Comutacao']},
+  {nome:'Direito do Trabalho',emoji:'💼',cor:'#22d3ee',topicos:['CLT - Consolidacao das Leis do Trabalho','Principios do Direito do Trabalho','Fontes do Direito do Trabalho','Relacao de Emprego (art. 3º CLT)','Trabalhador Autonomo, Eventual, Avulso','Estagiario (Lei 11.788/2008)','Preposto','Contrato Individual de Trabalho','CTPS Digital','Jornada de Trabalho (art. 58 e seguintes)','Hora extra, adicional noturno','Descanso semanal remunerado','Ferias (direitos, concessao, pagamento)','13º Salario','FGTs','Salario e Remuneracao','Equiparacao Salarial','Alteracao do Contrato de Trabalho','Suspensao e Interrupcao','Aviso Previo','Justa Causa (art. 482 CLT)','Rescisao Indireta','Estabilidade e Garantia de Emprego','Trabalho da Mulher','Trabalho do Menor','Trabalho Noturno','Insalubridade e Periculosidade','Direito Coletivo do Trabalho','Sindicatos','Negociacao Coletiva','Conflitos Coletivos (greve)','Direito Processual do Trabalho','Justica do Trabalho (competencia)','Procedimento Trabalhista','Recursos Trabalhistas','Execucao Trabalhista','Lei 13.467/2017 (Reforma Trabalhista)','Teletrabalho (Lei 14.442/2022)','Pejotizacao','Sumulas e OJs do TST']},
+  {nome:'Direito Tributario',emoji:'💰',cor:'#fb923c',topicos:['CTN (Lei 5.172/1966) - Lei Complementar','Principio da Legalidade','Principio da Anterioridade','Principio da Isonomia','Principio da Capacidade Contributiva','Principio da Nao-Confiscacao','Principio da Irretroatividade','Imunidades Tributarias','Imunidades Recíprocas','Imunidades Religiosas','Imunidades Culturais','Imunidades Educacionais','IPTU, ITBI, ISS (municipais)','ICMS, IPVA, ITCMD (estaduais)','IR, IPI, II, IE, IOF, ITR (federais)','Cofins, PIS, CSLL, CPP (contribuicoes)','Simples Nacional (LC 123/2006)','Reforma Tributaria (EC 132/2023 - IBS, CBS, Imposto Seletivo)','Obrigacao Tributaria','Credito Tributario (lancamento)','Suspensao, Extincao, Exclusao','Administracao Tributaria','Dívida Ativa e Execucao Fiscal','Processo Administrativo Tributario','Mandado de Seguranca em materia tributaria','Conselho Administrativo de Recursos Fiscais (CARF)']},
+  {nome:'Direito Empresarial',emoji:'🏢',cor:'#a3e635',topicos:['Codigo Civil - Parte Especial (arts. 966-1195)','Empresario Individual','EIRELI - Empresa Individual de Responsabilidade Limitada','Sociedade Simples e Sociedade Empresaria','Sociedade Limitada (LTDA)','Sociedade Anonima (S/A)','Cooperativa','Consorcio','Sociedade em Conta de Participacao','Desconsideracao da Personalidade Juridica','Nome Empresarial','Estabelecimento Empresarial','Titulos de Credito (CC arts. 887-926)','Protesto de Titulos','Duplicatas, Cheques, Notas Promissorias','Contratos Empresariais','Compra e Venda Empresarial','Fornecimento','Consignacao','Mandato Mercantil','Comissao','Agencia e Distribuicao','Franquia (Lei 13.966/2019)','Arrendamento Mercantil (Leasing)','Fomento Mercantil (Factoring)','Operacoes Bancarias','Propriedade Industrial (Lei 9.279/96)','Marcas, Patentes, Desenho Industrial','Direito Autoral (Lei 9.610/98)','Concordata','Falencia e Recuperacao Judicial (Lei 11.101/2005)','Sistema Financeiro Nacional','CVM e Banco Central']},
+  {nome:'Direito Constitucional Economico',emoji:'📈',cor:'#c084fc',topicos:['Ordem Economica (arts. 170-181 CF)','Principios da Ordem Economica','Livre Iniciativa','Valor Social do Trabalho','Livre Concorrencia','Defesa do Consumidor','Protecao ao Meio Ambiente','Reducao das Desigualdades Regionais','Intervencao do Estado na Economia','Monopolios e sua regulacao','Sistema Financeiro Nacional','Bancos publicos e privados','Politica Urbana (arts. 182-186)','Politica Agricola e Fundiaria','Reforma Agraria','Direito Agrario e Reforma Agraria','Cooperativas agricolas','Sistema Nacional de Cultura','Desporto','Comunicações Sociais','Ciencia, Tecnologia e Inovacao (EC 85/2015)']},
+  {nome:'Direito Internacional',emoji:'🌍',cor:'#06b6d4',topicos:['Direito Internacional Publico','Fontes do DIP','Costume Internacional','Tratados Internacionais','Organizacoes Internacionais (ONU, OEA, MERCOSUL)','Sujeitos do DIP','Pessoas juridicas de Direito Internacional','Nacionalidade e Direitos Humanos','Refugiados e Asilo','Corte Internacional de Justica (CIJ)','Corte Penal Internacional (TPI)','Terrorismo Internacional','Direito Internacional Privado','Conflitos de Leis no Espaco','Qualificacao','Reenvio','Ordem Publica','Fraude a Lei','Direitos Humanos Internacionais','DUDH (1948)','PIDCP e PIDESC','Corte Interamericana de DH','Comite de Direitos Humanos da ONU','Sistema Universal de DH','Sistema Regional de DH (Convencao Americana)','Constitucionalizacao dos DH no Brasil (EC 45/2004)']},
+  {nome:'Direito do Consumidor',emoji:'🛒',cor:'#f59e0b',topicos:['CDC - Lei 8.078/1990','Principios do CDC','Direitos Basicos do Consumidor (art. 6º)','Direito a Informacao','Direito a Protecao contra Publicidade Enganosa','Direito a Modificacao de Clausulas Abusivas','Direito a Prevencao e Reparação de Danos','Politica Nacional de Relacoes de Consumo','Vunerabilidade do Consumidor','Praticas Abusivas (art. 39)','Publicidade Enganosa e Abusiva','Oferta e Vinculacao','Defeitos do Produto e do Servico','Responsabilidade pelo Fato do Produto/Servico','Responsabilidade por Vicio do Produto/Servico','Prescricao e Decadencia no CDC','Desconsideracao da Personalidade Juridica','Cobranca de Dividas','Protecao Contratual (clausulas abusivas)','Sanciones Administrativas (Procon, Senacon)','Sistema Nacional de Defesa do Consumidor (SNDC)','Conanda','Inversao do onus da prova','Pratica comercial','Superendividamento (Lei 14.181/2021)']},
+  {nome:'Direito Ambiental',emoji:'🌳',cor:'#10b981',topicos:['Principio do Desenvolvimento Sustentavel','Principio da Precaucao','Principio da Prevencao','Principio do Poluidor-Pagador','Principio da Responsabilidade Comum','Politica Nacional do Meio Ambiente (Lei 6.938/81)','SISNAMA - Sistema Nacional do Meio Ambiente','CONAMA','IBAMA','Estudo de Impacto Ambiental (EIA/RIMA)','Licenciamento Ambiental','Tutela Penal do Meio Ambiente (Lei 9.605/98)','Crimes Ambientais','Responsabilidade Civil Ambiental','Dano Ambiental','Biodiversidade (Lei 13.123/2015)','Recursos Hidricos (Lei 9.433/97)','Florestas (Codigo Florestal - Lei 12.651/2012)','APP e Reserva Legal','Mata Atlantica (Lei 11.428/2006)','Amazonia','Unidades de Conservacao (Lei 9.985/2000)','Tutela Constitucional do Meio Ambiente (art. 225 CF)','Politica Nacional de Residuos Solidos (Lei 12.305/2010)','Mudancas Climaticas (Lei 12.187/2009)','Acordo de Paris','Jurisprudencia do STF/STJ em Direito Ambiental']},
+  {nome:'Direito Processual do Trabalho',emoji:'🔨',cor:'#0ea5e9',topicos:['Justica do Trabalho - Organizacao','Competencia da Justica do Trabalho (EC 45/2004)','Reclamatoria Trabalhista (procedimento)','Prazos Processuais','Partes e Procuracao','Audiências (Conciliacao, Instrucao, Julgamento)','Peticao inicial','Contestacao','Reconvencao','Provas no Processo do Trabalho','Sentenca e Coisa Julgada','Recursos Trabalhistas','Embargos de Declaracao','Recurso Ordinario','Recurso de Revista','Agravo de Instrumento','Agravo de Peticao','Execucao Trabalhista','Embargos a Execucao','Mandado de Seguranca Trabalhista','Acao Rescisoria Trabalhista','Habeas Corpus Trabalhista','Dissidio Coletivo','Greve no Direito do Trabalho','Sumulas e OJs do TST 2026','Indenizacao adicional (Lei 7.238/84)','Assedio moral e sexual no trabalho','LGPD aplicada ao trabalho','Trabalho em home office e seus direitos','Reforma Trabalhista (Lei 13.467/2017) - aplicacao 2026']}
+];
+
+function renderMaterial2026() {
+  var c = document.getElementById('content');
+  var html = '<h2 class="section-title">📚 Material de Estudo 2026 - Matérias Completas</h2>';
+  html += '<div class="welcome-banner" style="margin-bottom:1rem">';
+  html += '<h2>🎓 Material Atualizado para 2026</h2>';
+  html += '<p>Conteúdo programático completo de <strong>14 grandes áreas do Direito</strong>, organizado por matérias com tópicos para estudo sistematizado. Cobre OAB, concursos públicos (magistratura, MP, defensoria, procuradorias, policiais federais) e pós-graduação.</p>';
+  html += '<p style="margin-top:0.5rem">⚡ Inclui <strong>Reforma Tributária (EC 132/2023)</strong>, <strong>Reforma Trabalhista (Lei 13.467/2017)</strong>, <strong>Nova Lei de Licitações (Lei 14.133/2021)</strong>, <strong>LGPD</strong>, <strong>Marco Legal das Garantias (Lei 14.430/2022)</strong>, <strong>Lei do Superendividamento (Lei 14.181/2021)</strong> e jurisprudência 2025-2026.</p>';
+  html += '</div>';
+  html += '<div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1rem">';
+  html += '<button class="btn btn-outline" onclick="filtrarMaterias(\'todas\')">📋 Todas</button>';
+  html += '<button class="btn btn-outline" onclick="filtrarMaterias(\'publicas\')">🏛️ Públicas</button>';
+  html += '<button class="btn btn-outline" onclick="filtrarMaterias(\'privadas\')">💼 Privadas</button>';
+  html += '<button class="btn btn-outline" onclick="filtrarMaterias(\'sociais\')">⚖️ Sociais</button>';
+  html += '<button class="btn btn-outline" onclick="filtrarMaterias(\'novas\')">🆕 Leis 2024-2026</button>';
+  html += '</div>';
+  html += '<div class="material-2026-grid" id="materias-grid">';
+  MATERIAS_2026.forEach(function(m, idx){
+    html += '<div class="material-2026-card" data-categoria="'+getMateriaCategoria(m.nome)+'">';
+    html += '<span class="badge-novo">2026</span>';
+    html += '<h4 style="color:'+m.cor+'">'+m.emoji+' '+m.nome+'</h4>';
+    html += '<p><strong>'+m.topicos.length+' tópicos</strong> para estudo completo</p>';
+    html += '<ul>';
+    m.topicos.slice(0,8).forEach(function(t){ html += '<li>'+t+'</li>'; });
+    if(m.topicos.length>8) html += '<li style="color:'+m.cor+';font-weight:600">+ '+(m.topicos.length-8)+' tópicos</li>';
+    html += '</ul>';
+    html += '<div style="display:flex;gap:0.3rem;margin-top:0.5rem;flex-wrap:wrap">';
+    html += '<button class="btn btn-sm" onclick="abrirMateriaCompleta('+idx+')" style="background:'+m.cor+';color:#0a0a0f;border:none">📖 Ver Tudo</button>';
+    html += '<button class="btn btn-sm btn-outline" onclick="gerarPlanoMateria('+idx+')" style="color:'+m.cor+';border-color:'+m.cor+'">🚀 Plano de Estudo</button>';
+    html += '<button class="btn btn-sm btn-outline" onclick="criarNotaMateria(\''+m.nome+'\')" style="color:#10b981;border-color:#10b981">📝 Anotar</button>';
+    html += '</div>';
+    html += '</div>';
+  });
+  html += '</div>';
+  c.innerHTML = html;
+}
+
+function getMateriaCategoria(nome) {
+  if(nome.indexOf('Constitucional')>=0||nome.indexOf('Administrativo')>=0||nome.indexOf('Tributario')>=0||nome.indexOf('Ambiental')>=0) return 'publicas';
+  if(nome.indexOf('Civil')>=0||nome.indexOf('Empresarial')>=0||nome.indexOf('Consumidor')>=0) return 'privadas';
+  if(nome.indexOf('Trabalho')>=0||nome.indexOf('Penal')>=0) return 'sociais';
+  return 'novas';
+}
+
+function filtrarMaterias(filtro) {
+  document.querySelectorAll('.material-2026-card').forEach(function(el){
+    if(filtro==='todas') { el.style.display=''; return; }
+    el.style.display = el.getAttribute('data-categoria')===filtro?'':'none';
+  });
+}
+
+function abrirMateriaCompleta(idx) {
+  var m = MATERIAS_2026[idx];
+  if(!m) return;
+  var html = '<h2 style="color:'+m.cor+';margin-bottom:0.8rem">'+m.emoji+' '+m.nome+' - Conteudo Programatico Completo</h2>';
+  html += '<p style="color:var(--muted);margin-bottom:0.7rem"><strong>'+m.topicos.length+' topicos</strong> organizados para estudo progresivo.</p>';
+  html += '<div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:0.8rem">';
+  html += '<ol style="line-height:1.9;color:#e5e7eb;font-size:0.9rem;padding-left:1.5rem">';
+  m.topicos.forEach(function(t,i){
+    html += '<li>'+t+'</li>';
+  });
+  html += '</ol></div>';
+  html += '<div style="margin-top:1rem;display:flex;gap:0.4rem;flex-wrap:wrap">';
+  html += '<button class="btn" onclick="gerarPlanoMateria('+idx+')">🚀 Criar Plano de Estudo</button>';
+  html += '<button class="btn btn-outline" onclick="criarNotaMateria(\''+m.nome+'\')">📝 Anotar Topico</button>';
+  html += '<button class="btn btn-outline" onclick="fecharModal(\'modal-aula\')">Fechar</button>';
+  html += '</div>';
+  document.getElementById('aula-title').textContent = m.emoji+' '+m.nome;
+  document.getElementById('aula-body').innerHTML = html;
+  abrirModal('modal-aula');
+}
+
+function gerarPlanoMateria(idx) {
+  var m = MATERIAS_2026[idx];
+  if(!m) return;
+  document.getElementById('ae-materia').value = m.nome;
+  document.getElementById('ae-topicos').value = m.topicos.length;
+  document.getElementById('ae-min').value = 60;
+  fecharModal('modal-aula');
+  abrirAgendaAvancada();
+  setTimeout(function(){ abrirAbaAgenda('estudos'); }, 200);
+}
+
+function criarNotaMateria(nome) {
+  abrirQuickNote();
+  setTimeout(function(){
+    var t = document.getElementById('qn-titulo');
+    if(t) { t.value = '📚 ' + nome; t.focus(); }
+  }, 200);
+}
+
+// ===================================================================
+// v3.0 - SINCRONIZACAO VIA GITHUB GIST (entre dispositivos)
+// ===================================================================
+var GIST_CFG = JSON.parse(localStorage.getItem('jurispath_gist_cfg') || '{}');
+
+function salvarGistCfg() { localStorage.setItem('jurispath_gist_cfg', JSON.stringify(GIST_CFG)); }
+
+function abrirSyncGist() {
+  var html = '<h3>🔄 Sincronização via GitHub Gist</h3>';
+  html += '<p style="color:var(--muted);font-size:0.82rem;margin-bottom:0.8rem">Suas notas, agenda e configurações podem ser sincronizadas entre dispositivos atraves de um <strong>GitHub Gist privado</strong>. Use um Personal Access Token (PAT) com escopo <code>gist</code>.</p>';
+  html += '<div class="ag-form-section"><h5>🔑 Token GitHub</h5><label>Personal Access Token (escopo: <code>gist</code>)</label><input type="password" id="gist-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" value="'+(GIST_CFG.token||'')+'"><p style="font-size:0.7rem;color:var(--muted);margin-top:0.2rem">Crie em: <a href="https://github.com/settings/tokens/new" target="_blank" style="color:var(--gold-light)">github.com/settings/tokens/new</a> (marque apenas "gist")</p></div>';
+  html += '<div class="ag-form-section"><h5>📝 Gist ID</h5><label>ID do Gist (criado ou existente)</label><input type="text" id="gist-id" placeholder="Cole aqui o ID do Gist" value="'+(GIST_CFG.gistId||'')+'"><p style="font-size:0.7rem;color:var(--muted);margin-top:0.2rem">Deixe vazio para criar um novo automaticamente ao salvar.</p></div>';
+  html += '<div class="ag-form-section"><h5>📦 Sincronizar</h5><label style="display:flex;align-items:center;gap:0.3rem;cursor:pointer"><input type="checkbox" id="gist-sync-notas" '+(GIST_CFG.syncNotas!==false?'checked':'')+'> 📝 Notas</label><label style="display:flex;align-items:center;gap:0.3rem;cursor:pointer"><input type="checkbox" id="gist-sync-agenda" '+(GIST_CFG.syncAgenda!==false?'checked':'')+'> 📅 Agenda</label><label style="display:flex;align-items:center;gap:0.3rem;cursor:pointer"><input type="checkbox" id="gist-sync-mapas" '+(GIST_CFG.syncMapas?'checked':'')+'> 🧠 Mapas Mentais</label><label style="display:flex;align-items:center;gap:0.3rem;cursor:pointer"><input type="checkbox" id="gist-sync-perfil" '+(GIST_CFG.syncPerfil?'checked':'')+'> 👤 Perfil</label></div>';
+  html += '<div style="margin-top:1rem;display:flex;gap:0.4rem;flex-wrap:wrap;justify-content:flex-end">';
+  html += '<button class="btn btn-outline" onclick="fecharModal(\'modal-sync-gist\')">Cancelar</button>';
+  html += '<button class="btn" onclick="salvarConfigGist()">💾 Salvar Config</button>';
+  html += '<button class="btn" style="background:linear-gradient(135deg,#10b981,#059669)" onclick="gistEnviar()">⬆️ Enviar (Push)</button>';
+  html += '<button class="btn" style="background:linear-gradient(135deg,#3b82f6,#2563eb)" onclick="gistReceber()">⬇️ Receber (Pull)</button>';
+  html += '</div>';
+  document.getElementById('aula-title').textContent = '🔄 Sincronização GitHub Gist';
+  document.getElementById('aula-body').innerHTML = html;
+  abrirModal('modal-aula');
+}
+
+function salvarConfigGist() {
+  GIST_CFG.token = document.getElementById('gist-token').value.trim();
+  GIST_CFG.gistId = document.getElementById('gist-id').value.trim();
+  GIST_CFG.syncNotas = document.getElementById('gist-sync-notas').checked;
+  GIST_CFG.syncAgenda = document.getElementById('gist-sync-agenda').checked;
+  GIST_CFG.syncMapas = document.getElementById('gist-sync-mapas').checked;
+  GIST_CFG.syncPerfil = document.getElementById('gist-sync-perfil').checked;
+  salvarGistCfg();
+  showToast('✅ Configuração do Gist salva!', 'verde');
+}
+
+function gistColetarDados() {
+  var dados = { versao: '3.0', dataSync: new Date().toISOString() };
+  if(GIST_CFG.syncNotas) dados.notas = NOTAS;
+  if(GIST_CFG.syncAgenda) dados.agenda = AGENDA;
+  if(GIST_CFG.syncMapas && typeof MAPAS!=='undefined') dados.mapas = MAPAS;
+  if(GIST_CFG.syncPerfil) {
+    dados.perfil = {
+      nome: localStorage.getItem('profile-name') || '',
+      provider: localStorage.getItem('profile-provider') || 'gemini'
+    };
+  }
+  return dados;
+}
+
+function gistAplicarDados(dados) {
+  if(!dados || !dados.versao) throw new Error('Dados invalidos');
+  var mudou = 0;
+  if(dados.notas && GIST_CFG.syncNotas) {
+    NOTAS = dados.notas;
+    salvarNotasStorage();
+    mudou++;
+  }
+  if(dados.agenda && GIST_CFG.syncAgenda) {
+    AGENDA = dados.agenda;
+    salvarAgenda();
+    mudou++;
+  }
+  if(dados.mapas && GIST_CFG.syncMapas && typeof MAPAS!=='undefined') {
+    MAPAS = dados.mapas;
+    localStorage.setItem('jurispath_mapas', JSON.stringify(MAPAS));
+    mudou++;
+  }
+  return mudou;
+}
+
+function gistEnviar() {
+  if(!GIST_CFG.token) { alert('Configure o token do GitHub primeiro.'); abrirSyncGist(); return; }
+  var dados = gistColetarDados();
+  var conteudo = JSON.stringify(dados, null, 2);
+  var isUpdate = !!GIST_CFG.gistId;
+  var url = isUpdate ? 'https://api.github.com/gists/'+GIST_CFG.gistId : 'https://api.github.com/gists';
+  var method = isUpdate ? 'PATCH' : 'POST';
+  var body = {
+    description: 'JurisPath - Notas, Agenda e Mapas (sync '+new Date().toLocaleString('pt-BR')+')',
+    public: false,
+    files: { 'jurispath-sync.json': { content: conteudo } }
+  };
+  showToast('⏳ Enviando para o Gist...', 'azul');
+  fetch(url, {
+    method: method,
+    headers: {
+      'Authorization': 'token '+GIST_CFG.token,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  }).then(function(r){
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json();
+  }).then(function(j){
+    GIST_CFG.gistId = j.id;
+    salvarGistCfg();
+    showToast('✅ Sincronizado! '+Object.keys(dados).length+' categorias salvas no Gist.', 'verde');
+  }).catch(function(err){
+    showToast('❌ Erro: '+err.message, 'vermelho');
+    console.error('Gist sync error:', err);
+  });
+}
+
+function gistReceber() {
+  if(!GIST_CFG.token) { alert('Configure o token do GitHub primeiro.'); abrirSyncGist(); return; }
+  if(!GIST_CFG.gistId) { alert('Informe o ID do Gist para baixar.'); abrirSyncGist(); return; }
+  showToast('⏳ Baixando do Gist...', 'azul');
+  fetch('https://api.github.com/gists/'+GIST_CFG.gistId, {
+    headers: {
+      'Authorization': 'token '+GIST_CFG.token,
+      'Accept': 'application/vnd.github.v3+json'
+    }
+  }).then(function(r){
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json();
+  }).then(function(j){
+    var file = j.files && (j.files['jurispath-sync.json'] || j.files[Object.keys(j.files)[0]]);
+    if(!file || !file.content) throw new Error('Arquivo nao encontrado no Gist');
+    var dados = JSON.parse(file.content);
+    var mudou = gistAplicarDados(dados);
+    showToast('✅ Sincronizado! '+mudou+' categorias atualizadas. Recarregue a pagina.', 'verde');
+    setTimeout(function(){ if(confirm('Dados recebidos. Recarregar pagina agora?')) location.reload(); }, 1500);
+  }).catch(function(err){
+    showToast('❌ Erro: '+err.message, 'vermelho');
+    console.error('Gist receive error:', err);
+  });
+}
+
+// ===================================================================
+// v3.0 - HOOKS E INICIALIZACAO
+// ===================================================================
+function initV3() {
+  // Mostrar botao de nota rapida
+  var qnb = document.getElementById('quick-note-btn');
+  if(qnb) qnb.classList.add('show');
+
+  // Injetar color picker no editor de notas
+  setTimeout(injetarCorPicker, 500);
+
+  // Hook no render das notas para adicionar cores
+  var _r = renderNotasList;
+  renderNotasList = function() {
+    _r();
+    // Aplicar cores nos itens renderizados
+    setTimeout(function(){
+      document.querySelectorAll('#notas-list .nota-item').forEach(function(el){
+        var idx = Array.from(el.parentNode.children).indexOf(el);
+        var n = NOTAS[idx];
+        if(n && n.cor) el.setAttribute('data-cor', n.cor);
+        if(n && n.cor) {
+          var h4 = el.querySelector('h4');
+          if(h4 && !h4.querySelector('.nota-cor-label')) {
+            var lbl = document.createElement('span');
+            lbl.className = 'nota-cor-label';
+            lbl.setAttribute('data-cor', n.cor);
+            lbl.textContent = n.cor;
+            h4.appendChild(lbl);
+          }
+        }
+      });
+    }, 10);
+  };
+
+  // Hook no render agenda para mostrar cores
+  var _rAgenda = renderAgenda;
+  renderAgenda = function(){
+    _rAgenda();
+    setTimeout(function(){
+      document.querySelectorAll('.ag-evento').forEach(function(el){
+        var onclick = el.getAttribute('onclick') || '';
+        var m = onclick.match(/agAbrir\('([^']+)'\)/);
+        if(m) {
+          var ev = AGENDA.find(function(e){return e.id===m[1];});
+          if(ev && ev.cor) el.setAttribute('data-cor', ev.cor);
+        }
+      });
+      // Hook no botao de novo da agenda para abrir o avancado
+      var novoBtn = document.querySelector('.ag-side-h .btn');
+      if(novoBtn && !novoBtn.getAttribute('data-hooked')) {
+        novoBtn.setAttribute('data-hooked', '1');
+        novoBtn.onclick = function(e){
+          e.preventDefault();
+          e.stopPropagation();
+          abrirAgendaAvancada();
+        };
+      }
+    }, 30);
+  };
+
+  // Hook no render do dashboard
+  setTimeout(hookRenderDash, 800);
+  setTimeout(renderDashWidgets, 1500);
+
+  // Adicionar aba Material 2026
+  addTabIfNotExists('material2026', '🎓 Material 2026');
+}
+
+// Hook para garantir que a aba Material 2026 seja renderizada
+function addTabIfNotExists(key, label) {
+  var tabs = document.getElementById('tabs');
+  if(!tabs) return;
+  if(tabs.querySelector('[data-tabkey="'+key+'"]')) return;
+  var b = document.createElement('button');
+  b.className = 'tab';
+  b.setAttribute('data-tabkey', key);
+  b.textContent = label;
+  b.onclick = function(){ switchTab(key); };
+  tabs.appendChild(b);
+}
+
+// Patch no switchTab para incluir novas abas
+var _switchTabOriginal = typeof switchTab === 'function' ? switchTab : null;
+function switchTabV3(key) {
+  if(_switchTabOriginal) _switchTabOriginal(key);
+  if(key==='material2026') renderMaterial2026();
+}
+
+// Tentar injetar no switchTab global
+setTimeout(function(){
+  if(typeof switchTab==='function' && !switchTab._patched) {
+    var orig = switchTab;
+    switchTab = function(k){
+      orig(k);
+      if(k==='material2026') renderMaterial2026();
+      if(k==='dash') setTimeout(renderDashWidgets, 200);
+    };
+    switchTab._patched = true;
+  }
+}, 1000);
+
+// Botao flutuante de Sync Gist
+setTimeout(function(){
+  if(document.getElementById('sync-gist-fab')) return;
+  var b = document.createElement('button');
+  b.id = 'sync-gist-fab';
+  b.className = 'notas-fab';
+  b.title = 'Sincronizar via GitHub Gist (entre dispositivos)';
+  b.style.cssText = 'bottom:5rem;left:5rem;background:linear-gradient(135deg,#a78bfa,#7c3aed);box-shadow:0 4px 20px rgba(167,139,250,0.3);font-size:1.1rem;position:fixed;z-index:150';
+  b.innerHTML = '🔄';
+  b.onclick = abrirSyncGist;
+  document.body.appendChild(b);
+
+  initV3();
+}, 2000);
+
+// Color picker clicks (delegacao)
+document.addEventListener('click', function(e){
+  if(e.target.classList && e.target.classList.contains('nota-cor-dot')) {
+    var parent = e.target.parentNode;
+    parent.querySelectorAll('.nota-cor-dot').forEach(function(d){d.classList.remove('active');});
+    e.target.classList.add('active');
+  }
+});
+
+// Auto-sync silencioso a cada 10 minutos (se configurado)
+setTimeout(function(){
+  if(GIST_CFG.token && GIST_CFG.gistId) {
+    setInterval(function(){
+      if(!navigator.onLine) return;
+      // Verificacao silenciosa - so baixa se data for mais recente
+      fetch('https://api.github.com/gists/'+GIST_CFG.gistId, {
+        headers:{'Authorization':'token '+GIST_CFG.token,'Accept':'application/vnd.github.v3+json'}
+      }).then(function(r){return r.json();}).then(function(j){
+        var f = j.files && j.files['jurispath-sync.json'];
+        if(!f) return;
+        var dados = JSON.parse(f.content);
+        var remote = new Date(dados.dataSync || 0);
+        var localStr = localStorage.getItem('jurispath_last_sync');
+        var local = localStr ? new Date(localStr) : new Date(0);
+        if(remote > local) {
+          gistAplicarDados(dados);
+          localStorage.setItem('jurispath_last_sync', dados.dataSync);
+          showToast('🔄 Sincronizado do Gist (auto).', 'azul');
+        }
+      }).catch(function(){});
+    }, 600000); // 10 min
+  }
+}, 5000);
+
 </script>
 <!-- PAINEL DE CONFIGURACAO DE LEMBRETES -->
 <div class="lembrete-panel" id="lembrete-panel">
@@ -15119,6 +16202,198 @@ setTimeout(iniciarLembretes, 1500);
   </div>
 </div>
 <div id="lembrete-overlay" onclick="fecharPainelLembretes()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:10000;backdrop-filter:blur(4px)"></div>
+
+<!-- ============================== v3.0 NOVOS MODAIS ============================== -->
+
+<!-- BOTAO ANOTACAO RAPIDA - sempre visivel em qualquer aba -->
+<button class="quick-note-btn" id="quick-note-btn" onclick="toggleQuickNote()" title="Anotacao rapida (Ctrl+Shift+N)">📝 NOTA</button>
+
+<!-- POPUP ANOTACAO RAPIDA -->
+<div class="quick-note-popup" id="quick-note-popup">
+  <h4>📝 Anotacao Rapida <button onclick="fecharQuickNote()">✕</button></h4>
+  <div class="qn-ctx" id="qn-contexto">Contexto: ...</div>
+  <input type="text" id="qn-titulo" placeholder="Titulo da anotacao...">
+  <div class="qn-cores" id="qn-cores">
+    <div class="nota-cor-dot active" data-cor="none" title="Sem cor"></div>
+    <div class="nota-cor-dot" data-cor="amarelo" title="Amarelo"></div>
+    <div class="nota-cor-dot" data-cor="verde" title="Verde"></div>
+    <div class="nota-cor-dot" data-cor="azul" title="Azul"></div>
+    <div class="nota-cor-dot" data-cor="vermelho" title="Vermelho"></div>
+    <div class="nota-cor-dot" data-cor="roxo" title="Roxo"></div>
+    <div class="nota-cor-dot" data-cor="rosa" title="Rosa"></div>
+    <div class="nota-cor-dot" data-cor="laranja" title="Laranja"></div>
+    <div class="nota-cor-dot" data-cor="ciano" title="Ciano"></div>
+  </div>
+  <textarea id="qn-conteudo" placeholder="Escreva sua anotacao, lembrete ou resumo aqui..."></textarea>
+  <input type="text" id="qn-tags" placeholder="Tags (separadas por virgula)">
+  <div class="qn-actions">
+    <button class="btn btn-sm btn-outline" onclick="fecharQuickNote()">Cancelar</button>
+    <button class="btn btn-sm" onclick="salvarQuickNote()">💾 Salvar Nota</button>
+  </div>
+</div>
+
+<!-- MODAL AGENDA AVANCADA (com tudo aberto + bulk add) -->
+<div class="modal-overlay" id="modal-agenda-avancada">
+  <div class="modal-lg" style="max-width:920px">
+    <div class="modal-header"><h2>📅 Agenda Avancada - Adicionar Compromissos em Massa</h2><button class="close-btn" onclick="fecharModal('modal-agenda-avancada')">&times;</button></div>
+    <div class="artigo-full" style="max-height:80vh;overflow-y:auto;padding:1.2rem">
+      <div style="display:flex;gap:0.3rem;margin-bottom:0.8rem;flex-wrap:wrap">
+        <button class="btn btn-sm" onclick="abrirAbaAgenda('unico')" id="aba-agenda-unico">📌 Evento Unico</button>
+        <button class="btn btn-sm btn-outline" onclick="abrirAbaAgenda('bulk')" id="aba-agenda-bulk">📝 Em Massa (Linhas)</button>
+        <button class="btn btn-sm btn-outline" onclick="abrirAbaAgenda('recorrencia')" id="aba-agenda-recorrencia">🔁 Recorrente</button>
+        <button class="btn btn-sm btn-outline" onclick="abrirAbaAgenda('estudos')" id="aba-agenda-estudos">📚 Plano de Estudo</button>
+      </div>
+
+      <!-- UNICO -->
+      <div id="agenda-unico">
+        <div class="ag-form-section">
+          <h5>📝 Informacoes Basicas</h5>
+          <div class="ag-row-multi">
+            <div><label>Titulo *</label><input type="text" id="aa-tit" placeholder="Ex: Audiencia - Processo 1234-5"></div>
+            <div><label>Categoria *</label><select id="aa-cat"><option value="lemb">🔔 Lembrete</option><option value="audi">⚖️ Audiencia</option><option value="prazo">⏰ Prazo</option><option value="reun">👥 Reuniao</option><option value="est">📚 Estudo</option><option value="aula">🎓 Aula</option><option value="prova">📝 Prova</option><option value="trab">💼 Trabalho</option><option value="pessoal">👤 Pessoal</option></select></div>
+            <div><label>Cor</label><div class="nota-cor-picker" id="aa-cores"><div class="nota-cor-dot active" data-cor="none"></div><div class="nota-cor-dot" data-cor="amarelo"></div><div class="nota-cor-dot" data-cor="verde"></div><div class="nota-cor-dot" data-cor="azul"></div><div class="nota-cor-dot" data-cor="vermelho"></div><div class="nota-cor-dot" data-cor="roxo"></div><div class="nota-cor-dot" data-cor="rosa"></div><div class="nota-cor-dot" data-cor="laranja"></div><div class="nota-cor-dot" data-cor="ciano"></div></div></div>
+          </div>
+        </div>
+        <div class="ag-form-section">
+          <h5>📅 Data e Hora</h5>
+          <div class="ag-row-multi">
+            <div><label>Data *</label><input type="date" id="aa-data"></div>
+            <div><label>Hora</label><input type="time" id="aa-hora"></div>
+            <div><label>Duracao (min)</label><input type="number" id="aa-duracao" placeholder="60" min="0"></div>
+          </div>
+        </div>
+        <div class="ag-form-section">
+          <h5>📍 Local e Participantes</h5>
+          <div class="ag-row-multi">
+            <div><label>Local / Forum</label><input type="text" id="aa-local" placeholder="Ex: Forum Central - Sala 5"></div>
+            <div><label>Link / URL</label><input type="url" id="aa-link" placeholder="https://..."></div>
+            <div><label>Com (participantes)</label><input type="text" id="aa-com" placeholder="Ex: Dr. Joao, Dra. Maria"></div>
+          </div>
+        </div>
+        <div class="ag-form-section">
+          <h5>📄 Detalhes do Processo/Assunto</h5>
+          <div class="ag-row-multi">
+            <div><label>Numero do Processo</label><input type="text" id="aa-proc" placeholder="0000000-00.0000.0.00.0000"></div>
+            <div><label>Cliente / Parte</label><input type="text" id="aa-cliente" placeholder="Nome do cliente"></div>
+            <div><label>Vara / Orgao</label><input type="text" id="aa-vara" placeholder="Ex: 2a Vara Civel"></div>
+          </div>
+          <label>Descricao / Observacoes</label>
+          <textarea id="aa-desc" rows="3" placeholder="Detalhes adicionais, pauta, observacoes..."></textarea>
+        </div>
+        <div class="ag-form-section">
+          <h5>🔔 Notificacao</h5>
+          <div class="ag-row-multi2">
+            <div><label>Antecedencia</label><select id="aa-antec"><option value="0">No horario</option><option value="5">5 min antes</option><option value="10">10 min antes</option><option value="15" selected>15 min antes</option><option value="30">30 min antes</option><option value="60">1 hora antes</option><option value="120">2 horas antes</option><option value="1440">1 dia antes</option><option value="2880">2 dias antes</option><option value="10080">1 semana antes</option></select></div>
+            <div><label>Repetir notificacao</label><select id="aa-rep"><option value="0">Nao repetir</option><option value="1">1x a cada 5 min</option><option value="3">3x (5/10/15 min)</option><option value="5">5x ate a hora</option></select></div>
+          </div>
+          <label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer"><input type="checkbox" id="aa-lembrete" checked> ✅ Ativar notificacao</label>
+        </div>
+        <div style="display:flex;gap:0.4rem;justify-content:flex-end">
+          <button class="btn btn-outline" onclick="fecharModal('modal-agenda-avancada')">Cancelar</button>
+          <button class="btn" onclick="salvarAgendaAvancada()">💾 Salvar Evento</button>
+        </div>
+      </div>
+
+      <!-- BULK -->
+      <div id="agenda-bulk" style="display:none">
+        <div class="ag-form-section">
+          <h5>📝 Adicionar varios eventos (um por linha)</h5>
+          <div class="ag-form-bulk-hint">Formato: <code>DATA | HORA | TITULO | CATEGORIA | LOCAL | DESCRICAO</code><br>Exemplo:<br><code>2026-06-15 | 14:00 | Aud. Trabalhista | audi | Vara Trab. | Pauta: oitiva</code><br>Categorias: audi, prazo, reun, est, lemb, aula, prova, trab, pessoal</div>
+          <textarea id="aa-bulk-texto" rows="10" placeholder="Cole ou digite varios eventos aqui..." style="font-family:monospace"></textarea>
+          <label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;margin-top:0.4rem"><input type="checkbox" id="aa-bulk-lembrete" checked> Notificar todos</label>
+        </div>
+        <div style="display:flex;gap:0.4rem;justify-content:flex-end">
+          <button class="btn btn-outline" onclick="document.getElementById('aa-bulk-texto').value=''">Limpar</button>
+          <button class="btn" onclick="salvarAgendaBulk()">💾 Importar Todos</button>
+        </div>
+      </div>
+
+      <!-- RECORRENCIA -->
+      <div id="agenda-recorrencia" style="display:none">
+        <div class="ag-form-section">
+          <h5>🔁 Evento Recorrente</h5>
+          <div class="ag-row-multi">
+            <div><label>Titulo *</label><input type="text" id="ar-tit" placeholder="Ex: Aula de Constitucional"></div>
+            <div><label>Categoria</label><select id="ar-cat"><option value="est">📚 Estudo</option><option value="aula">🎓 Aula</option><option value="reun">👥 Reuniao</option><option value="lemb">🔔 Lembrete</option><option value="pessoal">👤 Pessoal</option></select></div>
+            <div><label>Cor</label><div class="nota-cor-picker" id="ar-cores"><div class="nota-cor-dot active" data-cor="none"></div><div class="nota-cor-dot" data-cor="amarelo"></div><div class="nota-cor-dot" data-cor="verde"></div><div class="nota-cor-dot" data-cor="azul"></div><div class="nota-cor-dot" data-cor="vermarelo"></div><div class="nota-cor-dot" data-cor="roxo"></div><div class="nota-cor-dot" data-cor="rosa"></div><div class="nota-cor-dot" data-cor="laranja"></div><div class="nota-cor-dot" data-cor="ciano"></div></div></div>
+          </div>
+          <div class="ag-row-multi2">
+            <div><label>Data inicio *</label><input type="date" id="ar-data-ini"></div>
+            <div><label>Data fim (opcional)</label><input type="date" id="ar-data-fim"></div>
+          </div>
+          <div class="ag-row-multi">
+            <div><label>Hora</label><input type="time" id="ar-hora"></div>
+            <div><label>Repetir a cada</label><select id="ar-freq"><option value="1">1 dia</option><option value="7" selected>1 semana</option><option value="14">2 semanas</option><option value="30">1 mes</option></select></div>
+            <div><label>Dias da semana</label><div style="display:flex;gap:0.2rem"><label style="font-size:0.7rem"><input type="checkbox" class="ar-dow" value="1">Seg</label><label style="font-size:0.7rem"><input type="checkbox" class="ar-dow" value="2">Ter</label><label style="font-size:0.7rem"><input type="checkbox" class="ar-dow" value="3">Qua</label><label style="font-size:0.7rem"><input type="checkbox" class="ar-dow" value="4">Qui</label><label style="font-size:0.7rem"><input type="checkbox" class="ar-dow" value="5">Sex</label><label style="font-size:0.7rem"><input type="checkbox" class="ar-dow" value="6">Sab</label><label style="font-size:0.7rem"><input type="checkbox" class="ar-dow" value="0">Dom</label></div></div>
+          </div>
+          <label>Local / Descricao</label>
+          <input type="text" id="ar-local" placeholder="Local ou observacoes">
+        </div>
+        <div style="display:flex;gap:0.4rem;justify-content:flex-end">
+          <button class="btn" onclick="salvarAgendaRecorrencia()">🔁 Gerar Eventos</button>
+        </div>
+      </div>
+
+      <!-- PLANO DE ESTUDO -->
+      <div id="agenda-estudos" style="display:none">
+        <div class="ag-form-section">
+          <h5>📚 Gerar Plano de Estudo Automatico</h5>
+          <div class="ag-row-multi">
+            <div><label>Materia</label><input type="text" id="ae-materia" placeholder="Ex: Direito Penal"></div>
+            <div><label>Topicos</label><input type="number" id="ae-topicos" value="10" min="1" max="50"></div>
+            <div><label>Minutos por dia</label><input type="number" id="ae-min" value="60" min="15" max="240"></div>
+          </div>
+          <div class="ag-row-multi2">
+            <div><label>Data inicio</label><input type="date" id="ae-data"></div>
+            <div><label>Horario</label><input type="time" id="ae-hora" value="19:00"></div>
+          </div>
+          <label>Dias da semana</label>
+          <div style="display:flex;gap:0.2rem;flex-wrap:wrap">
+            <label style="font-size:0.75rem"><input type="checkbox" class="ae-dow" value="1" checked>Seg</label>
+            <label style="font-size:0.75rem"><input type="checkbox" class="ae-dow" value="2" checked>Ter</label>
+            <label style="font-size:0.75rem"><input type="checkbox" class="ae-dow" value="3" checked>Qua</label>
+            <label style="font-size:0.75rem"><input type="checkbox" class="ae-dow" value="4" checked>Qui</label>
+            <label style="font-size:0.75rem"><input type="checkbox" class="ae-dow" value="5" checked>Sex</label>
+            <label style="font-size:0.75rem"><input type="checkbox" class="ae-dow" value="6">Sab</label>
+            <label style="font-size:0.75rem"><input type="checkbox" class="ae-dow" value="0">Dom</label>
+          </div>
+        </div>
+        <div style="display:flex;gap:0.4rem;justify-content:flex-end;margin-top:0.5rem">
+          <button class="btn" onclick="salvarPlanoEstudo()">🚀 Gerar Plano</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CONFIGURACAO DE COR DE LEMBRETE -->
+<div class="modal-overlay" id="modal-cor-lembrete">
+  <div class="modal-sm" style="max-width:400px">
+    <div class="modal-header"><h2>🎨 Cor do Lembrete</h2><button class="close-btn" onclick="fecharModal('modal-cor-lembrete')">&times;</button></div>
+    <div class="artigo-full" style="padding:1rem">
+      <p style="color:var(--muted);font-size:0.82rem;margin-bottom:0.8rem">Escolha uma cor personalizada para destacar este compromisso na agenda, dashboard e notificacoes.</p>
+      <div class="nota-cor-picker" id="lembrete-cores-popup" style="justify-content:center;display:flex;gap:0.4rem">
+        <div class="nota-cor-dot active" data-cor="none"></div>
+        <div class="nota-cor-dot" data-cor="amarelo"></div>
+        <div class="nota-cor-dot" data-cor="verde"></div>
+        <div class="nota-cor-dot" data-cor="azul"></div>
+        <div class="nota-cor-dot" data-cor="vermelho"></div>
+        <div class="nota-cor-dot" data-cor="roxo"></div>
+        <div class="nota-cor-dot" data-cor="rosa"></div>
+        <div class="nota-cor-dot" data-cor="laranja"></div>
+        <div class="nota-cor-dot" data-cor="ciano"></div>
+      </div>
+      <input type="hidden" id="lembrete-cor-id" value="">
+      <div style="margin-top:1rem;display:flex;gap:0.3rem;justify-content:flex-end">
+        <button class="btn btn-outline" onclick="fecharModal('modal-cor-lembrete')">Cancelar</button>
+        <button class="btn" onclick="aplicarCorLembrete()">✅ Aplicar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTAO FLUTUANTE AGENDA AVANCADA -->
+<button class="notas-fab" id="agenda-avancada-fab" onclick="abrirAgendaAvancada()" title="Agenda Avancada (em massa)" style="bottom:11rem;right:5rem;background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 4px 20px rgba(245,158,11,0.3);font-size:1.1rem">📅＋</button>
 
 </body>
 </html>
