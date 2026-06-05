@@ -1,11 +1,12 @@
 {
-  "version": "3.0.1",
+  "version": "3.0.2",
   "releaseDate": "2026-06-05",
-  "description": "Sistema de atualizacao automatica inteligente - modal aparece automaticamente ao detectar nova versao, download em massa pelo navegador, atualizacao periodica a cada 5 minutos. Funciona em qualquer PC, mesmo sem PowerShell.",
+  "description": "GitHub Pages corrigido - URL raiz agora redireciona para JurisPath.html. Adicionado index.html, 404.html e .nojekyll.",
   "files": [
     "JurisPath.html",
     "vade.js",
     "data.js",
+    "version.json",
     "src/data/lawSubjects.json",
     "dados/livros.js",
     "dados/videos.js",
@@ -15,19 +16,17 @@
     "atualizar.ps1",
     "instalar.ps1",
     "jurispath.bat",
-    "EstudiosDireitoInstaller.iss"
+    "EstudiosDireitoInstaller.iss",
+    "index.html",
+    "404.html",
+    ".nojekyll"
   ],
   "changes": [
-    "SISTEMA DE ATUALIZACAO AUTOMATICA: modal bonito aparece automaticamente ao detectar nova versao no GitHub (apos 5s do boot), 5s apos verificacao periodica, ou ao abrir em qualquer PC.",
-    "ATUALIZACAO EM MASSA PELO NAVEGADOR: botao 'Baixar arquivos' baixa TODOS os 14 arquivos do JurisPath direto pelo navegador (HTML, JS, PS1, BAT, ISS, JSON). Barra de progresso, contador de sucessos/erros. Funciona em qualquer PC sem privilegios admin.",
-    "ATUALIZACAO VIA POWERSHELL: botao 'Atualizar agora' tenta executar o atualizar.ps1 nativo (mais confiavel no Windows).",
-    "ATUALIZACAO COMPLETA AUTOMATICA: botao 'Atualizacao completa' detecta o ambiente (file://) e escolhe a melhor estrategia.",
-    "VERIFICACAO PERIODICA: a cada 5 minutos checa GitHub silenciosamente; se houver nova versao mostra toast clicavel + modal.",
-    "TOGGLE 'MOSTRAR AUTOMATICAMENTE': checkbox no modal permite desativar o auto-modal (configuracao salva no localStorage).",
-    "BADGE 'NOVO' no botao de atualizacao: continua funcionando como antes para feedback visual rapido.",
-    "TOAST CLICAVEL: o toast de nova versao abre o modal ao ser clicado.",
-    "LISTA ARQUIVOS_UPDATE centralizada: facilita manutencao do que e sincronizado.",
-    "v3.0.0 (liberada anteriormente): CF/88 completa, notas coloridas, agenda avancada, Material 2026, GitHub Gist sync, mapa mental, lembretes coloridos."
+    "GITHUB PAGES: Criado index.html com redirecionamento automatico para JurisPath.html - resolve 404 ao acessar https://lucbruna.github.io/JurisPath/",
+    "404.html personalizado: qualquer URL invalida redireciona para o app em vez de mostrar erro do GitHub",
+    ".nojekyll adicionado: garante que GitHub Pages sirva os arquivos diretamente sem processamento Jekyll (importante para arquivos .bat, .ps1, .iss).",
+    "Cache-busting: URL do JurisPath.html agora usa ?v=3.0.2&t=timestamp para forcar o navegador a baixar a versao mais recente.",
+    "v3.0.1 (liberada anteriormente): sistema de atualizacao automatica com modal inteligente que aparece sozinho ao detectar nova versao."
   ],
   "autoUpdate": {
     "enabled": true,
